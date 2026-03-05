@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>08 · REST API Design</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 08</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="08-rest-api-design.html" class="active">08 REST API Design</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>REST API Design</h1><p>Designing predictable, scalable APIs for frontend and third-party clients.</p></div><div class="sec sec-example"><h3>▶ REST principles</h3><ul><li>Resource-oriented URLs</li><li>Stateless communication</li><li>Standard HTTP methods and status codes</li><li>Consistent request/response formats (usually JSON)</li></ul></div><div class="sec sec-example"><h3>▶ Method + status mapping</h3><pre><code>GET /users        -> 200
+POST /users       -> 201
+GET /users/:id    -> 200/404
+PUT /users/:id    -> 200/204
+DELETE /users/:id -> 204</code></pre></div><div class="sec sec-example"><h3>▶ Versioning and response shape</h3><pre><code>/api/v1/users
+{
+  "data": {...},
+  "meta": {"requestId":"..."},
+  "error": null
+}</code></pre></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>REST quality depends on consistent resource modeling, status semantics, idempotency, and versioning strategy aligned with client evolution.</p></div><div class="page-nav"><a href="07-flask-lightweight-web-applications.html">← Flask</a><a href="09-authentication-and-security.html">Authentication and Security →</a></div></main></body></html>

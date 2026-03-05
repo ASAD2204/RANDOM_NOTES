@@ -1,0 +1,22 @@
+Multi-agent: specialized agents (researcher, coder, reviewer) coordinate tasks</code></pre></div><div class="sec sec-example"><h3>▶ Real-world examples</h3><ul><li>Autonomous assistants</li><li>Coding agents</li><li>Research agents</li><li>Customer support triage agents</li></ul></div><div class="page-nav"><a href="12-agentic-ai.html">← Agentic AI</a><a href="14-ai-system-design.html">AI System Design →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>13 · AI Agents</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 13</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="13-ai-agents.html" class="active">13 AI Agents</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>AI Agents</h1><p>Agent taxonomies, coordination patterns, and real-world deployment models.</p></div>
+	<div class="sec sec-example"><h3>▶ Agent types</h3><ul><li><b>Reactive:</b> direct response to current observation.</li><li><b>Model-based:</b> maintain internal world state.</li><li><b>Goal-based:</b> select actions that satisfy explicit goals.</li><li><b>Utility-based:</b> optimize utility under trade-offs.</li><li><b>Learning agents:</b> improve policy from experience feedback.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ Single vs multi-agent</h3><pre><code>Single-agent: one planner/executor loop
+Multi-agent: specialized roles (researcher, coder, reviewer) coordinate tasks</code></pre></div>
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Agent design is an architecture choice over autonomy, controllability, and coordination overhead. Single-agent setups are simpler and easier to debug. Multi-agent systems can improve specialization and throughput but introduce communication and consistency complexity. In interviews, justify agent topology based on task decomposition, reliability requirements, and operational observability.</p><ul><li><b>Role clarity:</b> each agent should have clear responsibilities and interfaces.</li><li><b>Conflict resolution:</b> voting, arbitration, or hierarchical control may be required.</li><li><b>Evaluation:</b> measure both task success and coordination efficiency.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ Real-world examples</h3><ul><li>Autonomous assistants</li><li>Coding agents</li><li>Research agents</li><li>Customer support triage agents</li></ul></div>
+	<div class="page-nav"><a href="12-agentic-ai.html">← Agentic AI</a><a href="14-ai-system-design.html">AI System Design →</a></div>
+</main>
+</body>
+</html>

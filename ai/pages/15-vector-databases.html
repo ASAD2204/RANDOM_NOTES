@@ -1,0 +1,23 @@
+# index = faiss.IndexFlatIP(d)
+# index.add(vectors)
+# D, I = index.search(query_vector, k=5)</code></pre></div><div class="page-nav"><a href="14-ai-system-design.html">← AI System Design</a><a href="16-mlops.html">MLOps →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>15 · Vector Databases</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 15</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="15-vector-databases.html" class="active">15 Vector Databases</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Vector Databases</h1><p>Infrastructure for high-dimensional embedding storage and approximate similarity search.</p></div>
+	<div class="sec sec-example"><h3>▶ Why vector DBs?</h3><p>Semantic retrieval relies on nearest-neighbor search in embedding space, which traditional B-tree style indexing is not optimized for.</p></div>
+	<div class="sec sec-example"><h3>▶ Concepts</h3><ul><li>Embeddings represent semantic meaning as dense vectors.</li><li>Similarity metrics: cosine, dot product, and L2 distance.</li><li>ANN indexing (HNSW/IVF/PQ) trades exactness for speed and scale.</li><li>Metadata filtering narrows candidate sets before ranking.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Vector search quality depends on embedding model quality, index hyperparameters, and query formulation. Retrieval systems optimize both recall (finding relevant items) and latency. In production, teams tune chunking, embedding refresh cadence, and ANN index settings to maintain relevance as corpora evolve.</p><ul><li><b>Index trade-off:</b> higher recall usually increases compute and latency.</li><li><b>Semantic drift:</b> embeddings may need re-generation after model updates.</li><li><b>Hybrid retrieval:</b> combining lexical + vector often improves robustness.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ Ecosystem</h3><p>FAISS (library), Pinecone (managed), ChromaDB (developer-friendly), Weaviate (rich schema and hybrid retrieval).</p></div>
+	<div class="page-nav"><a href="14-ai-system-design.html">← AI System Design</a><a href="16-mlops.html">MLOps →</a></div>
+</main>
+</body>
+</html>

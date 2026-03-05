@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>25 · Mock Interview Rounds</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Revision</h2><p>Mock Rounds</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li>
+<li><a href="24-uml-visual-revision.html">24 UML / Visual Revision</a></li>
+<li><a href="25-mock-interview-rounds.html" class="active">25 Mock Interview Rounds</a></li>
+</ul></nav></aside>
+
+<main class="main">
+  <div class="page-header">
+    <h1>Mock Interview Rounds (OOP)</h1>
+    <p>Practice as if in real placement interviews: concept round, design round, and debugging round.</p>
+  </div>
+
+  <div class="sec sec-explanation"><h3>📚 Round 1: Concept Drill (10 mins)</h3><ul>
+    <li>Define all four OOP pillars with one example each.</li>
+    <li>Difference between abstraction and encapsulation with product analogy.</li>
+    <li>Overloading vs overriding (include language caveats for Python/JS).</li>
+    <li>Aggregation vs composition using lifecycle language.</li>
+    <li>Virtual function and dynamic binding in two lines.</li>
+  </ul></div>
+
+  <div class="sec sec-example"><h3>▶ Round 2: Design Drill (20 mins)</h3><p><strong>Prompt:</strong> Design a notification platform for Email/SMS/Push with retry policy and logging.</p>
+  <pre><code>Expected strong answer includes:
+- Notification interface (send)
+- Concrete providers (Email/SMS/Push)
+- Strategy for retry policy
+- Dependency injection for logger/provider
+- Open-Closed compliant extension for new channel</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ Round 3: Debug & Refactor Drill (20 mins)</h3><p><strong>Prompt:</strong> You have a God class handling order creation, payment, inventory, and email. Refactor it.</p>
+  <pre><code>Expected direction:
+- Split into cohesive services (OrderService, PaymentService, InventoryService, NotificationService)
+- Introduce interfaces for external adapters
+- Move orchestration into application layer
+- Add tests at service boundaries</code></pre></div>
+
+  <div class="sec sec-mistake"><h3>⚠ Common Interview Mistakes</h3><ul>
+    <li>Talking only theory without showing class-level design.</li>
+    <li>Ignoring trade-offs (e.g., overusing inheritance).</li>
+    <li>No mention of failure cases and invariants.</li>
+    <li>Hard-coding dependencies, making code untestable.</li>
+  </ul></div>
+
+  <div class="sec sec-tip"><h3>🌟 Scoring Rubric (Self-Evaluation)</h3><pre><code>5/5: clear modeling, SOLID alignment, edge cases, extensible design
+4/5: good design but weaker trade-off discussion
+3/5: correct basics but tight coupling and missing abstractions
+2/5: mostly procedural code with classes as wrappers
+1/5: unclear design and no ownership/contract thinking</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ Variant Practice Tracks</h3><ul>
+    <li><a href="26-company-round-service.html">Service-Based Company Round</a></li>
+    <li><a href="27-company-round-product.html">Product-Based Company Round</a></li>
+    <li><a href="28-company-round-startup.html">Startup-Style OOP Round</a></li>
+    <li><a href="29-last-24-hours-prep.html">Last 24 Hours OOP Prep</a></li>
+  </ul></div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="24-uml-visual-revision.html">← UML / Visual Revision</a><a href="../index.html">🏠 OOP Home</a></div>
+</main>
+</body></html>

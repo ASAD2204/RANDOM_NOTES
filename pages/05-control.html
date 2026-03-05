@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 · Control Flow — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html" class="active"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 05</div>
+    <h1>Control Flow</h1>
+    <p>Conditionals, loops, break/continue — the skeleton of every algorithm.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>if / else if / else</strong> — classic conditional branching.</li>
+        <li><strong>switch</strong> — multi-way branch on integer/enum/char.</li>
+        <li><strong>for</strong> — classic 3-part loop (init; cond; update).</li>
+        <li><strong>range-based for</strong> — iterate containers cleanly (C++11).</li>
+        <li><strong>while</strong> — loop while condition is true.</li>
+        <li><strong>do-while</strong> — execute at least once, then check condition.</li>
+        <li><strong>break</strong> — exit loop/switch immediately.</li>
+        <li><strong>continue</strong> — skip to next iteration.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>if (x &gt; 0) { ... } else if (x == 0) { ... } else { ... }
+
+switch (x) { case 1: ...; break; default: ...; break; }
+
+for (int i = 0; i &lt; n; i++) { ... }
+for (const auto&amp; item : container) { ... }
+while (condition) { ... }
+do { ... } while (condition);</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+
+    for (const auto&amp; x : v) {
+        if (x == 3) continue;  // skip 3
+        if (x == 5) break;     // stop at 5
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    // Output: 1 2 4
+
+    // do-while: runs at least once
+    int n = 0;
+    do {
+        n++;
+    } while (n &lt; 3);
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Control flow is like a <strong>road network</strong>: <em>if/else</em> is a turn, <em>switch</em> is a roundabout with exits, <em>for/while</em> is driving in circles until you meet the exit condition.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting <code>break</code> in <code>switch</code> — causes fall-through to next case.</li>
+        <li>Off-by-one: <code>i &lt; n</code> vs <code>i &lt;= n</code> — draw it out when in doubt.</li>
+        <li>Infinite loop: forgetting to update the loop variable.</li>
+        <li>Modifying a container while range-looping over it.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always state loop bounds clearly: <em>"i goes from 0 inclusive to n exclusive."</em></li>
+        <li>Prefer range-based for loop for readability — it also avoids index out-of-bounds.</li>
+        <li>If a problem has nested loops, proactively mention the O(N²) complexity.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>if / elif / else</strong> — conditional branching (no switch before 3.10).</li>
+        <li><strong>match / case</strong> — pattern matching (Python 3.10+).</li>
+        <li><strong>for x in iterable</strong> — iterates values directly (no index needed).</li>
+        <li><strong>while</strong> — loop with condition.</li>
+        <li><strong>No do-while</strong> — simulate with <code>while True: ... if cond: break</code>.</li>
+        <li><strong>for-else / while-else</strong> — unique: <code>else</code> runs only if no <code>break</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>if x &gt; 0:
+    pass
+elif x == 0:
+    pass
+else:
+    pass
+
+for i in range(n):         # 0..n-1
+for i, v in enumerate(arr): # index + value
+while condition:
+    pass
+
+for x in arr:
+    ...
+else:
+    # runs if no break was hit
+    ...</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>arr = [1, 2, 3, 4, 5]
+
+for x in arr:
+    if x == 3:
+        continue   # skip 3
+    if x == 5:
+        break      # stop at 5
+    print(x, end=" ")
+# Output: 1 2 4
+
+# for-else: useful for search
+for x in arr:
+    if x == 99:
+        print("found")
+        break
+else:
+    print("not found")   # prints this</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>for x in list</code> is like picking items <strong>one-by-one from a conveyor belt</strong> — you don't manage the belt position, you just grab each item. The <code>else</code> block fires when the belt runs out naturally (no break).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>range(n)</code> is 0 to n-1 (exclusive end) — visualize before coding.</li>
+        <li>Modifying a list while iterating: iterate over a copy (<code>for x in arr[:]</code>).</li>
+        <li>Forgetting that Python has no <code>do-while</code>.</li>
+        <li>Misusing <code>for-else</code>: the <code>else</code> runs when no <code>break</code> occurred — easy to misread.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Use <code>enumerate</code> instead of manual index counters.</li>
+        <li>Use <code>zip(a, b)</code> to iterate two sequences in parallel.</li>
+        <li>Mention <code>for-else</code> when implementing search — it impresses interviewers with Python knowledge depth.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>if / else if / else</strong> — standard branching.</li>
+        <li><strong>switch</strong> — multi-way branch (with mandatory <code>break</code>).</li>
+        <li><strong>for</strong> — classic C-style.</li>
+        <li><strong>for...of</strong> — iterate values of an iterable (arrays, strings).</li>
+        <li><strong>for...in</strong> — iterate keys of an object (avoid on arrays!).</li>
+        <li><strong>while / do-while</strong> — condition-based loops.</li>
+        <li><strong>Array methods</strong> — <code>forEach</code>, <code>map</code>, <code>filter</code>, <code>reduce</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>for (let i = 0; i &lt; n; i++) { ... }
+for (const val of arr)  { ... }  // values
+for (const key in obj)  { ... }  // keys
+
+while (condition) { ... }
+do { ... } while (condition);
+
+arr.forEach(x =&gt; console.log(x));
+arr.map(x =&gt; x * 2).filter(x =&gt; x &gt; 4);</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const arr = [1, 2, 3, 4, 5];
+
+// for...of
+for (const x of arr) {
+  if (x === 3) continue;
+  if (x === 5) break;
+  console.log(x);  // 1 2 4
+}
+
+// Functional style
+const evens  = arr.filter(x =&gt; x % 2 === 0);  // [2, 4]
+const doubled = evens.map(x =&gt; x * 2);          // [4, 8]
+const sum    = arr.reduce((acc, x) =&gt; acc + x, 0); // 15</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>for...of</code> picks items from a <strong>queue</strong>. <code>for...in</code> reads <strong>labels on drawers</strong> (object keys). Using <code>for...in</code> on an array reads "0", "1", "2"… (the indexes as strings) — usually not what you want.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>for...in</code> on an array — you get string indices, not values.</li>
+        <li>Forgetting <code>break</code> in <code>switch</code> — fall-through is silent and dangerous.</li>
+        <li><code>forEach</code> can't be stopped with <code>break</code> — use a <code>for...of</code> loop when you need early exit.</li>
+        <li>Mutation inside <code>map/filter</code> — these should be pure (no side effects).</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Prefer <code>for...of</code> over classic <code>for</code> for arrays — cleaner and error-free.</li>
+        <li>Know <code>map/filter/reduce</code> well — they're extremely common in frontend interviews.</li>
+        <li>When you need <code>break</code>, use <code>for...of</code>; when you want transformation, use <code>map</code>/<code>filter</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="04-operators.html">&larr; Operators</a>
+    <a href="06-functions.html">Functions &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

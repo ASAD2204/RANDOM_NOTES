@@ -1,0 +1,29 @@
+                    -> Feature/Context Store
+                    -> Model Serving Layer (ML/LLM)
+                    -> Retrieval Layer (Vector DB)
+                    -> Monitoring + Feedback + Analytics</code></pre></div><div class="sec sec-example"><h3>▶ Deployment pipeline</h3><pre><code>Data ingestion -> Training/Fine-tuning -> Validation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>14 · AI System Design</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 14</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="14-ai-system-design.html" class="active">14 AI System Design</a></li></ul></nav></aside>
+<main class="main">
+    <div class="page-header"><h1>AI System Design</h1><p>How to design robust AI products from user request to monitored production outcomes.</p></div>
+    <div class="sec sec-example"><h3>▶ Common product architectures</h3><ul><li>Recommendation systems</li><li>Conversational assistants</li><li>AI-powered search systems</li><li>AI copilots</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Reference architecture</h3><pre><code>Client -> API Gateway -> Orchestrator
+                                        -> Feature/Context Store
+                                        -> Model Serving Layer (ML/LLM)
+                                        -> Retrieval Layer (Vector DB)
+                                        -> Monitoring + Feedback + Analytics</code></pre></div>
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>AI system design is an end-to-end optimization problem across quality, latency, cost, safety, and maintainability. A high-performing model can still fail as a product if observability, fallback logic, and data governance are weak. The core design principle is separation of concerns: inference, retrieval, orchestration, and policy should be independently evolvable.</p><ul><li><b>Product requirements:</b> define measurable success metrics before architecture selection.</li><li><b>Failure design:</b> include graceful degradation when model confidence is low.</li><li><b>Feedback loops:</b> collect user corrections to improve future versions.</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Deployment pipeline</h3><pre><code>Data ingestion -> Training/Fine-tuning -> Validation
+-> Model registry -> Canary deploy -> Monitoring -> Iteration</code></pre></div>
+    <div class="page-nav"><a href="13-ai-agents.html">← AI Agents</a><a href="15-vector-databases.html">Vector Databases →</a></div>
+</main>
+</body>
+</html>

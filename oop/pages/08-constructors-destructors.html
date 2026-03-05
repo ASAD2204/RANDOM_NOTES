@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>08 · Constructors and Destructors</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 08</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="08-constructors-destructors.html" class="active">08 Constructors & Destructors</a></li><li><a href="09-access-modifiers.html">09 Access Modifiers</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Constructors and Destructors</h1><p>Default, parameterized, copy constructor, and destructor behavior across languages.</p></div>
+<div class="sec sec-example"><h3>▶ C++ Constructor Spectrum</h3><pre><code>class Box {
+public:
+  int w;
+  Box() : w(0) {}                 // default
+  Box(int x) : w(x) {}            // parameterized
+  Box(const Box& b) : w(b.w) {}   // copy constructor
+  ~Box() {}                       // destructor
+};</code></pre></div>
+<div class="sec sec-explanation"><h3>📚 Cross-language notes</h3><ul><li><strong>C++:</strong> deterministic destruction when object leaves scope.</li><li><strong>Python:</strong> <code>__init__</code> initializes; <code>__del__</code> is non-deterministic (GC-driven).</li><li><strong>JavaScript:</strong> constructor via <code>class</code>; no explicit destructors (GC handles memory).</li></ul></div>
+<div class="sec sec-mistake"><h3>⚠ Interview traps</h3><ul><li>Shallow copy of owning pointers in C++ causes double-free bugs.</li><li>Assuming Python <code>__del__</code> always runs immediately.</li><li>Ignoring move semantics in modern C++ when discussing copies.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="07-overloading-overriding.html">← Overloading vs Overriding</a><a href="09-access-modifiers.html">Access Modifiers →</a></div></main></body></html>

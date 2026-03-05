@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04 · Operators — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html" class="active"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 04</div>
+    <h1>Operators</h1>
+    <p>Arithmetic, relational, logical, bitwise, and ternary operators — plus their gotchas.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Arithmetic:</strong> <code>+ - * / %</code> — <code>/</code> is integer division if both operands are integers.</li>
+        <li><strong>Relational:</strong> <code>== != &lt; &gt; &lt;= &gt;=</code> — returns <code>bool</code>.</li>
+        <li><strong>Logical:</strong> <code>&amp;&amp;</code> (AND), <code>||</code> (OR), <code>!</code> (NOT) — short-circuit evaluation.</li>
+        <li><strong>Bitwise:</strong> <code>&amp; | ^ ~ &lt;&lt; &gt;&gt;</code> — operates on individual bits.</li>
+        <li><strong>Assignment:</strong> <code>= += -= *= /= %=</code></li>
+        <li><strong>Ternary:</strong> <code>cond ? a : b</code></li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>a / b           // integer division if both int
+a % b           // remainder
+a &amp;&amp; b          // logical AND
+a &amp; b           // bitwise AND (different!)
+(n &amp; 1) == 0    // check if even
+cond ? x : y    // ternary</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+int main() {
+    int a = 7, b = 3;
+
+    std::cout &lt;&lt; a / b  &lt;&lt; "\n"; // 2 (int division)
+    std::cout &lt;&lt; a % b  &lt;&lt; "\n"; // 1
+    std::cout &lt;&lt; (a &gt; b) &lt;&lt; "\n"; // 1 (true)
+
+    // Bitwise: check even/odd
+    std::cout &lt;&lt; ((a &amp; 1) ? "odd" : "even") &lt;&lt; "\n";
+
+    // Left shift = multiply by 2
+    std::cout &lt;&lt; (a &lt;&lt; 1) &lt;&lt; "\n"; // 14
+
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Operators are like <strong>different tools in a toolbox</strong>: a hammer (arithmetic), ruler (relational), logical gates (logical), lamp toggle (bitwise). Each does one job — mixing them up causes errors.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>5 / 2 == 2</code> not <code>2.5</code> — cast to <code>double</code> first if you need fractions.</li>
+        <li>Confusing <code>&amp;&amp;</code> (logical) with <code>&amp;</code> (bitwise).</li>
+        <li>Using <code>=</code> instead of <code>==</code> in a condition: <code>if (x = 5)</code> always true!</li>
+        <li>Operator precedence surprises without parentheses.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Know bitwise tricks: <code>n &amp; (n-1)</code> clears lowest set bit, useful for power-of-two checks.</li>
+        <li>Short-circuit: <code>ptr != nullptr &amp;&amp; ptr-&gt;val == x</code> is safe because of left-to-right evaluation.</li>
+        <li>Ternary is fine for simple inline conditionals; avoid nesting it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Arithmetic:</strong> <code>+ - * /</code> (<em>true division</em>) <code>//</code> (floor div) <code>%</code> <code>**</code> (power)</li>
+        <li><strong>Relational:</strong> <code>== != &lt; &gt; &lt;= &gt;=</code> — chainable: <code>1 &lt; x &lt; 10</code></li>
+        <li><strong>Logical:</strong> <code>and</code>, <code>or</code>, <code>not</code> — use words, not symbols</li>
+        <li><strong>Bitwise:</strong> <code>&amp; | ^ ~ &lt;&lt; &gt;&gt;</code></li>
+        <li><strong>Identity:</strong> <code>is</code>, <code>is not</code> — compare object identity</li>
+        <li><strong>Membership:</strong> <code>in</code>, <code>not in</code></li>
+        <li><strong>Ternary:</strong> <code>a if condition else b</code></li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>7 / 2     # 3.5  (true division!)
+7 // 2    # 3    (floor division)
+7 % 2     # 1
+2 ** 10   # 1024 (power)
+
+x = 5
+result = "big" if x &gt; 3 else "small"
+
+1 &lt; x &lt; 10  # chained comparison (unique to Python!)</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>a, b = 7, 3
+
+print(a // b)   # 2  (floor division)
+print(a / b)    # 2.333...  (true division)
+print(a ** b)   # 343
+
+# Logical operators
+print(a &gt; 5 and b &lt; 5)  # True
+
+# Membership
+arr = [1, 2, 3]
+print(2 in arr)           # True
+
+# Ternary
+label = "odd" if a % 2 else "even"
+print(label)
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Python logical operators read like <strong>everyday English</strong>: "if it rains <em>and</em> I have an umbrella, go out." Much more natural than <code>&amp;&amp;</code> and <code>||</code>.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting that <code>/</code> is always <strong>true division</strong> in Python 3 — use <code>//</code> for int result.</li>
+        <li>Using <code>&amp;</code> instead of <code>and</code> for boolean logic (bitwise vs logical).</li>
+        <li>Using <code>==</code> for identity checks: use <code>is</code> for singletons like <code>None</code>.</li>
+        <li><code>not in</code> and <code>is not</code> are two-word operators — don't break them up.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Chained comparisons (<code>0 &lt;= x &lt; n</code>) are Pythonic and impressive.</li>
+        <li>Use <code>x is None</code>, not <code>x == None</code>.</li>
+        <li>Walrus operator <code>:=</code> (Python 3.8+): <code>if (n := len(a)) &gt; 10:</code> — assign inside expression.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Arithmetic:</strong> <code>+ - * / % **</code> — <code>+</code> also concatenates strings (careful!)</li>
+        <li><strong>Relational:</strong> <code>&lt; &gt; &lt;= &gt;=</code>, strict <code>===</code>, loose <code>==</code></li>
+        <li><strong>Logical:</strong> <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>, nullish coalescing <code>??</code></li>
+        <li><strong>Bitwise:</strong> <code>&amp; | ^ ~ &lt;&lt; &gt;&gt; &gt;&gt;&gt;</code></li>
+        <li><strong>Ternary:</strong> <code>cond ? a : b</code></li>
+        <li><strong>Optional chaining:</strong> <code>obj?.prop</code> (safe access)</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>5 == "5"    // true  (type coercion)
+5 === "5"   // false (strict — prefer this)
+
+null ?? "default"  // "default" (nullish coalescing)
+obj?.name          // undefined (not error) if obj is null
+x ||= 3            // x = x || 3 (logical OR assignment)</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const a = 7, b = 3;
+
+console.log(a / b);          // 2.333...(float!)
+console.log(Math.floor(a/b)); // 2 (manual floor div)
+console.log(a ** b);         // 343
+
+// ALWAYS use ===
+console.log(a === 7);  // true
+console.log(a == "7"); // true (dangerous coercion!)
+
+// Ternary
+const label = (a % 2 === 0) ? "even" : "odd";
+console.log(label); // odd
+
+// Nullish coalescing
+const name = null;
+console.log(name ?? "Guest"); // "Guest"
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>==</code> is like asking <em>"Do you look similar?"</em> — a number and a string might match. <code>===</code> is like asking <em>"Are you the exact same person (type + value)?"</em> — much safer.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>==</code> — always use <code>===</code> to avoid coercion surprises.</li>
+        <li><code>"5" - 3 = 2</code> but <code>"5" + 3 = "53"</code> — subtraction coerces, addition concatenates.</li>
+        <li>Confusing <code>||</code> (falsy fallback) with <code>??</code> (null/undefined fallback) — <code>0 || "x" = "x"</code> but <code>0 ?? "x" = 0</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Lead with <code>===</code> — every JS interviewer notices if you use <code>==</code>.</li>
+        <li>Know <code>??</code> and <code>?.</code> — ES2020 features that show modern JS awareness.</li>
+        <li>Demonstrate short-circuit: <code>user &amp;&amp; user.name</code> is a common pattern in real code.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="03-variables.html">&larr; Variables &amp; Types</a>
+    <a href="05-control.html">Control Flow &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

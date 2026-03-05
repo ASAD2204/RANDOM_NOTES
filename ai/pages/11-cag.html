@@ -1,0 +1,32 @@
+CAG: broader contextual state management is central
+In practice: CAG may include RAG as one context source.</code></pre></div><div class="sec sec-example"><h3>▶ Minimal memory update pattern</h3><pre><code>memory.append({"role":"user", "text": user_query})
+context = summarize(memory[-10:])
+prompt = f"Context:{context}\nUser:{user_query}\nAssistant:"
+# reply = llm.generate(prompt)
+memory.append({"role":"assistant", "text": reply})</code></pre></div><div class="page-nav"><a href="10-rag.html">← RAG</a><a href="12-agentic-ai.html">Agentic AI →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>11 · Context Augmented Generation</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 11</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="11-cag.html" class="active">11 CAG</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Context Augmented Generation (CAG)</h1><p>Using memory and contextual signals to produce coherent multi-turn responses.</p></div>
+	<div class="sec sec-example"><h3>▶ CAG core ideas</h3><ul><li>Context building from dialogue state, user profile, and task state.</li><li>Memory layers: short-term conversation memory and long-term memory.</li><li>Window management: summarize/rank/trim context for limited token budgets.</li><li>Knowledge injection: enforce domain rules and constraints inside prompts.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ CAG vs RAG</h3><pre><code>RAG: retrieval from external knowledge base is central
+CAG: context-state construction and memory continuity are central
+Practical systems often combine both.</code></pre></div>
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>CAG treats conversation as a stateful process rather than isolated queries. The system decides what historical context to preserve, summarize, or discard to maximize relevance. This is crucial in workflows where user intent evolves over multiple turns. High-quality CAG requires careful memory policies to avoid stale or contradictory context.</p><ul><li><b>Recency vs importance:</b> recent messages are not always most relevant.</li><li><b>Compression:</b> summarization preserves key facts within token limits.</li><li><b>Consistency:</b> memory updates should maintain factual and persona stability.</li></ul></div>
+	<div class="sec sec-example"><h3>▶ Minimal memory update pattern</h3><pre><code>memory.append({"role":"user", "text": user_query})
+context = summarize(memory[-10:])
+prompt = f"Context:{context}\nUser:{user_query}\nAssistant:"
+# reply = llm.generate(prompt)
+memory.append({"role":"assistant", "text": reply})</code></pre></div>
+	<div class="page-nav"><a href="10-rag.html">← RAG</a><a href="12-agentic-ai.html">Agentic AI →</a></div>
+</main>
+</body>
+</html>

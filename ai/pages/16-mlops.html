@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>16 · MLOps</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 16</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="16-mlops.html" class="active">16 MLOps</a></li></ul></nav></aside>
+<main class="main">
+    <div class="page-header"><h1>MLOps (Machine Learning Operations)</h1><p>Operational discipline that keeps models reliable after deployment.</p></div>
+    <div class="sec sec-example"><h3>▶ Core MLOps concerns</h3><ul><li>Model versioning and registry</li><li>Experiment tracking and reproducibility</li><li>Monitoring performance, latency, and cost</li><li>Data drift and concept drift detection</li><li>CI/CD for training and deployment workflows</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Model quality decays if environment assumptions change. MLOps treats this as a control problem: detect deviation, diagnose root cause, and trigger safe remediation (rollback, retraining, feature fixes). It aligns data engineering, model engineering, and platform operations into one lifecycle.</p><ul><li><b>Reproducibility:</b> same code + data + config should reproduce results.</li><li><b>Observability:</b> collect model, feature, and business outcome metrics.</li><li><b>Governance:</b> enforce lineage, approvals, and rollback policies.</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Typical tools</h3><p>MLflow, Weights & Biases, DVC, Kubeflow, Airflow, GitHub Actions, Prometheus/Grafana, Evidently.</p></div>
+    <div class="sec sec-example"><h3>▶ Drift monitoring sketch</h3><pre><code>if distribution_shift(feature_stats_prod, feature_stats_train) > threshold:
+        trigger_retraining_job()</code></pre></div>
+    <div class="page-nav"><a href="15-vector-databases.html">← Vector Databases</a><a href="17-ai-deployment.html">AI Deployment →</a></div>
+</main>
+</body>
+</html>

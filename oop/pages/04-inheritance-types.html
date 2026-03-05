@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>04 · Inheritance Types</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 04</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="04-inheritance-types.html" class="active">04 Inheritance Types</a></li><li><a href="05-composition-vs-inheritance.html">05 Composition vs Inheritance</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Inheritance Types</h1><p>Single, Multiple, Multilevel, Hierarchical, and Hybrid inheritance with practical implications.</p></div>
+<div class="sec sec-syntax"><h3>📄 Concept Diagram</h3><pre><code>Single:       A -> B
+Multiple:     A, B -> C
+Multilevel:   A -> B -> C
+Hierarchical: A -> B and A -> C
+Hybrid:       Combination (e.g., hierarchical + multiple)</code></pre></div>
+<div class="sec sec-example"><h3>▶ Examples</h3><pre><code>// C++ Multiple Inheritance
+class Printer { public: void print(); };
+class Scanner { public: void scan(); };
+class MultiFunctionDevice : public Printer, public Scanner {};
+
+# Python Multilevel
+class A: pass
+class B(A): pass
+class C(B): pass
+
+// JavaScript (single inheritance with extends)
+class Animal {}
+class Dog extends Animal {}
+// Multiple inheritance simulated via composition/mixins</code></pre></div>
+<div class="sec sec-mistake"><h3>⚠ Interview Tricky Points</h3><ul><li>JS has prototypal inheritance with single <code>extends</code>; multiple behavior is typically mixin/composition.</li><li>C++ multiple inheritance can create ambiguity (same method name from two parents).</li><li>Hybrid inheritance in C++ may introduce diamond problem; virtual inheritance can resolve shared base duplication.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="03-four-pillars.html">← Four Pillars</a><a href="05-composition-vs-inheritance.html">Composition vs Inheritance →</a></div></main></body></html>

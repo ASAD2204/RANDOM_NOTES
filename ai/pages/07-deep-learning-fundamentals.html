@@ -1,0 +1,27 @@
+Loss(pred, target) -> Backprop -> Gradient Descent update</code></pre><ul><li>Activation functions: ReLU, sigmoid, tanh, softmax</li><li>Backprop computes gradients via chain rule</li><li>Optimizers: SGD, Adam</li></ul></div><div class="sec sec-example"><h3>▶ CNN, RNN, Transformers</h3><ul><li><b>CNN:</b> convolution filters for image/spatial structure.</li><li><b>RNN/LSTM/GRU:</b> sequence modeling with recurrence.</li><li><b>Transformers:</b> self-attention parallel sequence processing.</li></ul></div><div class="sec sec-tip"><h3>🌟 Traditional ML vs DL</h3><p>Traditional ML often depends on manual feature engineering; DL learns hierarchical features directly from large-scale data.</p></div><div class="page-nav"><a href="06-model-evaluation.html">← Model Evaluation</a><a href="08-large-language-models.html">LLMs →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>07 · Deep Learning Fundamentals</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 07</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="07-deep-learning-fundamentals.html" class="active">07 Deep Learning</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Deep Learning Fundamentals</h1><p>How neural networks learn representations and why they power modern AI systems.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Neural network basics</h3><pre><code>Input -> [Dense + ReLU] -> [Dense + ReLU] -> Output
+Loss(pred, target) -> Backprop -> Optimizer update</code></pre><ul><li>Activation functions: ReLU, sigmoid, tanh, softmax.</li><li>Backpropagation uses chain rule to compute parameter gradients.</li><li>Optimizers (SGD/Adam) update parameters to reduce loss.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ CNN, RNN, Transformers</h3><ul><li><b>CNN:</b> local receptive fields and shared filters for images/spatial data.</li><li><b>RNN/LSTM/GRU:</b> recurrent state for sequential dependence.</li><li><b>Transformers:</b> attention-based parallel sequence modeling.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Deep learning is representation learning. Instead of handcrafting features, networks learn hierarchical transformations from data, where lower layers capture simple patterns and deeper layers encode abstract semantics. Training quality depends on optimization dynamics, data scale/diversity, and regularization strategies such as dropout, weight decay, and early stopping.</p><ul><li><b>Expressivity:</b> deeper models can represent complex non-linear functions.</li><li><b>Optimization:</b> loss landscape and gradient flow affect convergence stability.</li><li><b>Generalization:</b> data quality and augmentation often matter more than raw model size.</li></ul></div>
+
+	<div class="sec sec-tip"><h3>🌟 Traditional ML vs DL</h3><p>Traditional ML relies heavily on handcrafted features; deep learning learns features end-to-end from raw or minimally processed inputs when enough data and compute are available.</p></div>
+
+	<div class="page-nav"><a href="06-model-evaluation.html">← Model Evaluation</a><a href="08-large-language-models.html">LLMs →</a></div>
+</main>
+</body>
+</html>

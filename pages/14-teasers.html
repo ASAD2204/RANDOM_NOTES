@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>14 · Brain Teasers — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html" class="active"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 14</div>
+    <h1>Brain Teasers</h1>
+    <p>Clever bit tricks, swap without temp, power-of-two checks — compact solutions that impress interviewers.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li>C++ bit manipulation is extremely fast — direct hardware operations.</li>
+        <li>XOR (<code>^</code>): toggles bits; <code>a ^ a = 0</code>, <code>a ^ 0 = a</code>.</li>
+        <li><code>n &amp; (n-1)</code>: clears the lowest set bit — used to check power of 2.</li>
+        <li><code>n &amp; (-n)</code>: isolates the lowest set bit.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Key Tricks</h3>
+      <pre><code>// Swap without temp variable (XOR trick)
+a ^= b;  b ^= a;  a ^= b;
+
+// Check if power of 2
+bool isPow2(int n) { return n &gt; 0 &amp;&amp; (n &amp; (n-1)) == 0; }
+
+// Count set bits (Brian Kernighan's algorithm)
+int countBits(int n) {
+    int count = 0;
+    while (n) { n &amp;= (n-1); count++; }
+    return count;
+}
+
+// Check if odd/even without modulo
+bool isOdd(int n) { return n &amp; 1; }</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code — 5 Teasers with Solutions</h3>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// 1. Find the missing number 1..n using XOR
+int missingNumber(vector&lt;int&gt;&amp; nums, int n) {
+    int xorAll = 0, xorArr = 0;
+    for (int i = 1; i &lt;= n; i++) xorAll ^= i;
+    for (int x : nums) xorArr ^= x;
+    return xorAll ^ xorArr;  // missing number
+}
+
+// 2. Reverse bits (32-bit)
+uint32_t reverseBits(uint32_t n) {
+    uint32_t res = 0;
+    for (int i = 0; i &lt; 32; i++) {
+        res = (res &lt;&lt; 1) | (n &amp; 1);
+        n &gt;&gt;= 1;
+    }
+    return res;
+}
+
+// 3. Find single non-duplicate (XOR cancels pairs)
+int singleNumber(vector&lt;int&gt;&amp; nums) {
+    int res = 0;
+    for (int n : nums) res ^= n;
+    return res;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>XOR is like a <strong>light switch</strong>: flip it twice and you're back to the start. XOR-ing every number in a paired list cancels them out — only the lonely number remains, like the last person without a dance partner.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>XOR swap only works when <code>a</code> and <code>b</code> are <em>different variables</em> — <code>a ^= a</code> destroys the value if same address.</li>
+        <li>Forgetting that bit operations work on the two's complement representation for negatives.</li>
+        <li>Using bit tricks to avoid clarity — only use them when performance matters or the trick is well-known.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Explain <em>why</em> a trick works, not just what it does — walkthrough XOR on paper if asked.</li>
+        <li><code>n &amp; (n-1)</code> clears the lowest set bit: know this for "count set bits" and "power of two".</li>
+        <li>Brian Kernighan's bit-counting algorithm runs in O(number of set bits) — faster than O(32) naive check.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li>Python integers are arbitrary precision — no overflow.</li>
+        <li>Bit ops: <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>.</li>
+        <li>Python has unique syntax tricks: tuple swap, chained comparisons, conditional expressions.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Key Tricks</h3>
+      <pre><code># Swap without temp (Pythonic)
+a, b = b, a  # no XOR needed — clear and readable
+
+# Check power of 2
+def is_pow2(n): return n &gt; 0 and (n &amp; (n-1)) == 0
+
+# Single non-duplicate via XOR
+from functools import reduce
+import operator
+single = reduce(operator.xor, nums)
+
+# Count set bits
+bin(n).count('1')      # Pythonic
+n.bit_count()          # Python 3.10+
+
+# Ternary one-liner
+abs_val = x if x &gt;= 0 else -x</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code — 5 Teasers with Solutions</h3>
+      <pre><code># 1. Fibonacci in one line
+fib = lambda n: n if n &lt;= 1 else fib(n-1) + fib(n-2)
+
+# 2. Flatten nested list
+def flatten(lst):
+    return [x for sub in lst for x in (flatten(sub) if isinstance(sub, list) else [sub])]
+
+# 3. Palindrome check (no extra space conceptually)
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+
+# 4. Find missing number 1..n
+def missing(nums, n):
+    return n*(n+1)//2 - sum(nums)  # no XOR needed in Python!
+
+# 5. Rotate array k steps
+def rotate(nums, k):
+    k %= len(nums)
+    nums[:] = nums[-k:] + nums[:-k]</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Python's <code>a, b = b, a</code> is the <strong>magic trick version</strong> of the XOR swap — it looks simple but Python creates a temporary tuple under the hood. The audience sees clean magic; behind the curtain it still follows the same physics.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Recursive lambda for fibonacci — Python has a ~1000 recursion limit; memoize or use iterative.</li>
+        <li><code>n.bit_count()</code> is only in Python 3.10+ — use <code>bin(n).count('1')</code> for compatibility.</li>
+        <li>Rotate: <code>nums[-0:]</code> when <code>k=0 → k%n=0</code> returns the whole list — handle edge case.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>For missing number: math formula <code>n(n+1)/2 - sum</code> is cleaner than XOR in Python — mention both approaches.</li>
+        <li>Tuple swap is O(1) — Python creates a temporary tuple then unpacks it.</li>
+        <li>Bit operations in Python work but are rarely the "clever" solution since Python has arithmetic shortcuts.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li>JS bitwise ops work on 32-bit signed integers (numbers converted first).</li>
+        <li>Destructuring swap: <code>[a, b] = [b, a]</code>.</li>
+        <li>Fun one-liners using <code>reduce</code>, <code>filter</code>, spread, and short-circuit evaluation.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Key Tricks</h3>
+      <pre><code>// Destructuring swap
+[a, b] = [b, a];
+
+// Power of 2 check
+const isPow2 = n =&gt; n &gt; 0 &amp;&amp; (n &amp; (n-1)) === 0;
+
+// Single non-duplicate
+const single = nums.reduce((acc, n) =&gt; acc ^ n, 0);
+
+// Quick integer floor (bitwise OR with 0)
+const floor = n =&gt; n | 0;    // 3.7 | 0 = 3 (NOT for negatives)
+const floor2 = Math.trunc(n); // safer alternative
+
+// Count set bits
+const countBits = n =&gt; n.toString(2).split("0").join("").length;</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code — 5 Teasers with Solutions</h3>
+      <pre><code>// 1. Fibonacci with memoization
+const memo = {};
+const fib = n =&gt; {
+    if (n &lt;= 1) return n;
+    return memo[n] ?? (memo[n] = fib(n-1) + fib(n-2));
+};
+
+// 2. Palindrome check
+const isPalindrome = s =&gt;
+    s.toLowerCase().replace(/[^a-z0-9]/g, "") ===
+    s.toLowerCase().replace(/[^a-z0-9]/g, "").split("").reverse().join("");
+
+// 3. Missing number (math formula)
+const missingNum = (nums, n) =&gt; n*(n+1)/2 - nums.reduce((a,b) =&gt; a+b, 0);
+
+// 4. Rotate array k steps (in-place)
+const rotate = (nums, k) =&gt; {
+    k %= nums.length;
+    nums.unshift(...nums.splice(-k)); // elegant but O(N) extra
+};
+
+// 5. Flatten with flat()
+[1, [2, [3, [4]]]].flat(Infinity);  // [1,2,3,4]</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>JS <code>??</code> (nullish coalescing) as a memoization guard is like a <strong>smart cache desk clerk</strong>: if the answer is already in the drawer, hand it over immediately; otherwise solve it, file it, and hand it over — never solve twice.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>n | 0</code> for flooring only works correctly for positive numbers — use <code>Math.floor</code> for negatives.</li>
+        <li>Bitwise XOR (<code>^</code>) is often confused with exponentiation — JS uses <code>**</code> for powers, not <code>^</code>.</li>
+        <li><code>nums.unshift(...nums.splice(-k))</code> for rotate — spread crashes on very large arrays (stack limit).</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Destructuring swap <code>[a,b]=[b,a]</code> is the JS "no temp variable" answer — know it cold.</li>
+        <li><code>.flat(Infinity)</code> is the modern interview answer for deep flatten.</li>
+        <li>XOR reduce for single non-duplicate: <code>nums.reduce((a,b) =&gt; a^b, 0)</code> — elegant one-liner.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="13-mistakes.html">&larr; Common Mistakes</a>
+    <a href="15-faq.html">Interview Q&amp;A &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

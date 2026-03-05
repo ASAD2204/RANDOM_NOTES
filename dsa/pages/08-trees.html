@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>08 · Trees</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 08</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="08-trees.html" class="active">08 Trees</a></li><li><a href="09-graphs.html">09 Graphs</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Trees</h1><p>Binary trees, BST, traversals, AVL, heaps, and tries with interview intuition.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><ul><li>Tree is hierarchical non-linear structure with root and children.</li><li>BST: left &lt; root &lt; right.</li><li>AVL: self-balancing BST (height diff <= 1).</li><li>Heap: complete tree with heap property (min/max).</li><li>Trie: prefix tree for strings.</li></ul></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Organization chart: root CEO, children managers; traversals are different ways to inspect hierarchy.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (inorder traversal)</h3><pre><code>inorder(node):
+  if node is null return
+  inorder(node.left)
+  visit(node)
+  inorder(node.right)
+
+For BST, inorder gives sorted order.</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++ recursive inorder
+void inorder(Node* r){ if(!r) return; inorder(r->l); cout<<r->v; inorder(r->r); }
+
+# Python BFS level-order
+from collections import deque
+q=deque([root])
+
+// JS BST insert skeleton
+class Node{constructor(v){this.v=v;this.l=this.r=null;}}</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>Traversal: O(n)</li><li>BST search insert delete average: O(log n), worst O(n)</li><li>AVL operations: O(log n)</li><li>Heap push/pop: O(log n), peek O(1)</li><li>Trie insert/search: O(L) where L is word length</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Efficient hierarchical operations and ordered queries.</li><li>❌ Implementation complexity for balanced trees/tries.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Confusing tree depth vs height.</li><li>Missing base cases in recursive traversals.</li><li>Not handling skewed BST worst-case.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Master preorder/inorder/postorder + level order.</li><li>For BST questions always mention sorted inorder property.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="07-hash-tables.html">← Hash Tables</a><a href="09-graphs.html">Graphs →</a></div></main></body></html>

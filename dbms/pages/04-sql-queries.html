@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>04 · SQL Queries</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 04</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="04-sql-queries.html" class="active">04 SQL Queries</a></li><li><a href="05-sql-joins.html">05 SQL Joins</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>SQL Queries</h1><p>SELECT, WHERE, ORDER BY, GROUP BY, HAVING, DISTINCT, LIMIT with sample data and outputs.</p></div><div class="sec sec-example"><h3>📋 Sample tables</h3><pre><code>employees
++-------+----------+---------+--------+
+| emp_id| emp_name | dept_id | salary |
++-------+----------+---------+--------+
+| 1     | Asha     | 10      | 60000  |
+| 2     | Ravi     | 20      | 75000  |
+| 3     | Meera    | 10      | 80000  |
+| 4     | Karan    | NULL    | 50000  |
+| 5     | Isha     | 20      | 75000  |
++-------+----------+---------+--------+</code></pre></div><div class="sec sec-example"><h3>▶ SELECT + WHERE + ORDER BY</h3><pre><code>SELECT emp_name, salary
+FROM employees
+WHERE salary &gt;= 70000
+ORDER BY salary DESC;
+
+Output:
++----------+--------+
+| emp_name | salary |
++----------+--------+
+| Meera    | 80000  |
+| Ravi     | 75000  |
+| Isha     | 75000  |
++----------+--------+</code></pre></div><div class="sec sec-example"><h3>▶ DISTINCT</h3><pre><code>SELECT DISTINCT dept_id FROM employees;
+
+Output:
++---------+
+| dept_id |
++---------+
+| 10      |
+| 20      |
+| NULL    |
++---------+</code></pre></div><div class="sec sec-example"><h3>▶ GROUP BY + HAVING</h3><pre><code>SELECT dept_id, COUNT(*) AS emp_count, AVG(salary) AS avg_salary
+FROM employees
+WHERE dept_id IS NOT NULL
+GROUP BY dept_id
+HAVING COUNT(*) &gt;= 2;
+
+Output:
++---------+-----------+------------+
+| dept_id | emp_count | avg_salary |
++---------+-----------+------------+
+| 10      | 2         | 70000      |
+| 20      | 2         | 75000      |
++---------+-----------+------------+</code></pre></div><div class="sec sec-example"><h3>▶ LIMIT</h3><pre><code>SELECT emp_name, salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 2;
+
+Output:
++----------+--------+
+| emp_name | salary |
++----------+--------+
+| Meera    | 80000  |
+| Ravi     | 75000  |
++----------+--------+</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Use <code>WHERE</code> before grouping, <code>HAVING</code> after grouping.</li><li><code>DISTINCT</code> removes duplicate result rows, not table rows.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="03-sql-overview.html">← SQL Overview</a><a href="05-sql-joins.html">SQL Joins →</a></div></main></body></html>

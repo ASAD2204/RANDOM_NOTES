@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>09 · Chatbot Development</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 09</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="09-chatbot-development.html" class="active">09 Chatbot Development</a></li></ul></nav></aside>
+<main class="main">
+    <div class="page-header"><h1>Chatbot Development</h1><p>From scripted bots to retrieval-augmented, tool-using conversational systems.</p></div>
+
+    <div class="sec sec-example"><h3>▶ Types of chatbots</h3><ul><li><b>Rule-based:</b> deterministic flows, high control, low flexibility.</li><li><b>Retrieval-based:</b> picks best answer from indexed knowledge.</li><li><b>Generative:</b> synthesizes novel responses using language models.</li><li><b>LLM-based:</b> combines prompts, memory, retrieval, and tools.</li></ul></div>
+
+    <div class="sec sec-example"><h3>▶ Chatbot architecture</h3><pre><code>User -> API Gateway -> Orchestrator -> (Retriever / Tools / Memory) -> LLM
+                                                                             -> Safety/Policy Layer -> Response</code></pre></div>
+
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>A production chatbot is a policy-governed dialog system. The model generates language, but orchestration decides what context to include, which tools to call, and when to block unsafe outputs. High-quality systems optimize for correctness, consistency, response latency, and user trust rather than verbosity alone.</p><ul><li><b>State management:</b> maintain dialogue context across turns.</li><li><b>Grounding:</b> attach factual context from internal knowledge sources.</li><li><b>Guardrails:</b> enforce safety, domain policy, and escalation logic.</li></ul></div>
+
+    <div class="sec sec-example"><h3>▶ Python mini example (LLM call pattern)</h3><pre><code>def build_prompt(user_query, history):
+        return f"System: helpful assistant\nHistory:{history}\nUser:{user_query}\nAssistant:"
+
+prompt = build_prompt("Explain overfitting", "")
+# response = llm_client.generate(prompt)
+# print(response)</code></pre></div>
+
+    <div class="page-nav"><a href="08-large-language-models.html">← LLMs</a><a href="10-rag.html">RAG →</a></div>
+</main>
+</body>
+</html>

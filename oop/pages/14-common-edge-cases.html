@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>14 · Common OOP Problems and Edge Cases</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 14</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="14-common-edge-cases.html" class="active">14 Edge Cases</a></li><li><a href="15-object-lifecycle-memory.html">15 Lifecycle & Memory</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Common OOP Problems and Edge Cases</h1><p>Diamond problem, ambiguity, slicing, copy semantics, and memory leaks.</p></div>
+<div class="sec sec-syntax"><h3>📄 Diamond Problem</h3><pre><code>   A
+  / \
+ B   C
+  \ /
+   D
+
+Without virtual inheritance in C++, D may contain two A subobjects.</code></pre></div>
+<div class="sec sec-example"><h3>▶ Edge Cases</h3><ul><li><strong>Multiple inheritance ambiguity:</strong> both parents define same method; call is ambiguous unless qualified.</li><li><strong>Object slicing:</strong> assigning derived object to base by value loses derived-specific state.</li><li><strong>Deep vs shallow copy:</strong> shallow copying owning pointer leads to double-delete.</li><li><strong>Memory leaks:</strong> forgetting virtual destructor or delete for heap allocations.</li></ul></div>
+<div class="sec sec-tip"><h3>🌟 Interview Fixes</h3><ul><li>Use virtual inheritance to solve diamond shared-base duplication when needed.</li><li>Use references/pointers to base to avoid slicing.</li><li>Use Rule of 3/5 or smart pointers for safe ownership.</li><li>Prefer RAII in C++; avoid manual resource management.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="13-solid-principles.html">← SOLID</a><a href="15-object-lifecycle-memory.html">Object Lifecycle & Memory →</a></div></main></body></html>

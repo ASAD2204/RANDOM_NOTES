@@ -1,0 +1,41 @@
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+print(classification_report(y_test, y_pred))
+RocCurveDisplay.from_predictions(y_test, y_prob)</code></pre><pre><code>Pred\Actual |  Pos  Neg
+Pos          |  TP   FP
+Neg          |  FN   TN</code></pre></div><div class="sec sec-example"><h3>▶ Cross-validation</h3><pre><code>from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X, y, cv=5, scoring="f1")
+print(scores.mean())</code></pre></div><div class="page-nav"><a href="05-data-preprocessing.html">← Data Preprocessing</a><a href="07-deep-learning-fundamentals.html">Deep Learning →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>06 · Model Evaluation</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 06</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="06-model-evaluation.html" class="active">06 Model Evaluation</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Model Evaluation</h1><p>How to measure whether a model is accurate, reliable, and useful for decisions.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Classification metrics</h3><ul><li>Accuracy = correct / total</li><li>Precision = TP/(TP+FP)</li><li>Recall = TP/(TP+FN)</li><li>F1 = harmonic mean of precision and recall</li></ul><p>Metric choice depends on error cost. In fraud detection, missing fraud (FN) may be worse than false alarms (FP), so recall often gets higher priority.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Confusion matrix and ROC</h3><pre><code>from sklearn.metrics import confusion_matrix, classification_report, RocCurveDisplay
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+print(classification_report(y_test, y_pred))
+RocCurveDisplay.from_predictions(y_test, y_prob)</code></pre><pre><code>Pred\Actual |  Pos  Neg
+Pos          |  TP   FP
+Neg          |  FN   TN</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Evaluation is a policy problem, not just a math problem. A model score becomes a business action only after thresholding, calibration checks, and risk analysis. Offline metrics should be paired with online performance indicators such as latency, cost, and user-impact metrics. Reliable teams define acceptance criteria before training begins.</p><ul><li><b>Discrimination:</b> can the model rank positives above negatives?</li><li><b>Calibration:</b> do predicted probabilities match actual frequencies?</li><li><b>Stability:</b> do metrics hold across segments and time windows?</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Cross-validation</h3><pre><code>from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X, y, cv=5, scoring="f1")
+print(scores.mean())</code></pre></div>
+
+	<div class="page-nav"><a href="05-data-preprocessing.html">← Data Preprocessing</a><a href="07-deep-learning-fundamentals.html">Deep Learning →</a></div>
+</main>
+</body>
+</html>

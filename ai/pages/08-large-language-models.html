@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>08 · Large Language Models</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 08</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="08-large-language-models.html" class="active">08 LLMs</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Large Language Models (LLMs)</h1><p>Transformer-based language models and their training/adaptation lifecycle.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Transformer pipeline</h3><pre><code>Text -> Tokenizer -> Embeddings + Positional Encoding
+-> Stacked Self-Attention + FFN blocks -> Next-token probabilities</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Key concepts</h3><ul><li><b>Attention:</b> weighted context aggregation between tokens.</li><li><b>Pretraining:</b> broad language competence from large corpora.</li><li><b>Fine-tuning:</b> domain/task adaptation for specificity and control.</li><li><b>Prompt engineering:</b> behavior steering via instruction/context design.</li><li><b>Tokenization:</b> subword representation balancing vocabulary and efficiency.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>LLMs model conditional probability over token sequences. Their effectiveness comes from scale (data/parameters/compute) and transformer attention, which captures long-range dependencies without recurrence. In practice, quality depends not just on base model size but also on retrieval context, prompt structure, decoding strategy, and alignment constraints.</p><ul><li><b>Context window:</b> bounded memory requiring careful context prioritization.</li><li><b>Alignment:</b> safety and helpfulness tuning shapes behavior.</li><li><b>Grounding:</b> external retrieval reduces hallucinations in factual tasks.</li></ul></div>
+
+	<div class="sec sec-tip"><h3>🌟 GPT-style models</h3><p>Decoder-only transformers generate autoregressively by repeatedly sampling/choosing the next token conditioned on prior tokens.</p></div>
+
+	<div class="page-nav"><a href="07-deep-learning-fundamentals.html">← Deep Learning</a><a href="09-chatbot-development.html">Chatbot Development →</a></div>
+</main>
+</body>
+</html>

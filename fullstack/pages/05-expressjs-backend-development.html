@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>05 · Express.js Backend Development</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="05-expressjs-backend-development.html" class="active">05 Express.js Backend</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Express.js Backend Development</h1><p>Building REST APIs with middleware-driven architecture.</p></div><div class="sec sec-example"><h3>▶ Routing and middleware</h3><pre><code>import express from "express";
+const app = express();
+app.use(express.json());
+
+app.get("/api/health", (req, res) => res.json({ok:true}));
+app.post("/api/users", (req, res) => res.status(201).json(req.body));</code></pre></div><div class="sec sec-example"><h3>▶ Request/response and error handling</h3><pre><code>app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({message: err.message || "Server error"});
+});</code></pre></div><div class="sec sec-example"><h3>▶ Auth and authorization</h3><pre><code>function auth(req, res, next){
+  const token = req.headers.authorization?.split(" ")[1];
+  if(!token) return res.status(401).json({message:"Unauthorized"});
+  next();
+}
+app.get("/api/private", auth, (req,res)=>res.json({secret:true}));</code></pre></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Express architecture is middleware composition. Reliability comes from clear routing, centralized errors, input validation, and observability-first API design.</p></div><div class="page-nav"><a href="04-nodejs-fundamentals.html">← Node.js Fundamentals</a><a href="06-fastapi-high-performance-apis.html">FastAPI →</a></div></main></body></html>

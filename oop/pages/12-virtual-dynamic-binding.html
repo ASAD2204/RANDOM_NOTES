@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>12 · Virtual Functions and Dynamic Binding</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 12</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="12-virtual-dynamic-binding.html" class="active">12 Virtual & Binding</a></li><li><a href="13-solid-principles.html">13 SOLID</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Virtual Functions and Dynamic Binding</h1><p>Runtime polymorphism and late binding in interview-friendly terms.</p></div>
+<div class="sec sec-syntax"><h3>📄 Binding Types</h3><pre><code>Early binding (static): call target known at compile time
+Late binding (dynamic): call target chosen at runtime by actual object type</code></pre></div>
+<div class="sec sec-example"><h3>▶ C++ Runtime Polymorphism</h3><pre><code>class Shape { public: virtual double area() const = 0; virtual ~Shape()=default; };
+class Circle : public Shape { double r; public: Circle(double r):r(r){} double area() const override { return 3.14*r*r; }};
+class Rect : public Shape { double w,h; public: Rect(double w,double h):w(w),h(h){} double area() const override { return w*h; }};
+
+double totalArea(const vector&lt;Shape*&gt;&amp; shapes){
+  double sum = 0;
+  for (auto s : shapes) sum += s->area(); // dynamic dispatch
+  return sum;
+}</code></pre></div>
+<div class="sec sec-mistake"><h3>⚠ Interview pitfalls</h3><ul><li>Missing virtual destructor in polymorphic base class can cause partial destruction.</li><li>Object slicing when storing derived objects by value in base containers.</li><li>Confusing overriding with overloading.</li></ul></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insight</h3><p>Say this clearly: “Runtime polymorphism allows extending behavior without changing caller code.” That directly connects to Open-Closed Principle.</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="11-static-members.html">← Static Members</a><a href="13-solid-principles.html">SOLID Principles →</a></div></main></body></html>

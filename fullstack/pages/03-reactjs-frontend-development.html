@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>03 · React.js Frontend Development</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 03</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="03-reactjs-frontend-development.html" class="active">03 React.js</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>React.js Frontend Development</h1><p>Building dynamic component-driven UIs with modern React patterns.</p></div><div class="sec sec-example"><h3>▶ React architecture</h3><pre><code>UI = f(state)
+Component tree -> props down, events up
+State + side effects handled via hooks</code></pre></div><div class="sec sec-example"><h3>▶ Components, props, state, hooks</h3><pre><code>import { useState, useEffect } from "react";
+function Users(){
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("/api/users").then(r => r.json()).then(setUsers);
+  }, []);
+  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;
+}</code></pre></div><div class="sec sec-example"><h3>▶ useContext + forms + conditional rendering</h3><pre><code>{isLoading ? <Spinner/> : <Dashboard/>}
+<form onSubmit={handleSubmit}>...</form></code></pre></div><div class="sec sec-example"><h3>▶ API integration (fetch/axios)</h3><pre><code>import axios from "axios";
+const res = await axios.get("/api/profile");
+setProfile(res.data);</code></pre></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>React is a deterministic UI model driven by state transitions. Predictable rendering and side-effect isolation are key to scalable frontend architecture.</p></div><div class="page-nav"><a href="02-javascript-deep-dive.html">← JavaScript</a><a href="04-nodejs-fundamentals.html">Node.js Fundamentals →</a></div></main></body></html>

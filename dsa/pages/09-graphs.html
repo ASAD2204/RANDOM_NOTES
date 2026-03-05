@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>09 · Graphs</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 09</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="09-graphs.html" class="active">09 Graphs</a></li><li><a href="10-searching.html">10 Searching</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Graphs</h1><p>Representations, BFS/DFS, shortest path intuition, and real applications.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><p>Graph = vertices + edges (directed/undirected, weighted/unweighted).</p></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>City map: intersections are nodes, roads are edges; shortest route problem is shortest path.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (BFS)</h3><pre><code>1) Push start into queue
+2) Mark visited
+3) Pop node, process it
+4) Push unvisited neighbors
+5) Repeat until queue empty</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++ adjacency list
+vector<vector<int>> g(n);
+
+# Python BFS
+from collections import deque
+q=deque([s]); vis={s}
+
+// JS DFS iterative
+const st=[s], vis=new Set([s]);</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>BFS/DFS: O(V+E)</li><li>Dijkstra (heap): O((V+E)logV)</li><li>Space: O(V+E)</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Models networks and dependencies naturally.</li><li>❌ Can be heavy in memory for dense graphs.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Forgetting visited set leads to cycles/infinite loops.</li><li>Using DFS where shortest path in unweighted graph needs BFS.</li><li>Mixing 0-index and 1-index node labels.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>State chosen representation (adjacency list vs matrix) and why.</li><li>For shortest path: BFS (unweighted), Dijkstra (non-negative weighted), Bellman-Ford (negative edges).</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="08-trees.html">← Trees</a><a href="10-searching.html">Searching →</a></div></main></body></html>

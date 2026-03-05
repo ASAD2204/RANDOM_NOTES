@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>05 · Stacks</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="05-stacks.html" class="active">05 Stacks</a></li><li><a href="06-queues.html">06 Queues</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Stacks</h1><p>LIFO data structure, implementation options, and applications like recursion and expression evaluation.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><p>Stack follows Last-In First-Out. Core operations: push, pop, top/peek.</p></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Plate stack: latest plate placed on top is removed first.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (balanced parentheses)</h3><pre><code>1) Traverse chars
+2) Push opening brackets
+3) On closing bracket, pop and match
+4) End with empty stack => valid</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++
+stack<int> st; st.push(1); st.pop();
+
+# Python
+st=[]; st.append(1); st.pop()
+
+// JS
+const st=[]; st.push(1); st.pop();</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>Push/Pop/Top: O(1)</li><li>Space: O(n)</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Simple and fast.</li><li>❌ Restricted access only at top.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Popping empty stack without checks.</li><li>Using recursion without stack-depth awareness.</li><li>Forgetting stack reset across test cases.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Know monotonic stack for next greater/smaller element patterns.</li><li>Use stack for DFS iterative and parsing problems.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="04-linked-lists.html">← Linked Lists</a><a href="06-queues.html">Queues →</a></div></main></body></html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>10 · Views</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 10</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="10-views.html" class="active">10 Views</a></li><li><a href="11-procedures-triggers.html">11 Procedures & Triggers</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Views</h1><p>Virtual tables based on SQL queries for abstraction and security.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><p>A view stores a query definition, not the data itself (except materialized views in some systems).</p></div><div class="sec sec-example"><h3>▶ Example</h3><pre><code>CREATE VIEW high_salary_employees AS
+SELECT emp_id, emp_name, salary
+FROM employees
+WHERE salary &gt;= 75000;
+
+SELECT * FROM high_salary_employees;
+
+Output:
+2 Ravi  75000
+3 Meera 80000
+5 Isha  75000</code></pre></div><div class="sec sec-explanation"><h3>Use cases</h3><ul><li>Hide complex joins behind simple interface.</li><li>Restrict access to sensitive columns.</li><li>Encapsulate reusable query logic.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Not all views are updatable; depends on query complexity and DB engine rules.</li><li>Differentiate normal view vs materialized view.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="09-indexing.html">← Indexing</a><a href="11-procedures-triggers.html">Stored Procedures & Triggers →</a></div></main></body></html>

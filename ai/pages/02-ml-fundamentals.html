@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>02 · Machine Learning Fundamentals</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar">
+	<div class="sidebar-brand"><h2>AI Prep</h2><p>Section 02</p></div>
+	<nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="02-ml-fundamentals.html" class="active">02 ML Fundamentals</a></li></ul></nav>
+</aside>
+<main class="main">
+	<div class="page-header"><h1>Machine Learning Fundamentals</h1><p>Core learning paradigms, pipeline logic, and theoretical principles behind model performance.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Learning paradigms</h3><ul><li><b>Supervised learning:</b> learn mapping from labeled examples for classification/regression.</li><li><b>Unsupervised learning:</b> discover latent structure in unlabeled data.</li><li><b>Reinforcement learning:</b> optimize sequential decisions using rewards.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Typical ML pipeline</h3><pre><code>Data Collection -> Data Preprocessing -> Model Training
+-> Validation/Evaluation -> Deployment -> Monitoring -> Iteration</code></pre><p>The pipeline is cyclic. Production feedback should continuously refine features, labels, and training strategy.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>ML can be viewed as statistical risk minimization. During training, we minimize empirical loss on samples, hoping it approximates true future loss. This approximation depends on sample quality, feature relevance, and distribution stability. Overfitting appears when the model captures noise rather than signal.</p><ul><li><b>Generalization:</b> performance on unseen data is the real objective.</li><li><b>Bias-variance:</b> simpler models may underfit, complex models may overfit.</li><li><b>Leakage control:</b> preprocessing must be fit only on training partitions.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Python skeleton</h3><pre><code>from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+pipe = Pipeline([("scaler", StandardScaler()), ("model", LogisticRegression(max_iter=500))])
+pipe.fit(X_train, y_train)
+print("Accuracy:", pipe.score(X_test, y_test))</code></pre></div>
+
+	<div class="page-nav"><a href="01-introduction-to-ai.html">← Introduction</a><a href="03-ml-algorithms.html">ML Algorithms →</a></div>
+</main>
+</body>
+</html>

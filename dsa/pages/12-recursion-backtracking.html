@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>12 · Recursion and Backtracking</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 12</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="12-recursion-backtracking.html" class="active">12 Recursion & Backtracking</a></li><li><a href="13-greedy.html">13 Greedy</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Recursion and Backtracking</h1><p>Recursive thinking, state-space exploration, and constraint-based undo patterns.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><ul><li>Recursion: function calls itself on smaller subproblem.</li><li>Backtracking: DFS over choices with “choose → explore → unchoose”.</li></ul></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Maze solving: try a path; if blocked, return to previous junction and try another route.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step template</h3><pre><code>def backtrack(state):
+  if goal(state): save
+  for choice in choices(state):
+    apply(choice)
+    backtrack(state)
+    undo(choice)</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++ subset generation
+void dfs(int i){ if(i==n){...; return;} ... }
+
+# Python permutations
+def bt(path, used): ...
+
+// JS N-Queens DFS skeleton
+function dfs(r){ ... }</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>Depends on branching factor and depth (often exponential).</li><li>Space includes recursion stack O(depth).</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Elegant for combinatorial search.</li><li>❌ Can blow up exponentially without pruning.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Missing base case causing infinite recursion.</li><li>Not undoing state in backtracking.</li><li>Global state bugs across test cases.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Always explain recursion tree and pruning strategy.</li><li>Mention memoization if subproblems overlap.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="11-sorting.html">← Sorting</a><a href="13-greedy.html">Greedy →</a></div></main></body></html>

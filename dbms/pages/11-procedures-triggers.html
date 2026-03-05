@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>11 · Stored Procedures and Triggers</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 11</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="11-procedures-triggers.html" class="active">11 Procedures & Triggers</a></li><li><a href="12-query-optimization.html">12 Query Optimization</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Stored Procedures and Triggers</h1><p>Server-side reusable logic and automatic event-driven actions.</p></div><div class="sec sec-explanation"><h3>📚 Stored Procedures</h3><p>Precompiled SQL blocks that can accept parameters and encapsulate business logic.</p></div><div class="sec sec-example"><h3>▶ Procedure example (MySQL-style)</h3><pre><code>DELIMITER //
+CREATE PROCEDURE GetEmployeesByDept(IN p_dept INT)
+BEGIN
+  SELECT emp_id, emp_name, salary
+  FROM employees
+  WHERE dept_id = p_dept;
+END //
+DELIMITER ;
+
+CALL GetEmployeesByDept(10);</code></pre></div><div class="sec sec-explanation"><h3>📚 Triggers</h3><p>Triggers run automatically before/after INSERT, UPDATE, DELETE events.</p></div><div class="sec sec-example"><h3>▶ Trigger example</h3><pre><code>CREATE TABLE salary_audit(
+  emp_id INT,
+  old_salary DECIMAL(10,2),
+  new_salary DECIMAL(10,2),
+  changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DELIMITER //
+CREATE TRIGGER trg_salary_update
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+  IF OLD.salary &lt;&gt; NEW.salary THEN
+    INSERT INTO salary_audit(emp_id, old_salary, new_salary)
+    VALUES (NEW.emp_id, OLD.salary, NEW.salary);
+  END IF;
+END //
+DELIMITER ;</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Keep triggers lightweight; avoid hidden side effects.</li><li>Prefer application/service logic for complex workflows unless strict DB-level enforcement is needed.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="10-views.html">← Views</a><a href="12-query-optimization.html">Query Optimization →</a></div></main></body></html>

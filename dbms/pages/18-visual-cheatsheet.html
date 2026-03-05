@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>18 · DBMS Visual Cheatsheet</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Advanced</h2><p>Visual Sheet</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="18-visual-cheatsheet.html" class="active">18 Visual Cheatsheet</a></li><li><a href="19-mock-interview-rounds.html">19 Mock Rounds</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>DBMS Visual Cheatsheet</h1><p>Fast-reference layout for SQL execution, normalization flow, and indexing decisions.</p></div><div class="sec sec-syntax"><h3>📄 SQL execution order (logical)</h3><pre><code>FROM / JOIN
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+LIMIT</code></pre></div><div class="sec sec-syntax"><h3>📄 Normalization flow</h3><pre><code>1NF -> atomic columns
+2NF -> remove partial dependency
+3NF -> remove transitive dependency
+BCNF -> every determinant is candidate key</code></pre></div><div class="sec sec-syntax"><h3>📄 Index decision quick-check</h3><pre><code>Index if:
+- frequent WHERE/JOIN/ORDER BY on column
+- high selectivity
+Avoid too many indexes on write-heavy tables</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tip</h3><p>When asked optimization questions, mention execution plan, cardinality, and index selectivity in one answer.</p></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="17-revision-11-14.html">← Revision Chunk C</a><a href="19-mock-interview-rounds.html">Mock Interview Rounds →</a></div></main></body></html>

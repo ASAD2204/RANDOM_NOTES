@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>13 · Common SQL Interview Questions</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 13</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="13-common-interview-questions.html" class="active">13 SQL Interview Questions</a></li><li><a href="14-practice-sql-problems.html">14 Practice Problems</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Common SQL Interview Questions</h1><p>Frequently asked query patterns with practical SQL solutions.</p></div><div class="sec sec-example"><h3>▶ Sample table</h3><pre><code>employees(emp_id, emp_name, dept_id, salary)
+(1,Asha,10,60000)
+(2,Ravi,20,75000)
+(3,Meera,10,80000)
+(4,Karan,NULL,50000)
+(5,Isha,20,75000)</code></pre></div><div class="sec sec-example"><h3>▶ Second highest salary</h3><pre><code>SELECT MAX(salary) AS second_highest
+FROM employees
+WHERE salary &lt; (SELECT MAX(salary) FROM employees);
+
+Output: 75000</code></pre></div><div class="sec sec-example"><h3>▶ Nth highest salary (N=3)</h3><pre><code>SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2;
+
+Output: 60000</code></pre></div><div class="sec sec-example"><h3>▶ Find duplicates (by emp_name)</h3><pre><code>SELECT emp_name, COUNT(*) AS cnt
+FROM employees
+GROUP BY emp_name
+HAVING COUNT(*) &gt; 1;
+
+Output: (empty for current sample)
+-- In general returns duplicated names.</code></pre></div><div class="sec sec-example"><h3>▶ Employees without departments</h3><pre><code>SELECT emp_id, emp_name
+FROM employees
+WHERE dept_id IS NULL;
+
+Output:
+4 Karan</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>For ranking questions, mention alternatives: subquery, window functions, CTE.</li><li>Explain NULL handling explicitly.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="12-query-optimization.html">← Query Optimization</a><a href="14-practice-sql-problems.html">Practice SQL Problems →</a></div></main></body></html>

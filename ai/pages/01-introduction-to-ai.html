@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>01 · Introduction to Artificial Intelligence</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="sidebar-brand"><h2>AI Prep</h2><p>Section 01</p></div>
+    <nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="01-introduction-to-ai.html" class="active">01 Introduction to AI</a></li></ul></nav>
+</aside>
+<main class="main">
+    <div class="page-header"><h1>Introduction to Artificial Intelligence</h1><p>What AI is, how it differs from ML/DL, and why it matters in real systems.</p></div>
+
+    <div class="sec sec-example"><h3>▶ What is AI?</h3><p>Artificial Intelligence is the discipline of building computational systems that can perceive, reason, learn, and act toward goals. In software products, AI is usually implemented as a pipeline: input data is transformed into features/tokens, a model infers outputs, and business logic translates outputs into actions.</p></div>
+
+    <div class="sec sec-example"><h3>▶ Types of AI</h3><ul><li><b>Narrow AI:</b> specialized for specific domains (today’s production reality).</li><li><b>General AI:</b> broad human-level adaptability across domains (research goal).</li><li><b>Super AI:</b> intelligence beyond human capability (theoretical concept).</li></ul></div>
+
+    <div class="sec sec-example"><h3>▶ AI vs ML vs DL</h3><pre><code>AI (broad umbrella)
+└─ ML (models learn from data)
+     └─ DL (deep neural architectures)</code></pre><p>Not all AI is ML (rule-based systems are AI), and not all ML is deep learning (trees, linear models, SVMs are ML but not DL).</p></div>
+
+    <div class="sec sec-example"><h3>▶ Real-world applications</h3><ul><li>Personalized recommendations</li><li>Fraud/risk detection</li><li>Medical image triage and diagnostics support</li><li>Autonomous assistants and copilots</li><li>Enterprise search and knowledge automation</li></ul></div>
+
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>AI engineering is fundamentally decision-making under uncertainty. Every model output has confidence and error bounds. The practical question is not only “Can the model predict?” but “Can the system make safe, cost-effective decisions at scale?” This introduces key design concerns: calibration, fallback behavior, monitoring, and human oversight where needed.</p><ul><li><b>Representation:</b> map raw reality into machine-readable form.</li><li><b>Inference:</b> estimate likely outcomes from learned patterns.</li><li><b>Control:</b> apply policies, thresholds, and guardrails before action.</li><li><b>Feedback:</b> measure production outcomes to improve future behavior.</li></ul></div>
+
+    <div class="sec sec-tip"><h3>🌟 Key subfields</h3><p>Machine learning, deep learning, NLP, computer vision, robotics, planning, reinforcement learning, and knowledge representation.</p></div>
+
+    <div class="page-nav"><a href="../index.html">🏠 AI Home</a><a href="02-ml-fundamentals.html">ML Fundamentals →</a></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+                    ^      |
+                    |      v
+               Critic/Verifier <- Results/Memory
+                    |
+                 Final Output</code></pre></div><div class="sec sec-tip"><h3>🌟 Engineering challenge</h3><p>Agent quality depends on robust tool interfaces, deterministic guardrails, and clear stop criteria.</p></div><div class="page-nav"><a href="11-cag.html">← CAG</a><a href="13-ai-agents.html">AI Agents →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <title>12 · Agentic AI</title>
+     <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 12</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="12-agentic-ai.html" class="active">12 Agentic AI</a></li></ul></nav></aside>
+<main class="main">
+     <div class="page-header"><h1>Agentic AI</h1><p>Autonomous systems that plan, execute tools, evaluate outcomes, and iterate.</p></div>
+     <div class="sec sec-example"><h3>▶ Agentic capabilities</h3><ul><li>Planning: decompose goals into executable subtasks.</li><li>Reasoning: evaluate alternatives under constraints.</li><li>Tool usage: call APIs, search systems, code tools, and databases.</li><li>Memory: preserve progress and intermediate outcomes.</li><li>Feedback loops: verify results and self-correct.</li></ul></div>
+     <div class="sec sec-example"><h3>▶ Architecture diagram</h3><pre><code>User Goal -> Planner -> Executor -> Tool Calls
+                                                  ^      |
+                                                  |      v
+                                    Critic/Verifier <- Results/Memory
+                                                  |
+                                         Final Output</code></pre></div>
+     <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Agentic AI extends single-shot generation into closed-loop decision processes. The core theoretical shift is from “answer generation” to “policy execution.” The system repeatedly chooses actions based on evolving state. Reliable agents require bounded autonomy: explicit stopping rules, tool permissioning, and verifiable intermediate checkpoints.</p><ul><li><b>Planning horizon:</b> short plans are safer; long plans need frequent replanning.</li><li><b>Observability:</b> traces of thought/action are essential for debugging and trust.</li><li><b>Control:</b> policy constraints prevent unsafe or unproductive behavior.</li></ul></div>
+     <div class="sec sec-tip"><h3>🌟 Engineering challenge</h3><p>Agent quality depends on robust tool interfaces, deterministic guardrails, clear stop criteria, and strong failure-recovery strategies.</p></div>
+     <div class="page-nav"><a href="11-cag.html">← CAG</a><a href="13-ai-agents.html">AI Agents →</a></div>
+</main>
+</body>
+</html>

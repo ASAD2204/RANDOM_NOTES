@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>01 · Complexity Analysis</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 01</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="01-complexity.html" class="active">01 Complexity</a></li><li><a href="02-arrays.html">02 Arrays</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Algorithm Complexity Analysis</h1><p>Time complexity, space complexity, Big O, Big Theta, and Big Omega for interview decision-making.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><ul><li><strong>Time complexity:</strong> growth of operations with input size <code>n</code>.</li><li><strong>Space complexity:</strong> extra memory used by algorithm.</li><li><strong>Big O:</strong> upper bound (worst-case growth).</li><li><strong>Big Theta:</strong> tight bound (exact asymptotic order).</li><li><strong>Big Omega:</strong> lower bound (best-case growth).</li></ul></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Choosing an algorithm is like choosing a commute route: O(1) is elevator, O(log n) is express train, O(n²) is city traffic with two bottlenecks.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step Working</h3><pre><code>1) Identify primitive operation (comparison / assignment)
+2) Count how many times it runs
+3) Keep dominant term only
+4) Drop constants
+5) State time + space
+
+Example:
+for i in [0..n-1]:          -> n
+  for j in [0..n-1]:        -> n * n
+Total: O(n²)</code></pre></div><div class="sec sec-example"><h3>▶ Implementation Examples (conceptual)</h3><pre><code>// C++: O(log n) binary search idea
+int l=0,r=n-1; while(l<=r){ int m=(l+r)/2; ... }
+
+# Python: O(n) linear scan
+for x in arr:
+    if x == target: return True
+
+// JS: O(n log n) sort baseline
+arr.sort((a,b)=>a-b);</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>O(1): hash lookup average</li><li>O(log n): binary search</li><li>O(n): traversal</li><li>O(n log n): merge/heap/quick average sort</li><li>O(n²): nested loop pair checks</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Confusing worst-case O with exact runtime.</li><li>Ignoring auxiliary space in recursion and data structures.</li><li>Claiming hash map always O(1) (collisions can degrade).</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Always state both time and space after coding.</li><li>Mention trade-off explicitly: “I used O(n) extra space to reduce time from O(n²) to O(n).”</li><li>Use Big Theta when asked for tight bound.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="../index.html">← DSA Home</a><a href="02-arrays.html">Arrays →</a></div></main></body></html>

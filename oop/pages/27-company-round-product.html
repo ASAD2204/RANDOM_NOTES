@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>27 · Product-Based Company OOP Round</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Mock Variants</h2><p>Product-Based</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li>
+<li><a href="25-mock-interview-rounds.html">25 Mock Rounds</a></li>
+<li><a href="26-company-round-service.html">26 Service-Based</a></li>
+<li><a href="27-company-round-product.html" class="active">27 Product-Based</a></li>
+<li><a href="28-company-round-startup.html">28 Startup-Style</a></li>
+</ul></nav></aside>
+
+<main class="main">
+  <div class="page-header"><h1>Product-Based Company OOP Round</h1><p>Typical pattern: deeper design trade-offs, extensibility, and architecture quality under change.</p></div>
+
+  <div class="sec sec-explanation"><h3>📚 What they usually test</h3><ul>
+    <li>Strong modeling under evolving requirements.</li>
+    <li>SOLID principles in concrete design decisions.</li>
+    <li>Use of abstractions, dependency injection, and testability thinking.</li>
+    <li>Handling edge cases, failure paths, and maintainability pressure.</li>
+  </ul></div>
+
+  <div class="sec sec-example"><h3>▶ Common prompts</h3><ol>
+    <li>Design Notification framework with channels, retries, and rate limits.</li>
+    <li>Design extensible pricing engine with discounts and coupon stacking rules.</li>
+    <li>Build ride-booking domain model with strategy-based fare calculation.</li>
+    <li>Refactor a monolithic God class into clean service boundaries.</li>
+  </ol></div>
+
+  <div class="sec sec-mistake"><h3>⚠ Common rejection reasons</h3><ul>
+    <li>Inheritance-heavy design where composition would be cleaner.</li>
+    <li>No extension path for new features (violates OCP).</li>
+    <li>Tight coupling to concrete classes; difficult to unit test.</li>
+    <li>No ownership model for state and lifecycle.</li>
+  </ul></div>
+
+  <div class="sec sec-tip"><h3>🌟 Scoring booster</h3><ul>
+    <li>State trade-off explicitly: simplicity now vs extensibility later.</li>
+    <li>Propose interface-driven boundaries and dependency injection.</li>
+    <li>Include one short refactor plan after initial version.</li>
+  </ul></div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="26-company-round-service.html">← Service-Based Variant</a><a href="28-company-round-startup.html">Startup-Style Variant →</a></div>
+</main>
+</body></html>

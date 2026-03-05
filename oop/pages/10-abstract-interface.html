@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>10 · Abstract Classes and Interfaces</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 10</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="10-abstract-interface.html" class="active">10 Abstract & Interfaces</a></li><li><a href="11-static-members.html">11 Static Members</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Abstract Classes and Interfaces</h1><p>Defining contracts for extensible systems.</p></div>
+<div class="sec sec-explanation"><h3>📚 Purpose</h3><ul><li>Abstract classes define shared partial implementation.</li><li>Interfaces define capability contracts with minimal coupling.</li><li>Enable plugin-like architecture and testability.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Examples</h3><pre><code>// C++ interface style
+class Logger { public: virtual void log(string)=0; virtual ~Logger()=default; };
+
+# Python abstract base
+from abc import ABC, abstractmethod
+class Logger(ABC):
+    @abstractmethod
+    def log(self, msg): ...
+
+// JS contract by convention
+class Logger { log(msg){ throw new Error("Implement log"); } }</code></pre></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insight</h3><p>Use abstract/interface when clients should depend on behavior contract, not concrete implementation (DIP + OCP).</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="09-access-modifiers.html">← Access Modifiers</a><a href="11-static-members.html">Static Members →</a></div></main></body></html>

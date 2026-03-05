@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>02 · Classes and Objects</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 02</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li><li><a href="01-introduction.html">01 Introduction</a></li><li><a href="02-classes-objects.html" class="active">02 Classes & Objects</a></li><li><a href="03-four-pillars.html">03 Four Pillars</a></li><li><a href="19-coding-problems.html">19 Coding Problems</a></li>
+</ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Classes and Objects</h1><p>Definition, structure, attributes, methods, object creation, and lifecycle.</p></div>
+<div class="sec sec-explanation"><h3>📚 Core Definitions</h3><ul><li><strong>Class:</strong> blueprint defining fields + methods.</li><li><strong>Object:</strong> runtime instance of a class.</li><li><strong>Attributes/Fields:</strong> state variables inside object.</li><li><strong>Methods:</strong> behavior functions bound to object.</li></ul></div>
+<div class="sec sec-syntax"><h3>📄 Structure Diagram</h3><pre><code>Class Account
+ ├─ data: owner, balance
+ ├─ constructor(owner, initialBalance)
+ ├─ deposit(amount)
+ └─ withdraw(amount)
+
+Object a1 = Account("Riya", 5000)
+Object a2 = Account("Aman", 2500)</code></pre></div>
+<div class="sec sec-example"><h3>▶ Cross-language quick example</h3><pre><code>// C++
+class Account { public: string owner; double balance; void deposit(double a){ balance += a; } };
+
+# Python
+class Account:
+    def __init__(self, owner, balance):
+        self.owner = owner; self.balance = balance
+    def deposit(self, a): self.balance += a
+
+// JavaScript
+class Account {
+  constructor(owner, balance){ this.owner = owner; this.balance = balance; }
+  deposit(a){ this.balance += a; }
+}</code></pre></div>
+<div class="sec sec-mistake"><h3>⚠ Tricky Cases</h3><ul><li>Uninitialized fields in C++ leading to undefined behavior.</li><li>Mutable default argument bugs in Python constructors.</li><li>Using arrow functions for prototype methods in JS without understanding <code>this</code> semantics.</li></ul></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insights</h3><ul><li>Explain object lifecycle: create → initialize → use → destroy/GC.</li><li>When asked “Class vs Object”, answer with one concrete example from a domain (e.g., <code>Employee</code> and <code>e1</code>).</li><li>Mention constructor invariants: valid object should never exist in broken state.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="01-introduction.html">← Introduction</a><a href="03-four-pillars.html">Four Pillars →</a></div>
+</main></body></html>

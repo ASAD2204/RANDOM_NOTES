@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>06 · Subqueries</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 06</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="06-subqueries.html" class="active">06 Subqueries</a></li><li><a href="07-normalization.html">07 Normalization</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Subqueries</h1><p>Nested and correlated subqueries with examples and outputs.</p></div><div class="sec sec-example"><h3>▶ Nested subquery</h3><pre><code>-- Employees with salary above company average
+SELECT emp_name, salary
+FROM employees
+WHERE salary &gt; (
+  SELECT AVG(salary) FROM employees
+);
+
+Output:
+Meera 80000
+Ravi  75000
+Isha  75000</code></pre></div><div class="sec sec-example"><h3>▶ Subquery with IN</h3><pre><code>SELECT emp_name
+FROM employees
+WHERE dept_id IN (
+  SELECT dept_id FROM departments WHERE dept_name IN ('Engineering','HR')
+);
+
+Output:
+Asha
+Ravi
+Meera
+Isha</code></pre></div><div class="sec sec-example"><h3>▶ Correlated subquery</h3><pre><code>-- Employees earning above their department average
+SELECT e.emp_name, e.salary, e.dept_id
+FROM employees e
+WHERE e.salary &gt; (
+  SELECT AVG(e2.salary)
+  FROM employees e2
+  WHERE e2.dept_id = e.dept_id
+);
+
+Output:
+Meera 80000 10</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Correlated subquery runs per outer row; may be slower than equivalent JOIN in large data.</li><li>Use EXISTS for existence checks to improve readability/perf.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="05-sql-joins.html">← SQL Joins</a><a href="07-normalization.html">Normalization →</a></div></main></body></html>

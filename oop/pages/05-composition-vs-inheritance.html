@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>05 · Composition vs Inheritance</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="05-composition-vs-inheritance.html" class="active">05 Composition vs Inheritance</a></li><li><a href="06-class-relationships.html">06 Relationships</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Composition vs Inheritance</h1><p>“Has-a” vs “is-a”: choose composition by default, inheritance when subtype behavior truly fits.</p></div>
+<div class="sec sec-explanation"><h3>📚 Key Difference</h3><ul><li><strong>Inheritance:</strong> Dog <em>is an</em> Animal.</li><li><strong>Composition:</strong> Car <em>has an</em> Engine.</li><li>Inheritance models specialization; composition models assembly.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Example</h3><pre><code>// Inheritance
+class Bird { public: virtual void fly(){} };
+class Sparrow : public Bird {};
+
+// Composition
+class Engine { public: void start(){} };
+class Car {
+  Engine engine;
+public:
+  void start(){ engine.start(); }
+};</code></pre></div>
+<div class="sec sec-tip"><h3>🌟 When to use which?</h3><ul><li>Use inheritance when subtype can substitute base safely (LSP).</li><li>Use composition when behavior may vary at runtime (swap collaborators).</li><li>Favor composition for flexibility and lower coupling.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="04-inheritance-types.html">← Inheritance Types</a><a href="06-class-relationships.html">Relationships Between Classes →</a></div></main></body></html>

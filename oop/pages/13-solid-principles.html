@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>13 · SOLID Principles</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 13</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="13-solid-principles.html" class="active">13 SOLID</a></li><li><a href="14-common-edge-cases.html">14 Edge Cases</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>SOLID Principles</h1><p>Five design principles for maintainable, testable object-oriented systems.</p></div>
+<div class="sec sec-explanation"><h3>📚 S — Single Responsibility Principle</h3><p>A class should have one reason to change. Split unrelated concerns (e.g., <code>InvoiceCalculator</code> vs <code>InvoicePrinter</code>).</p></div>
+<div class="sec sec-explanation"><h3>📚 O — Open/Closed Principle</h3><p>Software entities should be open for extension, closed for modification. Add new behavior through subclasses/strategies, not by editing stable core logic.</p></div>
+<div class="sec sec-explanation"><h3>📚 L — Liskov Substitution Principle</h3><p>Subtypes must be replaceable for base types without breaking correctness. If subclass weakens postconditions or breaks contract, it violates LSP.</p></div>
+<div class="sec sec-explanation"><h3>📚 I — Interface Segregation Principle</h3><p>Clients should not depend on methods they do not use. Prefer small focused interfaces over one fat interface.</p></div>
+<div class="sec sec-explanation"><h3>📚 D — Dependency Inversion Principle</h3><p>High-level modules should depend on abstractions, not concretions. Inject dependencies (constructor injection) to improve testability.</p></div>
+<div class="sec sec-example"><h3>▶ Tiny Example (DIP + OCP)</h3><pre><code>class Notifier { public: virtual void send(string)=0; virtual ~Notifier()=default; };
+class EmailNotifier : public Notifier { public: void send(string m) override {/*email*/} };
+class SmsNotifier   : public Notifier { public: void send(string m) override {/*sms*/} };
+
+class AlertService {
+  Notifier&amp; notifier;
+public:
+  AlertService(Notifier&amp; n): notifier(n) {}
+  void trigger(){ notifier.send("ALERT"); }
+};</code></pre></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insight</h3><p>Interviewers often ask for SOLID with examples; give one sentence definition + one violated example + one fix.</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="12-virtual-dynamic-binding.html">← Virtual & Binding</a><a href="14-common-edge-cases.html">Common OOP Edge Cases →</a></div></main></body></html>

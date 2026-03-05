@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>12 · Query Optimization</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 12</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="12-query-optimization.html" class="active">12 Query Optimization</a></li><li><a href="13-common-interview-questions.html">13 Common SQL Questions</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Query Optimization</h1><p>How databases execute queries efficiently and how to write performance-aware SQL.</p></div><div class="sec sec-explanation"><h3>📚 Optimizer basics</h3><ul><li>Parses SQL and generates execution plan.</li><li>Chooses join order, join algorithm, indexes, and access paths.</li><li>Uses statistics/cardinality estimates.</li></ul></div><div class="sec sec-example"><h3>▶ Practical tuning checklist</h3><pre><code>1) Use EXPLAIN / EXPLAIN ANALYZE
+2) Avoid SELECT * in large joins
+3) Add indexes for join/filter columns
+4) Filter early (push predicates)
+5) Avoid functions on indexed columns in WHERE
+6) Use appropriate data types
+7) Batch writes and avoid chatty transactions</code></pre></div><div class="sec sec-example"><h3>▶ Example</h3><pre><code>-- Less optimal
+SELECT * FROM employees WHERE YEAR(join_date) = 2024;
+
+-- Better (index-friendly range)
+SELECT emp_id, emp_name
+FROM employees
+WHERE join_date &gt;= '2024-01-01' AND join_date &lt; '2025-01-01';</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Say “measure before optimize” and mention execution plan.</li><li>Discuss read/write trade-offs with indexing.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="11-procedures-triggers.html">← Procedures & Triggers</a><a href="13-common-interview-questions.html">Common SQL Interview Questions →</a></div></main></body></html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>07 · Arrays &amp; Strings — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html" class="active"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 07</div>
+    <h1>Arrays &amp; Strings</h1>
+    <p>The most common data structures in interview problems — slicing, traversal, mutation, and complexity.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>C-array</strong>: fixed-size, on stack/heap. Rarely used directly.</li>
+        <li><strong>std::vector</strong>: dynamic array, preferred in interviews.</li>
+        <li><strong>std::string</strong>: mutable character sequence — supports append, substr, find.</li>
+        <li>Indexing is O(1). <code>push_back</code> is amortized O(1). Insert in middle is O(N).</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>#include &lt;vector&gt;
+#include &lt;string&gt;
+
+std::vector&lt;int&gt; v = {1, 2, 3};
+v.push_back(4);          // append
+v.size();                // length
+v[0];                    // access (no bounds check!)
+v.at(0);                 // access (throws if out of range)
+
+std::string s = "hello";
+s += "!";                // append
+s.substr(1, 3);          // "ell"
+s.length();              // 6</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {5, 3, 1, 4, 2};
+    std::sort(v.begin(), v.end());  // [1,2,3,4,5]
+
+    // Two-pointer reverse string
+    std::string s = "abcde";
+    int l = 0, r = s.size() - 1;
+    while (l &lt; r) std::swap(s[l++], s[r--]);
+    std::cout &lt;&lt; s &lt;&lt; "\n"; // "edcba"
+
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A vector is like a <strong>resizable shelf</strong>: fast lookup by slot number (O(1)), cheap to add at the end, but slow to insert in the middle (everything shifts).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Out-of-bounds access with <code>[]</code> — silent UB; use <code>.at()</code> for safety during debugging.</li>
+        <li>Mixing <code>size_t</code> (unsigned) and <code>int</code> in comparisons — negative int becomes huge unsigned.</li>
+        <li>String concatenation in a loop with <code>+=</code> for very large strings — prefer <code>std::stringstream</code> or pre-allocation.</li>
+        <li>Forgetting that <code>substr(pos, length)</code> second arg is <strong>length</strong>, not end index.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Know complexities: index O(1), push_back amortized O(1), insert/erase O(N).</li>
+        <li>For 2D grids: <code>vector&lt;vector&lt;int&gt;&gt;</code> is standard.</li>
+        <li>Two-pointer technique on arrays and strings solves many O(N) problems neatly.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>list</strong>: mutable dynamic array; any type can mix.</li>
+        <li><strong>str</strong>: <em>immutable</em> sequence of characters — every operation creates a new string.</li>
+        <li>Slicing: <code>s[start:stop:step]</code> — extremely powerful.</li>
+        <li>List comprehension: concise alternative to loops.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>arr = [1, 2, 3]
+arr.append(4)           # O(1)
+arr.insert(0, 0)        # O(N) — shifts
+arr.pop()               # O(1) remove last
+arr.pop(0)              # O(N) remove first
+
+s = "hello"
+s[::-1]                 # "olleh" (reverse)
+s[1:4]                  # "ell"
+s.split(",")            # list of substrings
+",".join(["a","b","c"]) # "a,b,c"</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>arr = [5, 3, 1, 4, 2]
+arr.sort()          # [1,2,3,4,5] in-place
+sorted_copy = sorted(arr)  # returns new list
+
+# Two-pointer reverse
+s = list("abcde")
+l, r = 0, len(s) - 1
+while l &lt; r:
+    s[l], s[r] = s[r], s[l]
+    l += 1; r -= 1
+print("".join(s))   # "edcba"
+
+# List comprehension
+squares = [x**2 for x in range(5)]  # [0,1,4,9,16]
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A Python list is a <strong>shopping trolley</strong>: throw anything in, pick by position, rearrange as you like. A string is <strong>text engraved on stone</strong>: read it freely, but you can't chip changes in — you must carve a new stone.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Trying to mutate a string: <code>s[0] = 'H'</code> raises <code>TypeError</code>.</li>
+        <li>Concatenating strings in a loop: <code>result += s</code> is O(N²); use <code>"".join(list)</code>.</li>
+        <li><code>arr.sort()</code> returns <code>None</code> — don't do <code>arr = arr.sort()</code>.</li>
+        <li>Slicing end is <strong>exclusive</strong>: <code>s[0:3]</code> gives chars 0, 1, 2.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Master slicing and list comprehensions — they're compact and impressive.</li>
+        <li>For frequency counts use <code>Counter(arr)</code> from <code>collections</code>.</li>
+        <li>Reverse a string in O(N): <code>s[::-1]</code> — mention it and know why it creates a new string.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Array</strong>: dynamic, can hold mix of types, objects at heart.</li>
+        <li><strong>String</strong>: immutable primitive; methods return new strings.</li>
+        <li>Rich built-in methods: <code>push/pop</code>, <code>shift/unshift</code>, <code>splice</code>, <code>slice</code>, <code>indexOf</code>, <code>includes</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>const arr = [1, 2, 3];
+arr.push(4);            // append O(1)
+arr.unshift(0);         // prepend O(N)
+arr.pop();              // remove last
+arr.shift();            // remove first O(N)
+arr.splice(1, 2);       // remove 2 elements at index 1
+
+const s = "hello";
+s.slice(1, 4);          // "ell"
+s.split("");            // ['h','e','l','l','o']
+arr.join("");           // "hello"
+s.toUpperCase();        // new string</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const arr = [5, 3, 1, 4, 2];
+arr.sort((a, b) =&gt; a - b);  // [1,2,3,4,5] (numeric!)
+
+// Reverse a string
+const s = "abcde";
+const rev = s.split("").reverse().join("");
+console.log(rev); // "edcba"
+
+// Two-pointer in-place
+const chars = s.split("");
+let l = 0, r = chars.length - 1;
+while (l &lt; r) {
+  [chars[l], chars[r]] = [chars[r], chars[l]];
+  l++; r--;
+}
+console.log(chars.join("")); // "edcba"
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A JS array is like a <strong>numbered locker row</strong> that can expand. A string is an <strong>engraved name plate</strong> — you can read every letter but only get a new plate (new string) to change it.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>arr.sort()</code> without a comparator sorts <em>lexicographically</em>: <code>[10,9,2].sort() = [10,2,9]</code>!</li>
+        <li>Using <code>delete arr[i]</code> creates an empty slot (hole), not removal — use <code>splice</code>.</li>
+        <li>Mutating an array passed to a function unexpectedly — pass a copy: <code>[...arr]</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always pass a comparator to <code>.sort()</code> for numbers: <code>(a, b) =&gt; a - b</code>.</li>
+        <li>Know <code>map/filter/reduce</code> — used in nearly every frontend interview.</li>
+        <li>Spread operator <code>[...arr]</code> is the easiest shallow clone — mention it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="06-functions.html">&larr; Functions</a>
+    <a href="08-memory.html">Memory Concepts &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

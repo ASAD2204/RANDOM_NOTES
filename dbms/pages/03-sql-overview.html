@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>03 · SQL Overview</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 03</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="03-sql-overview.html" class="active">03 SQL Overview</a></li><li><a href="04-sql-queries.html">04 SQL Queries</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>SQL Overview</h1><p>SQL categories: DDL, DML, DQL, DCL, TCL with practical command examples.</p></div><div class="sec sec-explanation"><h3>📚 What is SQL?</h3><p>Structured Query Language is the standard language used to define, manipulate, control, and query relational data.</p></div><div class="sec sec-syntax"><h3>🗂 SQL categories + commands</h3><pre><code>DDL: CREATE, ALTER, DROP, TRUNCATE
+DML: INSERT, UPDATE, DELETE
+DQL: SELECT
+DCL: GRANT, REVOKE
+TCL: COMMIT, ROLLBACK, SAVEPOINT</code></pre></div><div class="sec sec-example"><h3>▶ Example commands</h3><pre><code>-- DDL
+CREATE TABLE t(id INT PRIMARY KEY, name VARCHAR(30));
+ALTER TABLE t ADD email VARCHAR(100);
+
+-- DML
+INSERT INTO t VALUES (1, 'A');
+UPDATE t SET name='B' WHERE id=1;
+DELETE FROM t WHERE id=1;
+
+-- DQL
+SELECT * FROM t;
+
+-- TCL
+START TRANSACTION;
+SAVEPOINT s1;
+ROLLBACK TO s1;
+COMMIT;</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li><code>TRUNCATE</code> removes all rows fast; usually cannot be rolled back in some DBs depending on engine/settings.</li><li><code>DELETE</code> can use WHERE and logs row-level changes.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="02-relational-concepts.html">← Relational Concepts</a><a href="04-sql-queries.html">SQL Queries →</a></div></main></body></html>

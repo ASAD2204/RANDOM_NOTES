@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03 · Variables &amp; Types — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html" class="active"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 03</div>
+    <h1>Variables &amp; Data Types</h1>
+    <p>How data is stored, typed, and converted — foundational knowledge for every coding problem.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>C++ is <strong>statically typed</strong>: the compiler must know every variable's type at compile time. Primitives have fixed sizes; non-primitives are user-defined structures.</p>
+      <ul>
+        <li><strong>Primitives:</strong> <code>int</code>, <code>long long</code>, <code>float</code>, <code>double</code>, <code>char</code>, <code>bool</code></li>
+        <li><strong>Non-primitives:</strong> arrays, pointers, structs, classes</li>
+        <li><strong>Type conversion:</strong> widening (safe), narrowing (may lose data)</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>type varName = value;          // declaration
+type varName;                  // uninitialized (dangerous!)
+auto x = 42;                   // compiler deduces type (C++11)
+int y = static_cast&lt;int&gt;(3.9); // explicit cast</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int    age   = 21;
+    double gpa   = 9.1;
+    char   grade = 'A';
+    bool   pass  = true;
+    std::string name = "Alice";
+
+    // Widening: int -> double (safe)
+    double d = age;
+
+    // Narrowing: double -> int (truncates)
+    int truncated = static_cast&lt;int&gt;(gpa); // 9
+
+    std::cout &lt;&lt; truncated &lt;&lt; "\n"; // 9
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Like <strong>labeled jars in a kitchen</strong>: the jar marked "sugar" can only hold sugar (int jar holds integers). Pouring liquid into it (narrowing cast) might spill some data.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>5 / 2</code> = <code>2</code> (integer division!) — use <code>5.0 / 2</code> for <code>2.5</code>.</li>
+        <li><code>int</code> overflow: max ~2.1 billion; use <code>long long</code> for large numbers.</li>
+        <li>Mixing signed and unsigned comparisons causes subtle bugs.</li>
+        <li>Not initializing local variables (garbage values).</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always use <code>long long</code> for competitive programming unless you're sure values fit in <code>int</code>.</li>
+        <li>Prefer <code>static_cast&lt;T&gt;()</code> over C-style casts: it's explicit and searchable.</li>
+        <li>Mention <code>auto</code> as a modern type-inference tool — shows C++11 knowledge.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python is <strong>dynamically typed</strong>: types are attached to objects, not variables. A variable is just a name that can point to any object.</p>
+      <ul>
+        <li><strong>Primitives (immutable):</strong> <code>int</code>, <code>float</code>, <code>bool</code>, <code>str</code>, <code>tuple</code></li>
+        <li><strong>Non-primitives (mutable):</strong> <code>list</code>, <code>dict</code>, <code>set</code></li>
+        <li>Python integers have <strong>arbitrary precision</strong> (no overflow!).</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>x = 10          # int
+y = 3.14        # float
+s = "hello"     # str
+b = True        # bool
+n = None        # None type
+
+# Type check
+type(x)         # &lt;class 'int'&gt;
+isinstance(x, int)  # True
+
+# Conversion
+int("42")       # 42
+str(99)         # "99"
+float(3)        # 3.0</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>x = 10
+x = "ten"       # reassigning with different type is OK
+
+age  = int(input("Enter age: "))
+gpa  = float("9.1")
+name = str(42)  # "42"
+
+# Python int has no overflow
+big = 10 ** 100  # works fine
+print(big)
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Variables are like <strong>sticky labels</strong> on boxes. You can peel the label off one box and stick it on another (reassign to different type). The box (object) stays until nobody's pointing at it (garbage collected).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>input()</code> <strong>always returns a string</strong> — wrap with <code>int()</code>/<code>float()</code>.</li>
+        <li>Assigning one list to another creates a <strong>reference</strong>, not a copy: <code>b = a</code>.</li>
+        <li>Shadowing built-in names: <code>list = [1, 2]</code> breaks the <code>list</code> built-in.</li>
+        <li><code>True</code> and <code>False</code> are capitalized in Python.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Explain: <em>"Python passes object references by value — mutation affects original, reassignment does not."</em></li>
+        <li>Use type hints in interview code: <code>def add(a: int, b: int) -&gt; int:</code> for clarity.</li>
+        <li>Python's <code>int</code> handles arbitrarily large numbers — great for factorial/big-number problems.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>JavaScript is <strong>dynamically typed</strong> with 7 primitive types and objects. Variables declared with <code>const</code> (can't reassign), <code>let</code> (can reassign, block-scoped), or <code>var</code> (avoid — function-scoped, hoisted).</p>
+      <ul>
+        <li><strong>Primitives:</strong> <code>number</code>, <code>string</code>, <code>boolean</code>, <code>undefined</code>, <code>null</code>, <code>symbol</code>, <code>bigint</code></li>
+        <li><strong>Non-primitives:</strong> objects, arrays, functions</li>
+        <li>All numbers (integers + floats) are IEEE 754 <strong>64-bit floating point</strong>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>const pi   = 3.14;    // cannot reassign
+let   age  = 20;      // can reassign
+var   old  = "avoid"; // function-scoped, avoid
+
+// Type check
+typeof 42        // "number"
+typeof "hi"      // "string"
+typeof null      // "object" (famous JS bug)
+
+// Conversion
+Number("42")     // 42
+String(99)       // "99"
+Boolean(0)       // false</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const name = "Alice";
+let   score = 95;
+
+score += 5;           // 100
+
+const obj = { x: 1, y: 2 };  // non-primitive
+const arr = [1, 2, 3];        // non-primitive
+
+console.log(typeof name);  // "string"
+console.log(typeof arr);   // "object"
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>const</code> is a <strong>sealed box</strong> (reference can't change), <code>let</code> is an <strong>open shelf</strong> (you can swap items), <code>var</code> is a <strong>messy junk drawer</strong> shared across the whole room.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><code>typeof null === "object"</code> — a historical JS bug, not a feature.</li>
+        <li><code>0.1 + 0.2 !== 0.3</code> — floating-point precision; use <code>toFixed()</code> for display.</li>
+        <li>Confusing <code>undefined</code> (declared but not assigned) vs <code>null</code> (intentionally empty).</li>
+        <li>Using <code>var</code> — causes hoisting confusion and function scope issues.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always use <code>const</code> first, downgrade to <code>let</code> only when mutation is needed.</li>
+        <li>List the 7 primitives confidently — it's a classic JS basics question.</li>
+        <li>Explain: <em>"Objects and arrays are passed by reference value — mutation inside a function affects the original."</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="02-syntax.html">&larr; Syntax Fundamentals</a>
+    <a href="04-operators.html">Operators &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

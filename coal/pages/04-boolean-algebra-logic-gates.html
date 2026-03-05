@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>04 · Boolean Algebra and Logic Gates</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>COAL Prep</h2><p>Section 04</p></div><nav><ul><li><a href="../index.html">⬅ COAL Home</a></li><li><a href="04-boolean-algebra-logic-gates.html" class="active">04 Boolean Algebra</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Boolean Algebra and Logic Gates</h1><p>Core digital logic expressions and gate behavior.</p></div><div class="sec sec-example"><h3>▶ Basic operators</h3><ul><li>AND: A·B</li><li>OR: A + B</li><li>NOT: A̅</li><li>XOR: A ⊕ B</li><li>NAND: (A·B)̅</li><li>NOR: (A+B)̅</li></ul></div><div class="sec sec-example"><h3>▶ Truth table (2-input gates)</h3><pre><code>A B | AND OR XOR NAND NOR
+0 0 |  0   0  0    1    1
+0 1 |  0   1  1    1    0
+1 0 |  0   1  1    1    0
+1 1 |  1   1  0    0    0
+NOT: A=0 ->1, A=1 ->0</code></pre></div><div class="sec sec-tip"><h3>🌟 Important laws</h3><pre><code>Identity: A+0=A, A·1=A
+Null: A+1=1, A·0=0
+Idempotent: A+A=A, A·A=A
+Complement: A+A̅=1, A·A̅=0
+De Morgan: (A·B)̅=A̅+B̅ , (A+B)̅=A̅·B̅</code></pre></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Computer organization topics are best understood as abstraction layers from digital logic to CPU, memory, and I/O performance trade-offs.</p></div><div class="page-nav"><a href="03-data-representation.html">← Data Representation</a><a href="05-combinational-circuits.html">Combinational Circuits →</a></div></main></body></html>

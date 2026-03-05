@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15 · Interview Q&amp;A — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html" class="active"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 15</div>
+    <h1>Interview Q&amp;A</h1>
+    <p>Exam-ready model answers for the most commonly asked language theory questions in placement interviews.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>C++ interview questions focus on: pointers vs references, memory model, OOP fundamentals, templates, and STL internals.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Q&amp;A Quick Reference</h3>
+      <pre><code>Q: Pointer vs Reference?
+A: Pointer — can be null, reassigned, needs *.
+   Reference — must be initialized, can't be null, no *.
+
+Q: Stack vs Heap?
+A: Stack — fast, auto-freed, limited size (usually 1-8 MB).
+   Heap — slow, manual (or smart ptr), virtually unlimited.
+
+Q: What is RAII?
+A: Resource acquisition in constructor, release in destructor.
+   Ensures cleanup even when exceptions occur.
+
+Q: What is const-correctness?
+A: Using const to prevent unintended mutation.
+   const ref parameters avoid copies AND mutation.</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 10 C++ Interview Questions</h3>
+      <pre><code>// Q1: What does 'virtual' do?
+// A: Enables runtime polymorphism via vtable.
+class Base { virtual void f() {} };
+// Without virtual: Base::f called even with Derived pointer.
+// With virtual: Derived::f called (dynamic dispatch).
+
+// Q2: What is undefined behavior (UB)?
+// A: Code the standard doesn't define behavior for.
+// Examples: buffer overflow, null dereference, signed int overflow.
+
+// Q3: When to use struct vs class?
+// A: struct members public by default; class members private.
+// Convention: struct for POD data, class for OOP entities.
+
+// Q4: What is a copy constructor?
+class Widget {
+    Widget(const Widget&amp; other); // copies another Widget
+};
+
+// Q5: What does 'explicit' keyword do?
+struct Kg { explicit Kg(double v) : val(v) {} double val; };
+// Prevents: Kg k = 5.0; (implicit conversion)
+// Allows:  Kg k(5.0);   (explicit)</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A <code>virtual</code> function table (vtable) is like a <strong>company directory</strong>: instead of going directly to a person, you look up their current role in the directory — the same role title may be filled by different people depending on the company branch (derived class).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Not making destructors virtual in base classes — derived destructor never called, causing memory leak.</li>
+        <li>Confusing <code>const int*</code> (pointer to const) with <code>int* const</code> (const pointer).</li>
+        <li>Slicing: assigning a derived object to a base object by value loses the derived part.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>OOP concepts to memorize: encapsulation, inheritance, polymorphism, abstraction.</li>
+        <li>Rule of three/five: if you define one of destructor/copy ctor/copy assign — define all of them.</li>
+        <li><code>nullptr</code> vs <code>NULL</code>: <code>nullptr</code> is type-safe (C++11+), always prefer it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python interview questions center on: mutability, pass semantics, GIL, decorators, generators, and OOP dunder methods.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Q&amp;A Quick Reference</h3>
+      <pre><code>Q: Is Python pass-by-value or pass-by-reference?
+A: Neither — pass-by-object-reference (pass-by-assignment).
+   Immutable objects behave like value; mutable like reference.
+
+Q: What is the GIL?
+A: Global Interpreter Lock — only one thread runs Python bytecode
+   at a time. Use multiprocessing for CPU parallelism.
+
+Q: What is a generator?
+A: Function using 'yield'; produces values lazily on demand.
+   Memory efficient for large sequences.
+
+Q: What is a decorator?
+A: A function that wraps another function to add behavior.
+   @decorator == func = decorator(func)</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 10 Python Interview Questions</h3>
+      <pre><code># Q1: What are *args and **kwargs?
+def f(*args, **kwargs):
+    print(args)   # tuple of positional args
+    print(kwargs) # dict of keyword args
+
+# Q2: Difference between list, tuple, set, dict?
+# list: ordered, mutable, allows duplicates
+# tuple: ordered, immutable, allows duplicates
+# set: unordered, mutable, unique elements
+# dict: key-value, ordered (Python 3.7+)
+
+# Q3: What is __init__ vs __new__?
+# __new__ creates the instance; __init__ initializes it.
+
+# Q4: How does Python manage memory?
+# Ref-counting + cyclic garbage collector.
+# Objects freed when ref count reaches 0.
+
+# Q5: What is a class method vs static method?
+class C:
+    @classmethod
+    def cm(cls): pass    # receives class as first arg
+
+    @staticmethod
+    def sm(): pass        # no implicit first arg</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Python's pass-by-object-reference is like giving someone the <strong>address of a house</strong>. If they redecorate inside (mutate), the change is visible to all. But if they move to a different house (reassign), only their copy of the address changes — the original stays.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Confusing <code>is</code> vs <code>==</code> — always use <code>==</code> for value equality.</li>
+        <li>Forgetting <code>self</code> in instance methods — <code>TypeError: takes 0 positional arguments</code>.</li>
+        <li>Using threads for CPU-bound work when GIL is a bottleneck — use <code>multiprocessing</code> instead.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Dunder (magic) methods to know: <code>__init__</code>, <code>__str__</code>, <code>__repr__</code>, <code>__len__</code>, <code>__eq__</code>, <code>__hash__</code>.</li>
+        <li>Generator expression vs list comprehension: generators are lazy (memory-efficient).</li>
+        <li>Decorators: know how to write a timing decorator with <code>functools.wraps</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>JS interviews love: closures, event loop, scope (<code>var/let/const</code>), prototypal inheritance, Promises, and <code>this</code> binding.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Q&amp;A Quick Reference</h3>
+      <pre><code>Q: == vs === ?
+A: == coerces types before comparison; === does not.
+   Always use === unless you intentionally want coercion.
+
+Q: What is a closure?
+A: A function that "closes over" variables from its outer scope.
+   The inner function remembers those variables even after
+   the outer function has returned.
+
+Q: What is event loop?
+A: JS runs code, collects & processes events, executes
+   queued sub-tasks. Call stack → microtask queue (Promises)
+   → macrotask queue (setTimeout).
+
+Q: var vs let vs const?
+A: var — function-scoped, hoisted (initialized as undefined).
+   let — block-scoped, hoisted but NOT initialized (TDZ).
+   const — block-scoped, must be assigned at declaration.</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 10 JS Interview Questions</h3>
+      <pre><code>// Q1: What is hoisting?
+console.log(x); // undefined (var hoisted)
+var x = 5;
+console.log(y); // ReferenceError (let in TDZ)
+let y = 5;
+
+// Q2: Explain closure
+function counter() {
+    let count = 0;
+    return () =&gt; ++count; // closes over 'count'
+}
+const c = counter();
+c(); // 1
+c(); // 2 — count persists
+
+// Q3: What does 'this' refer to in arrow vs regular function?
+const obj = {
+    name: "Alice",
+    greet: function() { console.log(this.name); },  // "Alice"
+    wave: () =&gt; { console.log(this.name); }         // undefined (lexical this)
+};
+
+// Q4: Explain Promise states
+// Pending → Fulfilled (resolve) or Rejected (reject)
+// .then() handles fulfilled, .catch() handles rejected
+
+// Q5: What is the prototype chain?
+function Animal(name) { this.name = name; }
+Animal.prototype.speak = function() { return this.name + " speaks"; };
+const dog = new Animal("Rex");
+dog.speak(); // Rex speaks — found via prototype</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>The JS event loop is like a <strong>single chef in a kitchen</strong>: works on one task at a time (call stack), but takes notes (async queue) when meals need more time. When the current dish is done, checks the notes and works on the next pending item — never truly parallel, but never idle.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Losing <code>this</code> context — a method passed as a callback loses its object binding.</li>
+        <li>Temporal Dead Zone (TDZ): accessing <code>let/const</code> before declaration throws <code>ReferenceError</code>.</li>
+        <li>Confusing microtasks (Promise callbacks) and macrotasks (setTimeout) order in event loop.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Closure is possibly the #1 JS interview topic — write one from scratch without prompting.</li>
+        <li>Event loop question: <code>console.log(1); setTimeout(f, 0); console.log(2);</code> — what order? 1, 2, f.</li>
+        <li>Know <code>call</code>, <code>apply</code>, <code>bind</code>: all three manually set <code>this</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="14-teasers.html">&larr; Brain Teasers</a>
+    <a href="16-practice.html">Practice Problems &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

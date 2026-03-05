@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>05 · Combinational Circuits</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>COAL Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ COAL Home</a></li><li><a href="05-combinational-circuits.html" class="active">05 Combinational Circuits</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Combinational Circuits</h1><p>Output depends only on current input (no memory).</p></div><div class="sec sec-example"><h3>▶ Half adder and full adder</h3><pre><code>Half Adder:
+Sum = A ⊕ B
+Carry = A·B
+
+Full Adder:
+Sum = A ⊕ B ⊕ Cin
+Carry = AB + Cin(A ⊕ B)</code></pre></div><div class="sec sec-example"><h3>▶ Multiplexer (MUX)</h3><p>A MUX selects one of many inputs using select lines (e.g., 4:1 MUX uses 2 select bits).</p><pre><code>S1 S0 = 00 -> I0
+S1 S0 = 01 -> I1
+S1 S0 = 10 -> I2
+S1 S0 = 11 -> I3</code></pre></div><div class="sec sec-example"><h3>▶ Decoder and encoder</h3><ul><li><b>Decoder:</b> n input lines to 2^n output lines (e.g., 2-to-4).</li><li><b>Encoder:</b> reverse mapping, active input encoded to binary.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Computer organization topics are best understood as abstraction layers from digital logic to CPU, memory, and I/O performance trade-offs.</p></div><div class="page-nav"><a href="04-boolean-algebra-logic-gates.html">← Boolean Algebra</a><a href="06-sequential-circuits.html">Sequential Circuits →</a></div></main></body></html>

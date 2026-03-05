@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>11 · Sorting Algorithms</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 11</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="11-sorting.html" class="active">11 Sorting</a></li><li><a href="12-recursion-backtracking.html">12 Recursion</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Sorting Algorithms</h1><p>Bubble, selection, insertion, merge, quick, counting, radix, and heap sort overview.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><p>Sorting arranges data for efficient search, grouping, and order-based logic.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (merge sort)</h3><pre><code>1) Divide array into halves recursively
+2) Sort each half
+3) Merge sorted halves in linear time
+
+Recurrence: T(n)=2T(n/2)+O(n) => O(n log n)</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++
+sort(a.begin(), a.end()); // introsort
+
+# Python
+a.sort()       # Timsort
+
+// JS
+a.sort((x,y)=>x-y);</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity Table (important)</h3><ul><li>Bubble/Selection/Insertion: O(n²)</li><li>Merge: O(n log n), space O(n)</li><li>Quick: average O(n log n), worst O(n²)</li><li>Heap sort: O(n log n), space O(1)</li><li>Counting: O(n+k), Radix: O(d*(n+k))</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Comparison sorts are general-purpose.</li><li>❌ Non-comparison sorts need bounded/integer-like key assumptions.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Forgetting stable vs unstable behavior requirements.</li><li>Not passing numeric comparator in JS.</li><li>Using counting sort for huge key ranges.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Explain why O(n log n) lower bound applies to comparison sorting.</li><li>Mention Timsort (Python) and introsort (C++) as practical defaults.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="10-searching.html">← Searching</a><a href="12-recursion-backtracking.html">Recursion & Backtracking →</a></div></main></body></html>

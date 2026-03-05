@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>06 · Queues</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 06</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="06-queues.html" class="active">06 Queues</a></li><li><a href="07-hash-tables.html">07 Hash Tables</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Queues</h1><p>FIFO structure: simple queue, circular queue, priority queue, and deque.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><p>Queue follows First-In First-Out. Variants support specialized access patterns.</p></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Ticket line: first person entering line gets served first.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (circular queue enqueue)</h3><pre><code>1) Check full: (rear+1)%cap == front
+2) If empty initialize front=0
+3) rear=(rear+1)%cap
+4) arr[rear]=value</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++
+queue<int> q; q.push(10); q.pop();
+priority_queue<int> pq; pq.push(5);
+
+# Python
+from collections import deque
+q=deque(); q.append(10); q.popleft()
+import heapq
+h=[]; heapq.heappush(h,5)
+
+// JS
+const q=[]; q.push(10); q.shift();
+// Deque efficiently via linked list libs in production</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>Queue enqueue/dequeue: O(1)</li><li>Priority queue push/pop: O(log n)</li><li>Deque end operations: O(1)</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Ideal for scheduling, BFS, buffering.</li><li>❌ Restricted access in plain queue, shift-cost pitfalls in naive JS array queue.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Using static array queue without circular logic.</li><li>Using JS <code>shift()</code> for huge queues (can be O(n)).</li><li>Confusing min-heap vs max-heap behavior in language libraries.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>BFS = queue by default.</li><li>Priority queue solves top-k and shortest path optimizations.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="05-stacks.html">← Stacks</a><a href="07-hash-tables.html">Hash Tables →</a></div></main></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Revision Chunk C · Sections 11-15</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Revision</h2><p>Chunk C</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li>
+<li><a href="20-revision-01-05.html">Chunk A (01-05)</a></li>
+<li><a href="21-revision-06-10.html">Chunk B (06-10)</a></li>
+<li><a href="22-revision-11-15.html" class="active">Chunk C (11-15)</a></li>
+<li><a href="23-revision-16-19.html">Chunk D (16-19)</a></li>
+</ul></nav></aside>
+<main class="main">
+<div class="page-header"><h1>Revision Chunk C (11-15)</h1><p>Static Members, Dynamic Binding, SOLID, Edge Cases, Lifecycle & Memory.</p></div>
+<div class="sec sec-explanation"><h3>📚 10-Minute Recall</h3><ul>
+<li>Static members are class-level state/behavior; use carefully.</li>
+<li>Virtual/dynamic binding enables runtime polymorphism.</li>
+<li>SOLID improves maintainability and testability.</li>
+<li>Edge cases: diamond, ambiguity, object slicing, shallow copy, leaks.</li>
+<li>Lifecycle clarity prevents ownership bugs and memory issues.</li>
+</ul></div>
+<div class="sec sec-syntax"><h3>📄 Must-Remember Trio</h3><pre><code>LSP: subtype must preserve base contract
+DIP: high-level depends on abstraction
+RAII: acquire resource in ctor, release in dtor</code></pre></div>
+<div class="sec sec-example"><h3>▶ Rapid Fire Interview Checks</h3><ol>
+<li>Explain why polymorphic bases need virtual destructors.</li>
+<li>Give a concrete LSP violation and fix.</li>
+<li>When does static state harm testability?</li>
+<li>Object slicing: what is lost and how to avoid it?</li>
+<li>How does RAII differ from GC-based cleanup?</li>
+</ol></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="21-revision-06-10.html">← Chunk B</a><a href="23-revision-16-19.html">Chunk D →</a></div>
+</main></body></html>

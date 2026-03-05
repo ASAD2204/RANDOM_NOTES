@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>15 · Object Lifecycle and Memory</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 15</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="15-object-lifecycle-memory.html" class="active">15 Lifecycle & Memory</a></li><li><a href="16-best-practices.html">16 Best Practices</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Object Lifecycle and Memory</h1><p>Stack vs heap objects, ownership, destruction timing, and language differences.</p></div>
+<div class="sec sec-syntax"><h3>📄 Lifecycle timeline</h3><pre><code>Create -> Initialize -> Use -> Eligible for destruction -> Destroy/Cleanup
+
+C++ stack object: deterministic destruction at scope end.
+C++ heap object: destroy via delete (or smart pointer owner).
+Python/JS objects: GC-managed; destruction timing non-deterministic.</code></pre></div>
+<div class="sec sec-example"><h3>▶ C++ Ownership Sketch</h3><pre><code>void f(){
+  Widget a;                  // stack (auto-destroy)
+  auto p = make_unique&lt;Widget&gt;(); // heap but auto-owned by unique_ptr
+} // a and p's Widget destroyed here</code></pre></div>
+<div class="sec sec-mistake"><h3>⚠ Common mistakes</h3><ul><li>Raw pointer ownership confusion causes leaks and double frees.</li><li>Cyclic references in GC languages can delay reclamation.</li><li>Assuming destruction order incorrectly in inheritance chains.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="14-common-edge-cases.html">← Common Edge Cases</a><a href="16-best-practices.html">OOP Best Practices →</a></div></main></body></html>

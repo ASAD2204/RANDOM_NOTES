@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>11 · Static Members</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 11</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="11-static-members.html" class="active">11 Static Members</a></li><li><a href="12-virtual-dynamic-binding.html">12 Virtual & Binding</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Static Members</h1><p>Class-level data and behavior shared across all instances.</p></div>
+<div class="sec sec-example"><h3>▶ C++ Example</h3><pre><code>class User {
+public:
+  static int count;
+  User(){ count++; }
+  static int activeUsers(){ return count; }
+};
+int User::count = 0;</code></pre></div>
+<div class="sec sec-explanation"><h3>📚 Notes</h3><ul><li>Static variables live once per class, not per object.</li><li>Static methods cannot access instance fields directly.</li><li>Useful for counters, factories, utilities, and global configuration.</li></ul></div>
+<div class="sec sec-mistake"><h3>⚠ Edge Case</h3><p>Overusing statics can hide dependencies and hurt testability; prefer dependency injection for complex systems.</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="10-abstract-interface.html">← Abstract & Interfaces</a><a href="12-virtual-dynamic-binding.html">Virtual Functions & Dynamic Binding →</a></div></main></body></html>

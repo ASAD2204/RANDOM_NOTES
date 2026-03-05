@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 · Error Handling — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html" class="active"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 10</div>
+    <h1>Error Handling</h1>
+    <p>Exceptions, try-catch-finally, custom errors, and graceful failure strategies across all three languages.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>throw</strong> raises an exception; <strong>try/catch</strong> handles it.</li>
+        <li>Can throw any type — best practice: throw objects derived from <code>std::exception</code>.</li>
+        <li><code>catch(...)</code> is a catch-all (avoid in production).</li>
+        <li>C++ does not have a <code>finally</code> block — use destructors (RAII) instead.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>#include &lt;stdexcept&gt;
+#include &lt;iostream&gt;
+
+try {
+    if (x == 0) throw std::runtime_error("Division by zero");
+    int result = 10 / x;
+}
+catch (const std::runtime_error&amp; e) {
+    std::cerr &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; "\n";
+}
+catch (const std::exception&amp; e) {
+    std::cerr &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; "\n";
+}
+catch (...) {
+    std::cerr &lt;&lt; "Unknown error\n";
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;stdexcept&gt;
+#include &lt;iostream&gt;
+
+// Custom exception
+class ValidationError : public std::runtime_error {
+public:
+    explicit ValidationError(const std::string&amp; msg)
+        : std::runtime_error(msg) {}
+};
+
+int divide(int a, int b) {
+    if (b == 0) throw ValidationError("Denominator cannot be zero");
+    return a / b;
+}
+
+int main() {
+    try {
+        std::cout &lt;&lt; divide(10, 0) &lt;&lt; "\n";
+    } catch (const ValidationError&amp; e) {
+        std::cerr &lt;&lt; "Validation: " &lt;&lt; e.what() &lt;&lt; "\n";
+    }
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>try</code> is like attempting to defuse a bomb. <code>throw</code> is the bomb going off. <code>catch</code> is the safety protocol handler. In C++, RAII (destructors) acts as the automatic cleanup crew that <em>always</em> runs, even when things explode.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Catching by value instead of const reference — slices the exception type.</li>
+        <li>Throwing from a destructor — causes immediate program termination.</li>
+        <li>Using exceptions for normal control flow — bad for performance and readability.</li>
+        <li>Catching <code>std::exception&amp;</code> before a more specific type — the specific catch is never reached.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Explain RAII as C++'s replacement for <code>finally</code> — automatically run destructors guarantee cleanup.</li>
+        <li>Know the <code>noexcept</code> specifier — marks functions that promise not to throw.</li>
+        <li>Interviewers like: "What happens if an exception is thrown in a constructor?"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>try/except/else/finally</strong>: full exception lifecycle.</li>
+        <li><code>else</code> block runs only if no exception was raised — unique to Python!</li>
+        <li><code>finally</code> always runs — used for cleanup (close files, release locks).</li>
+        <li>Built-in hierarchy: <code>BaseException → Exception → specific errors</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>try:
+    result = 10 / x
+except ZeroDivisionError:
+    print("Can't divide by zero")
+except (TypeError, ValueError) as e:
+    print(f"Type/Value error: {e}")
+except Exception as e:
+    print(f"Unexpected: {e}")
+    raise  # re-raise
+else:
+    print(f"Success: {result}")  # runs only if no exception
+finally:
+    print("This always runs")    # cleanup</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code># Custom exception
+class InsufficientFundsError(Exception):
+    def __init__(self, amount, balance):
+        super().__init__(f"Need {amount}, have {balance}")
+        self.amount = amount
+        self.balance = balance
+
+def withdraw(amount, balance):
+    if amount &gt; balance:
+        raise InsufficientFundsError(amount, balance)
+    return balance - amount
+
+try:
+    new_balance = withdraw(100, 50)
+except InsufficientFundsError as e:
+    print(f"Error: {e}")  # Error: Need 100, have 50
+finally:
+    print("Transaction attempted")  # always prints</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>try</code> is the risky experiment. <code>except</code> is the safety net. <code>else</code> is the celebration party when nothing went wrong. <code>finally</code> is the janitor who cleans the lab regardless of outcome.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Catching bare <code>Exception</code> silently: <code>except: pass</code> hides all bugs — always handle or re-raise.</li>
+        <li>Catching <code>Exception</code> instead of <code>BaseException</code> — misses <code>KeyboardInterrupt</code>, <code>SystemExit</code>.</li>
+        <li>Forgetting to <code>raise</code> after logging — error gets swallowed.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>The <code>else</code> clause is Python-specific — mention it in interviews to stand out.</li>
+        <li>Context managers (<code>with open(...)</code>) use <code>__enter__</code>/<code>__exit__</code> — cleaner than finally for resource management.</li>
+        <li>Know common built-in exceptions: <code>ValueError</code>, <code>TypeError</code>, <code>KeyError</code>, <code>IndexError</code>, <code>AttributeError</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>try/catch/finally</strong>: synchronous error handling.</li>
+        <li>For async code: <code>.catch()</code> on Promises or <code>try/catch</code> with <code>async/await</code>.</li>
+        <li><code>throw</code> can throw anything — best practice: throw <code>Error</code> objects (have a stack trace).</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// Synchronous
+try {
+    if (x === 0) throw new Error("Division by zero");
+    const result = 10 / x;
+} catch (e) {
+    console.error(e.message);
+} finally {
+    console.log("Always runs");
+}
+
+// Async/Await
+async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return await response.json();
+    } catch (e) {
+        console.error("Fetch failed:", e.message);
+        throw e;  // re-throw so caller can handle
+    }
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>// Custom error class
+class ValidationError extends Error {
+    constructor(field, message) {
+        super(message);
+        this.name = "ValidationError";
+        this.field = field;
+    }
+}
+
+function validateAge(age) {
+    if (typeof age !== "number") throw new TypeError("Age must be a number");
+    if (age &lt; 0 || age &gt; 150) throw new ValidationError("age", "Out of valid range");
+    return true;
+}
+
+try {
+    validateAge(-5);
+} catch (e) {
+    if (e instanceof ValidationError) {
+        console.log(`Field '${e.field}': ${e.message}`);
+    } else {
+        throw e;  // unexpected error — re-throw
+    }
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Synchronous errors are like tripping while walking — caught immediately. Async errors with Promises are like ordering delivery — if something goes wrong, you only find out when the delivery fails. <code>async/await</code> makes async look synchronous, like checking a tracking app that appears live.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting <code>await</code> in an async function — unhandled promise rejection.</li>
+        <li>Throwing a non-Error value: <code>throw "message"</code> — no stack trace.</li>
+        <li>Empty catch blocks that swallow errors silently.</li>
+        <li>Using <code>try/catch</code> inside a <code>.then()</code> — just use <code>.catch()</code> on the chain instead.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always explain unhandled promise rejections — common interview topic in Node.js.</li>
+        <li>Know how to build a custom error class extending <code>Error</code> (set <code>this.name</code>).</li>
+        <li><code>Promise.allSettled</code> vs <code>Promise.all</code>: former continues even if one rejects.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="09-io.html">&larr; Input &amp; Output</a>
+    <a href="11-libraries.html">Standard Libraries &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

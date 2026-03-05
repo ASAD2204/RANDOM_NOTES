@@ -1,0 +1,40 @@
+app = FastAPI()
+
+@app.post("/predict")
+def predict(payload: dict):
+    # y = model.predict(...)
+    return {"prediction": "ok"}</code></pre></div><div class="sec sec-example"><h3>▶ Dockerization</h3><pre><code>FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre></div><div class="sec sec-example"><h3>▶ Cloud deployment + integration</h3><p>Deploy APIs behind load balancer, add auth/rate-limit/logging, and integrate from web/mobile apps via HTTPS endpoints.</p></div><div class="page-nav"><a href="16-mlops.html">← MLOps</a><a href="18-ai-engineering-interview-questions.html">Interview Questions →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>17 · AI Deployment</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 17</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="17-ai-deployment.html" class="active">17 AI Deployment</a></li></ul></nav></aside>
+<main class="main">
+    <div class="page-header"><h1>AI Deployment</h1><p>Serving models as reliable APIs integrated into real products.</p></div>
+    <div class="sec sec-example"><h3>▶ REST API with FastAPI</h3><pre><code>from fastapi import FastAPI
+app = FastAPI()
+
+@app.post("/predict")
+def predict(payload: dict):
+        # y = model.predict(...)
+        return {"prediction": "ok"}</code></pre></div>
+    <div class="sec sec-example"><h3>▶ Dockerization</h3><pre><code>FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</code></pre></div>
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Deployment is where model quality meets real-world constraints: availability, latency, security, and cost. A robust serving stack includes input validation, rate limiting, model version routing, and observability. Mature teams use staged rollout patterns (shadow/canary/blue-green) to reduce deployment risk.</p><ul><li><b>Serving contract:</b> stable request/response schema is critical for app integration.</li><li><b>Scalability:</b> autoscaling and batching improve throughput under load.</li><li><b>Reliability:</b> health checks, retries, and fallback defaults prevent outages.</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Cloud deployment + integration</h3><p>Deploy APIs behind load balancers, add auth/rate-limit/logging, and integrate from web/mobile apps via HTTPS endpoints.</p></div>
+    <div class="page-nav"><a href="16-mlops.html">← MLOps</a><a href="18-ai-engineering-interview-questions.html">Interview Questions →</a></div>
+</main>
+</body>
+</html>

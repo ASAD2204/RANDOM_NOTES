@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>03 · The Four Pillars of OOP</title><link rel="stylesheet" href="../../css/style.css" /><script defer src="../../js/tabs.js"></script></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 03</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li><li><a href="03-four-pillars.html" class="active">03 Four Pillars</a></li><li><a href="04-inheritance-types.html">04 Inheritance Types</a></li><li><a href="13-solid-principles.html">13 SOLID</a></li>
+</ul></nav></aside>
+<main class="main"><div class="page-header"><h1>The Four Pillars of OOP</h1><p>Encapsulation, Abstraction, Inheritance, and Polymorphism with interview depth.</p></div>
+<div class="lang-tabs"><button class="lang-tab" data-lang="cpp">C++</button><button class="lang-tab" data-lang="python">Python</button><button class="lang-tab" data-lang="js">JavaScript</button></div>
+<div class="sec sec-analogy"><h3>💡 One-line Analogies</h3><ul><li><strong>Encapsulation:</strong> ATM hides internal bank rules.</li><li><strong>Abstraction:</strong> Car steering wheel hides engine mechanics.</li><li><strong>Inheritance:</strong> Child class reuses parent behavior.</li><li><strong>Polymorphism:</strong> Same interface, many implementations.</li></ul></div>
+<div class="lang-panel" data-lang="cpp"><div class="sec sec-example"><h3>▶ C++ Pillar Examples</h3><pre><code>// Encapsulation
+class Account {
+private: double balance;
+public: void deposit(double a){ if (a > 0) balance += a; }
+        double getBalance() const { return balance; }
+};
+
+// Abstraction
+class PaymentGateway { public: virtual void pay(double) = 0; virtual ~PaymentGateway() = default; };
+class UpiGateway : public PaymentGateway { public: void pay(double amt) override { /*upi*/ } };
+
+// Inheritance
+class Employee { public: virtual double bonus() const { return 1000; } };
+class Manager : public Employee { public: double bonus() const override { return 5000; } };
+
+// Polymorphism
+void issueBonus(const Employee& e){ cout << e.bonus(); } // dynamic dispatch</code></pre></div></div>
+<div class="lang-panel" data-lang="python"><div class="sec sec-example"><h3>▶ Python Pillar Examples</h3><pre><code># Encapsulation
+class Account:
+    def __init__(self): self.__balance = 0
+    def deposit(self, amt):
+        if amt > 0: self.__balance += amt
+    def balance(self): return self.__balance
+
+# Abstraction
+from abc import ABC, abstractmethod
+class PaymentGateway(ABC):
+    @abstractmethod
+    def pay(self, amt): ...
+class UpiGateway(PaymentGateway):
+    def pay(self, amt): pass
+
+# Inheritance + Polymorphism
+class Employee:
+    def bonus(self): return 1000
+class Manager(Employee):
+    def bonus(self): return 5000
+
+def issue_bonus(emp: Employee):
+    return emp.bonus()</code></pre></div></div>
+<div class="lang-panel" data-lang="js"><div class="sec sec-example"><h3>▶ JavaScript Pillar Examples</h3><pre><code>// Encapsulation with #private fields
+class Account {
+  #balance = 0;
+  deposit(amt){ if (amt > 0) this.#balance += amt; }
+  get balance(){ return this.#balance; }
+}
+
+// Abstraction via base contract
+class PaymentGateway { pay(amt){ throw new Error("Implement pay"); } }
+class UpiGateway extends PaymentGateway { pay(amt){ /* upi */ } }
+
+// Inheritance + Polymorphism
+class Employee { bonus(){ return 1000; } }
+class Manager extends Employee { bonus(){ return 5000; } }
+const issueBonus = (emp) => emp.bonus();</code></pre></div></div>
+<div class="sec sec-explanation"><h3>📚 Advantages and Disadvantages (Per Pillar)</h3><ul><li><strong>Encapsulation:</strong> + protects invariants, reduces coupling; − extra boilerplate.</li><li><strong>Abstraction:</strong> + cleaner APIs and substitution; − over-abstraction can confuse juniors.</li><li><strong>Inheritance:</strong> + reuse and hierarchy modeling; − tight coupling and fragile base-class problems.</li><li><strong>Polymorphism:</strong> + extensibility and OCP-friendly design; − dynamic dispatch can complicate debugging.</li></ul></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insights</h3><ul><li>When asked any pillar, answer in this order: definition → analogy → code → trade-off.</li><li>Mention composition as alternative to inheritance to show mature design judgment.</li><li>In C++, discuss virtual dispatch and vtable briefly when asked runtime polymorphism.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="02-classes-objects.html">← Classes and Objects</a><a href="04-inheritance-types.html">Inheritance Types →</a></div>
+</main></body></html>

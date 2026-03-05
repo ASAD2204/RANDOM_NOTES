@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01 · Language Overview — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html" class="active"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 01</div>
+    <h1>Language Overview</h1>
+    <p>Understand what each language is, how it runs, and where it shines — a must-know for any interview opener.</p>
+  </div>
+
+  <!-- LANGUAGE TABS -->
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>C++ is a <strong>compiled, statically-typed</strong> general-purpose language. The source code is compiled directly to machine code by the compiler (g++/clang++), giving it near-hardware speed. It supports <strong>procedural, object-oriented, and generic programming</strong>.</p>
+      <ul>
+        <li><strong>Compiled:</strong> Code translated to native binary before running.</li>
+        <li><strong>Statically typed:</strong> Every variable's type is known at compile time.</li>
+        <li><strong>Manual memory:</strong> You control heap allocation with <code>new</code>/<code>delete</code> (or smart pointers).</li>
+        <li><strong>Use cases:</strong> Game engines, OS kernels, embedded systems, competitive programming, high-frequency trading.</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <p>Compilation &amp; run pipeline:</p>
+      <pre><code>g++ -std=c++17 -O2 main.cpp -o app
+./app</code></pre>
+      <p>Every program needs a <code>main()</code> entry point and <code>#include</code> directives for library headers.</p>
+    </div>
+
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string lang = "C++";
+    std::cout &lt;&lt; "Language: " &lt;&lt; lang &lt;&lt; "\n";
+    std::cout &lt;&lt; "Compiled  : Yes (native machine code)\n";
+    std::cout &lt;&lt; "Typed     : Static\n";
+    return 0;
+}</code></pre>
+    </div>
+
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>C++ is like a <strong>manual transmission sports car</strong>: maximum control and blazing speed, but you must manage the gears (memory) and understand the engine (machine model). Wrong moves cause crashes.</p>
+    </div>
+
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Ignoring compiler warnings — they often reveal bugs.</li>
+        <li>Using uninitialized variables (undefined behavior).</li>
+        <li>Forgetting to include appropriate headers.</li>
+        <li>Comparing C++ performance to Python without context (C++ wins raw speed, Python wins development speed).</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Say: <em>"Compiled to native machine code — no VM overhead, which is why it's faster."</em></li>
+        <li>Mention smart pointers (<code>unique_ptr</code>, <code>shared_ptr</code>) as modern memory safety.</li>
+        <li>Know the difference between C++11, C++14, C++17 — mention lambdas and auto as modern features.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python is a <strong>high-level, interpreted, dynamically-typed</strong> language. The source runs through the Python interpreter (CPython), which compiles it to bytecode, then executes it on the Python Virtual Machine (PVM). You never see binary files.</p>
+      <ul>
+        <li><strong>Interpreted:</strong> No explicit compilation step — just run <code>python file.py</code>.</li>
+        <li><strong>Dynamically typed:</strong> Variable types are resolved at runtime.</li>
+        <li><strong>Garbage collected:</strong> Memory is managed automatically.</li>
+        <li><strong>Use cases:</strong> Data Science, AI/ML, web backends (Django/FastAPI), scripting, automation.</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code># Run directly
+python main.py
+
+# Check version
+python --version</code></pre>
+      <p>No <code>main()</code> required, but the convention is gating code behind <code>if __name__ == "__main__":</code>.</p>
+    </div>
+
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>lang = "Python"
+compiled = False
+typed = "Dynamic"
+
+print(f"Language : {lang}")
+print(f"Compiled : {compiled}")
+print(f"Typed    : {typed}")
+</code></pre>
+    </div>
+
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Python is like an <strong>automatic electric car</strong>: effortless to drive, the car handles fuel and gears (memory), but it can't beat a racing car (C++) on a circuit. Perfect for everyday trips.</p>
+    </div>
+
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Thinking Python is "always slow" — NumPy/Pandas are backed by optimized C code.</li>
+        <li>Misunderstanding mutable vs immutable types.</li>
+        <li>Using Python 2 syntax in a Python 3 environment.</li>
+        <li>Not using virtual environments, leading to package version conflicts.</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Say: <em>"Interpreted (bytecode + CPython VM) — slower execution but much faster development."</em></li>
+        <li>Highlight GIL (Global Interpreter Lock) if asked about threading.</li>
+        <li>Python is the most popular language for coding interviews involving readable solutions — use it confidently.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <div class="lang-panel" data-lang="js">
+
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>JavaScript is a <strong>dynamically-typed, JIT-compiled</strong> language originally made for browsers but now running everywhere (Node.js on servers). Modern engines like V8 compile JS to native code on the fly (JIT = Just-In-Time compilation).</p>
+      <ul>
+        <li><strong>JIT compiled:</strong> Starts interpreted, hot paths compiled to native.</li>
+        <li><strong>Event-driven:</strong> Uses an event loop for asynchronous operations.</li>
+        <li><strong>Single-threaded:</strong> One call stack, but async via callbacks/Promises/async-await.</li>
+        <li><strong>Use cases:</strong> Browser UIs (React/Vue), APIs (Node.js/Express), mobile (React Native).</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// Browser: &lt;script src="app.js"&gt;&lt;/script&gt;
+
+// Node.js
+node app.js</code></pre>
+      <p>No compilation step needed. Can run in browser DevTools console instantly.</p>
+    </div>
+
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const lang = "JavaScript";
+const compiled = "JIT";
+const typed = "Dynamic";
+
+console.log(`Language : ${lang}`);
+console.log(`Compiled : ${compiled}`);
+console.log(`Typed    : ${typed}`);
+</code></pre>
+    </div>
+
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>JavaScript is like a <strong>Swiss Army knife</strong>: it runs in browsers, on servers, in mobile apps. Versatile but with quirks — you need to know which tool to pick (<code>===</code> vs <code>==</code>, sync vs async).</p>
+    </div>
+
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>==</code> instead of <code>===</code> (type coercion causes subtle bugs).</li>
+        <li>Thinking JavaScript is Java — completely unrelated languages.</li>
+        <li>Misunderstanding <code>this</code> binding in different function contexts.</li>
+        <li>Not handling async errors (unhandled Promise rejections).</li>
+      </ul>
+    </div>
+
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Say: <em>"Dynamically typed, JIT-compiled by V8, runs in browser and Node.js."</em></li>
+        <li>Be ready to explain the event loop and call stack — extremely common question.</li>
+        <li>Know <code>let</code>/<code>const</code> vs <code>var</code>, and when to use arrow functions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a class="ghost" href="#">&larr;</a>
+    <a href="02-syntax.html">Syntax Fundamentals &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

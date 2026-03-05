@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>06 · FastAPI for High Performance APIs</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 06</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="06-fastapi-high-performance-apis.html" class="active">06 FastAPI</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>FastAPI for High Performance APIs</h1><p>Type-safe Python APIs with validation and automatic documentation.</p></div><div class="sec sec-example"><h3>▶ Core FastAPI features</h3><ul><li>Type hints + Pydantic models for validation</li><li>OpenAPI/Swagger docs generated automatically</li><li>Dependency injection for auth/db/session concerns</li></ul></div><div class="sec sec-example"><h3>▶ FastAPI example</h3><pre><code>from fastapi import FastAPI, Depends
+from pydantic import BaseModel
+
+app = FastAPI()
+class UserIn(BaseModel):
+    name: str
+    email: str
+
+@app.post("/users", response_model=UserIn)
+def create_user(payload: UserIn):
+    return payload</code></pre></div><div class="sec sec-example"><h3>▶ Dependency injection example</h3><pre><code>def get_token_header(token: str = "demo"):
+    return token
+
+@app.get("/secure")
+def secure_route(token: str = Depends(get_token_header)):
+    return {"token": token}</code></pre></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>FastAPI leverages type-driven contracts for validation and documentation. This reduces integration ambiguity and improves long-term API maintainability.</p></div><div class="page-nav"><a href="05-expressjs-backend-development.html">← Express.js</a><a href="07-flask-lightweight-web-applications.html">Flask →</a></div></main></body></html>

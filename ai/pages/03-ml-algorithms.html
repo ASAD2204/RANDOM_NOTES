@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>03 · Machine Learning Algorithms</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar">
+	<div class="sidebar-brand"><h2>AI Prep</h2><p>Section 03</p></div>
+	<nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="03-ml-algorithms.html" class="active">03 ML Algorithms</a></li></ul></nav>
+</aside>
+<main class="main">
+	<div class="page-header"><h1>Machine Learning Algorithms</h1><p>Algorithm intuition, mathematical view, practical trade-offs, and implementation patterns.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Linear Regression</h3><p><b>Concept:</b> model continuous output as weighted sum of features.</p><p><b>Math intuition:</b> minimize mean squared error to fit best hyperplane.</p><p><b>Pros:</b> simple, interpretable, strong baseline. <b>Limit:</b> weak for highly non-linear patterns.</p><pre><code>from sklearn.datasets import fetch_california_housing
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+X, y = fetch_california_housing(return_X_y=True)
+Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=42)
+m = LinearRegression().fit(Xtr, ytr)
+print("R2:", m.score(Xte, yte))</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Logistic Regression</h3><p><b>Concept:</b> linear separator with sigmoid to estimate class probability.</p><p><b>Use cases:</b> churn, fraud, medical risk triage.</p><p><b>Limit:</b> linear decision boundary unless engineered features are used.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Trees, Forests, SVM, KNN, K-Means, PCA</h3><ul><li><b>Decision Tree:</b> rule-based partitioning, highly interpretable but can overfit.</li><li><b>Random Forest:</b> ensemble averaging improves robustness.</li><li><b>SVM:</b> margin maximization, powerful in high-dimensional spaces.</li><li><b>KNN:</b> local neighborhood voting, simple but inference can be expensive.</li><li><b>K-Means:</b> centroid-based clustering for unlabeled grouping.</li><li><b>PCA:</b> linear dimensionality reduction preserving major variance.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Every algorithm is an inductive bias. Choosing a model means assuming a structure in your data: linear trend, local continuity, tree-like decision regions, or latent clusters. Better ML engineering comes from aligning this bias with domain behavior and business constraints such as interpretability, latency, and maintenance cost.</p><ul><li><b>Statistical fit:</b> does the model family match the data-generating process?</li><li><b>Computational fit:</b> can it train and infer within SLA budgets?</li><li><b>Operational fit:</b> can teams explain, monitor, and update it safely?</li></ul></div>
+
+	<div class="sec sec-tip"><h3>🌟 Selection cheat-sheet</h3><pre><code>Interpretability -> Logistic/Tree
+Non-linear tabular -> Random Forest
+High-dimensional sparse -> Linear/SVM
+Instance-based local patterns -> KNN
+Unsupervised grouping -> K-Means
+Compression/visualization -> PCA</code></pre></div>
+
+	<div class="page-nav"><a href="02-ml-fundamentals.html">← ML Fundamentals</a><a href="04-python-for-ai-development.html">Python for AI →</a></div>
+</main>
+</body>
+</html>

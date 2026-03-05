@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>06 · Relationships Between Classes</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 06</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="06-class-relationships.html" class="active">06 Relationships</a></li><li><a href="07-overloading-overriding.html">07 Overloading vs Overriding</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Relationships Between Classes</h1><p>Association, Aggregation, and Composition are foundational UML and interview concepts.</p></div>
+<div class="sec sec-syntax"><h3>📄 Diagram</h3><pre><code>Association:  Teacher -------- Student   (knows/uses)
+Aggregation:  Team <>-------- Player     (whole-part, weak ownership)
+Composition:  House *--------- Room       (whole-part, strong ownership)</code></pre></div>
+<div class="sec sec-explanation"><h3>📚 Definitions</h3><ul><li><strong>Association:</strong> general relationship; lifecycles independent.</li><li><strong>Aggregation:</strong> “has-a” with weak ownership; part can outlive whole.</li><li><strong>Composition:</strong> strong ownership; part lifecycle tied to whole.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Example Pattern</h3><pre><code>class Player {};
+class Team { vector&lt;Player*&gt; players; }; // aggregation (external players)
+
+class Room {};
+class House { vector&lt;Room&gt; rooms; };     // composition (rooms owned by house)</code></pre></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insight</h3><p>When interviewer asks “difference between aggregation and composition,” answer using ownership and lifecycle, not just “both are has-a”.</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="05-composition-vs-inheritance.html">← Composition vs Inheritance</a><a href="07-overloading-overriding.html">Overloading vs Overriding →</a></div></main></body></html>

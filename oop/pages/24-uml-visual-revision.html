@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>24 · UML / Visual Revision</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Revision</h2><p>Visual Cheats</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li>
+<li><a href="20-revision-01-05.html">20 Chunk A</a></li>
+<li><a href="21-revision-06-10.html">21 Chunk B</a></li>
+<li><a href="22-revision-11-15.html">22 Chunk C</a></li>
+<li><a href="23-revision-16-19.html">23 Chunk D</a></li>
+<li><a href="24-uml-visual-revision.html" class="active">24 UML / Visual Revision</a></li>
+<li><a href="25-mock-interview-rounds.html">25 Mock Interview Rounds</a></li>
+</ul></nav></aside>
+
+<main class="main">
+  <div class="page-header">
+    <h1>UML / Visual Revision Sheet</h1>
+    <p>Text-based diagrams for quick interview recall when you need to explain architecture at the whiteboard.</p>
+  </div>
+
+  <div class="sec sec-syntax"><h3>📄 Class Diagram Legend</h3><pre><code>[Class]
++ publicMethod()
+# protectedMethod()
+- privateField
+
+Relationship Notation:
+A ---- B   Association
+A <>-- B   Aggregation
+A *--- B   Composition
+A ----|> B Inheritance</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ Core OOP Visuals</h3><pre><code>1) Encapsulation
+[BankAccount]
+- balance
++ deposit()
++ withdraw()
++ getBalance()
+
+2) Abstraction
+[PaymentGateway] (abstract)
++ pay(amount)
+        |
+  -----------------
+  |               |
+[UpiGateway]   [CardGateway]
+
+3) Inheritance + Polymorphism
+[Employee]
++ bonus()
+   |
+------------
+|          |
+[Dev]   [Manager]
+bonus() bonus()
+
+Caller holds Employee reference and calls bonus() => runtime dispatch</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ Relationship Diagram Practice</h3><pre><code>Association:
+[Teacher] -------- [Student]
+
+Aggregation (weak ownership):
+[Team] <>-------- [Player]
+(Player may exist outside Team)
+
+Composition (strong ownership):
+[House] *--------- [Room]
+(Room lifecycle tied to House)</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ SOLID One-Glance Map</h3><pre><code>S  One class, one reason to change
+O  Extend behavior without editing stable core
+L  Child must preserve parent contract
+I  Keep interfaces small and focused
+D  Depend on abstractions, inject implementations</code></pre></div>
+
+  <div class="sec sec-tip"><h3>🌟 Whiteboard Interview Flow</h3><ol>
+    <li>Draw entities and relationships first.</li>
+    <li>Mark ownership boundaries (aggregation vs composition).</li>
+    <li>Mark extension points via interfaces/abstract classes.</li>
+    <li>State one edge case and one scaling strategy.</li>
+  </ol></div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="23-revision-16-19.html">← Revision Chunk D</a><a href="25-mock-interview-rounds.html">Mock Interview Rounds →</a></div>
+</main>
+</body></html>

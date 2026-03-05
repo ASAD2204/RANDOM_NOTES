@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>05 · SQL Joins</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="05-sql-joins.html" class="active">05 SQL Joins</a></li><li><a href="06-subqueries.html">06 Subqueries</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>SQL Joins</h1><p>INNER, LEFT, RIGHT, FULL, SELF joins with example tables and outputs.</p></div><div class="sec sec-example"><h3>📋 Sample tables</h3><pre><code>employees(emp_id, emp_name, dept_id)
+(1,Asha,10) (2,Ravi,20) (3,Meera,10) (4,Karan,NULL)
+
+departments(dept_id, dept_name)
+(10,Engineering) (20,HR) (30,Finance)</code></pre></div><div class="sec sec-example"><h3>▶ INNER JOIN</h3><pre><code>SELECT e.emp_name, d.dept_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id;
+
+Output:
+Asha  Engineering
+Ravi  HR
+Meera Engineering</code></pre></div><div class="sec sec-example"><h3>▶ LEFT JOIN</h3><pre><code>SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+
+Output:
+Asha  Engineering
+Ravi  HR
+Meera Engineering
+Karan NULL</code></pre></div><div class="sec sec-example"><h3>▶ RIGHT JOIN</h3><pre><code>SELECT e.emp_name, d.dept_name
+FROM employees e
+RIGHT JOIN departments d ON e.dept_id = d.dept_id;
+
+Output:
+Asha  Engineering
+Ravi  HR
+Meera Engineering
+NULL  Finance</code></pre></div><div class="sec sec-example"><h3>▶ FULL JOIN</h3><pre><code>SELECT e.emp_name, d.dept_name
+FROM employees e
+FULL OUTER JOIN departments d ON e.dept_id = d.dept_id;
+
+Output includes all rows from both sides:
+Asha Engineering
+Ravi HR
+Meera Engineering
+Karan NULL
+NULL Finance</code></pre></div><div class="sec sec-example"><h3>▶ SELF JOIN</h3><pre><code>employees(emp_id, emp_name, manager_id)
+(1,Asha,NULL) (2,Ravi,1) (3,Meera,1)
+
+SELECT e.emp_name AS employee, m.emp_name AS manager
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.emp_id;
+
+Output:
+Asha  NULL
+Ravi  Asha
+Meera Asha</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Know that FULL OUTER JOIN may need UNION workaround in MySQL.</li><li>Always write join condition explicitly with table aliases.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="04-sql-queries.html">← SQL Queries</a><a href="06-subqueries.html">Subqueries →</a></div></main></body></html>

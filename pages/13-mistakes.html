@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>13 · Common Mistakes — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html" class="active"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 13</div>
+    <h1>Common Mistakes</h1>
+    <p>The most frequent errors beginners — and even experienced developers — make. Study these to avoid losing marks.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>C++ mistakes are especially punishing because many cause <strong>undefined behavior (UB)</strong> — the program may silently produce wrong results, crash, or work sometimes but not others.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Mistake Patterns</h3>
+      <pre><code>// ❌ Integer overflow — silent!
+int a = 2000000000;
+int b = a + a;  // overflows int range
+
+// ✅ Use long long
+long long b = (long long)a + a;
+
+// ❌ Comparing size_t (unsigned) with int
+vector&lt;int&gt; v = {1,2,3};
+for (int i = v.size()-1; i &gt;= 0; i--) { /* ... */ }
+// When v is empty: v.size()-1 wraps around to HUGE number!
+
+// ✅ Cast explicitly
+for (int i = (int)v.size()-1; i &gt;= 0; i--) { /* ... */ }</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 5 Mistakes with Fixes</h3>
+      <pre><code>// 1. Off-by-one in loops
+for (int i = 0; i &lt;= n; i++)   // ❌ i<=n goes out of bounds
+for (int i = 0; i &lt; n; i++)    // ✅
+
+// 2. Using [] on map creates default entry
+map&lt;string,int&gt; m;
+if (m["key"] == 0) // ❌ creates "key" with value 0!
+if (m.count("key") && m["key"] == 0) // ✅
+
+// 3. Dangling reference
+string&amp; getName() {
+    string s = "local";
+    return s;  // ❌ returns ref to destroyed local variable!
+}
+
+// 4. Forgetting to handle empty input
+vector&lt;int&gt; v;
+int mx = v[0]; // ❌ UB on empty vector
+int mx = v.empty() ? INT_MIN : v[0]; // ✅
+
+// 5. endl vs \n in loops
+for (int i=0; i&lt;1000000; i++)
+    cout &lt;&lt; i &lt;&lt; endl;  // ❌ 1M flushes — very slow
+    cout &lt;&lt; i &lt;&lt; "\n";  // ✅</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>C++ is like driving a race car — fast and powerful, but no guardrails. One wrong turn (UB) and the car may go anywhere. The compiler doesn't always warn you. Learn the dangerous roads by heart.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Additional Pitfalls</h3>
+      <ul>
+        <li>Division of negative integers: <code>-7 / 2 = -3</code> in C++ (truncates toward zero).</li>
+        <li>Modulo with negatives: <code>-7 % 3 = -1</code> in C++ — can break index calculations.</li>
+        <li>Forgetting <code>#include</code> — different compilers behave differently for missing headers.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>When asked "can X go wrong?" — think overflow, empty container, dangling pointer, UB.</li>
+        <li>Always use <code>long long</code> for sums of large arrays in competitive coding.</li>
+        <li>Use <code>assert()</code> during development to catch logic bugs early.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python mistakes are often <strong>silent logic errors</strong> or <strong>type surprises</strong> — the code runs but produces wrong output. Python's flexibility is also its trickiness.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Mistake Patterns</h3>
+      <pre><code># ❌ Mutable default argument — shared across all calls!
+def append_to(item, lst=[]):
+    lst.append(item)
+    return lst
+
+append_to(1)  # [1]
+append_to(2)  # [1, 2] — not [2]!
+
+# ✅ Use None
+def append_to(item, lst=None):
+    if lst is None: lst = []
+    lst.append(item)
+    return lst
+
+# ❌ Late binding closures in loops
+fns = [lambda: i for i in range(3)]
+print(fns[0]())  # 2 — not 0!
+
+# ✅ Capture with default arg
+fns = [lambda i=i: i for i in range(3)]</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 5 Mistakes with Fixes</h3>
+      <pre><code># 1. == vs is for comparison
+x = [1,2,3]
+y = [1,2,3]
+x == y  # True (same value)
+x is y  # False (different objects)
+# Use == for values, is for None/True/False checks only
+
+# 2. Forgetting integer division
+7 / 2    # 3.5 (float in Python 3)
+7 // 2   # 3   (integer floor division)
+
+# 3. Modifying list while iterating
+lst = [1,2,3,4]
+for x in lst:
+    if x % 2 == 0: lst.remove(x)  # ❌ skips elements
+lst = [x for x in lst if x % 2 != 0]  # ✅
+
+# 4. String immutability
+s = "hello"
+s[0] = "H"  # ❌ TypeError
+s = "H" + s[1:]  # ✅
+
+# 5. Chained comparison (works in Python, looks wrong)
+1 &lt; x &lt; 10  # ✅ valid Python — both conditions checked</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Python's mutable default argument is like a <strong>shared notepad</strong> in an office — everyone thinks they have their own but they're all writing and reading from the same one. The fix is giving each caller a fresh notepad (<code>None</code> sentinel).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Additional Pitfalls</h3>
+      <ul>
+        <li><code>dict.keys()</code> returns a view, not a list — mutate the dict and the view changes.</li>
+        <li>Global variable in a function: reading is fine, but assigning creates a local — use <code>global</code> keyword.</li>
+        <li>Unpacking mismatch: <code>a, b = [1, 2, 3]</code> raises <code>ValueError</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>The mutable default argument trap is a classic Python interview question — know it cold.</li>
+        <li>Late-binding closures in loops is another classic — be ready with the <code>i=i</code> fix.</li>
+        <li>Python integer division: always clarify <code>//</code> vs <code>/</code> when writing solutions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>JavaScript has many <strong>type coercion surprises</strong> and <strong>scoping gotchas</strong> that trip up developers at every level. Many stem from legacy design decisions kept for backward compatibility.</p>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Mistake Patterns</h3>
+      <pre><code>// ❌ == coerces types — surprises everywhere
+"" == false     // true
+0 == false      // true
+null == undefined // true
+[] == false     // true!
+
+// ✅ Always use ===
+"" === false    // false
+0 === false     // false
+
+// ❌ var in loops creates function scope, not block scope
+for (var i = 0; i &lt; 3; i++) {
+    setTimeout(() =&gt; console.log(i), 100);  // logs 3, 3, 3
+}
+// ✅ Use let for block scope
+for (let i = 0; i &lt; 3; i++) {
+    setTimeout(() =&gt; console.log(i), 100);  // logs 0, 1, 2
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Top 5 Mistakes with Fixes</h3>
+      <pre><code>// 1. Array sort default is lexicographic
+[10, 9, 2].sort()             // ❌ [10, 2, 9]
+[10, 9, 2].sort((a,b) =&gt; a-b) // ✅ [2, 9, 10]
+
+// 2. typeof null === "object" (historic bug)
+typeof null   // "object" — NOT "null"!
+null === null // ✅ use strict equality
+
+// 3. this context lost in callbacks
+class Timer {
+    start() { setTimeout(function() { console.log(this); }, 100); }
+    // this is undefined in strict mode!
+    startFixed() { setTimeout(() =&gt; console.log(this), 100); } // ✅ arrow fn
+}
+
+// 4. NaN comparisons
+NaN === NaN  // false — NaN is not equal to itself!
+Number.isNaN(NaN)  // ✅ true
+
+// 5. Floating point arithmetic
+0.1 + 0.2 === 0.3  // false!
+Math.abs(0.1 + 0.2 - 0.3) &lt; Number.EPSILON  // ✅</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>JS type coercion is like a <strong>very accommodating waiter</strong> who guesses what you meant instead of asking — sometimes brilliantly helpful, sometimes horrifyingly wrong. <code>===</code> is asking the waiter to take your order <em>literally</em>.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Additional Pitfalls</h3>
+      <ul>
+        <li><code>+</code> operator with strings vs numbers: <code>"3" + 3 = "33"</code> but <code>"3" - 3 = 0</code>.</li>
+        <li>Async functions always return a Promise — forgetting <code>await</code> gives you a Promise object, not the value.</li>
+        <li>Object mutation through passed references — accidentally modifying inputs is a common bug.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li><code>var</code> vs <code>let</code> in loops and closures is an evergreen JS interview question.</li>
+        <li>Always explain <strong>why</strong> <code>===</code> is preferred over <code>==</code> — not just "use strict equality".</li>
+        <li><code>NaN !== NaN</code> is a gotcha every JS interviewer expects you to know.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="12-efficiency.html">&larr; Code Efficiency</a>
+    <a href="14-teasers.html">Brain Teasers &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

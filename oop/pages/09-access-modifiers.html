@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>09 · Access Modifiers</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 09</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="09-access-modifiers.html" class="active">09 Access Modifiers</a></li><li><a href="10-abstract-interface.html">10 Abstract & Interfaces</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Access Modifiers</h1><p>Public, private, protected and their role in encapsulation.</p></div>
+<div class="sec sec-syntax"><h3>📄 Visibility Table</h3><pre><code>Modifier     Class   Subclass   Outside
+public       ✔       ✔          ✔
+protected    ✔       ✔          ✖
+private      ✔       ✖          ✖</code></pre></div>
+<div class="sec sec-example"><h3>▶ C++ Example</h3><pre><code>class User {
+private: string passwordHash;
+protected: int loyaltyPoints;
+public: string name;
+};</code></pre></div>
+<div class="sec sec-tip"><h3>🌟 Interview Insight</h3><p>Encapsulation is enforced through private fields + controlled public methods. “Everything public” is usually a design smell.</p></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="08-constructors-destructors.html">← Constructors & Destructors</a><a href="10-abstract-interface.html">Abstract Classes & Interfaces →</a></div></main></body></html>

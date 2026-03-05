@@ -1,0 +1,59 @@
+x = np.array([1, 2, 3])
+print(x.mean(), x.std())</code></pre></div><div class="sec sec-example"><h3>▶ Pandas</h3><pre><code>import pandas as pd
+df = pd.DataFrame({"age":[20,22,21], "score":[80,90,85]})
+print(df.groupby("age").mean())</code></pre></div><div class="sec sec-example"><h3>▶ Matplotlib / Seaborn</h3><pre><code>import matplotlib.pyplot as plt
+import seaborn as sns
+sns.histplot(df["score"], kde=True)
+plt.show()</code></pre></div><div class="sec sec-example"><h3>▶ scikit-learn</h3><pre><code>from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier</code></pre></div><div class="sec sec-example"><h3>▶ TensorFlow / PyTorch</h3><pre><code># TensorFlow
+import tensorflow as tf
+model = tf.keras.Sequential([tf.keras.layers.Dense(16, activation="relu"), tf.keras.layers.Dense(1)])
+
+# PyTorch
+import torch
+import torch.nn as nn
+net = nn.Sequential(nn.Linear(10, 16), nn.ReLU(), nn.Linear(16, 1))</code></pre></div><div class="page-nav"><a href="03-ml-algorithms.html">← ML Algorithms</a><a href="05-data-preprocessing.html">Data Preprocessing →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>04 · Python for AI Development</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 04</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="04-python-for-ai-development.html" class="active">04 Python for AI</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Python for AI Development</h1><p>How Python libraries form a layered AI engineering ecosystem.</p></div>
+
+	<div class="sec sec-example"><h3>▶ NumPy (numerical foundation)</h3><p>NumPy provides vectorized arrays and linear algebra primitives. Most ML/DL libraries rely on array algebra concepts pioneered here.</p><pre><code>import numpy as np
+x = np.array([1, 2, 3])
+print(x.mean(), x.std())</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Pandas (tabular semantics)</h3><p>Pandas gives schema-aware manipulation for filtering, joins, grouping, and time-series processing.</p><pre><code>import pandas as pd
+df = pd.DataFrame({"age":[20,22,21], "score":[80,90,85]})
+print(df.groupby("age").mean())</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Matplotlib / Seaborn (visual reasoning)</h3><p>Visualization is theory in pictures: distributions, skew, outliers, and feature interactions become visible before model training.</p><pre><code>import matplotlib.pyplot as plt
+import seaborn as sns
+sns.histplot(df["score"], kde=True)
+plt.show()</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ scikit-learn (classical ML abstraction)</h3><p>scikit-learn standardizes estimators (`fit/predict`), pipelines, and validation utilities for reproducible ML workflows.</p><pre><code>from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ TensorFlow and PyTorch (deep learning frameworks)</h3><p>These frameworks provide automatic differentiation, GPU acceleration, and model-building abstractions for neural networks.</p><pre><code># TensorFlow
+import tensorflow as tf
+model = tf.keras.Sequential([tf.keras.layers.Dense(16, activation="relu"), tf.keras.layers.Dense(1)])
+
+# PyTorch
+import torch
+import torch.nn as nn
+net = nn.Sequential(nn.Linear(10, 16), nn.ReLU(), nn.Linear(16, 1))</code></pre></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>The Python AI stack is a layered abstraction over numerical optimization. Data libraries define representation; ML/DL libraries define learning operators; orchestration tools define reproducibility. Strong engineers understand boundaries between these layers so they can diagnose issues such as schema mismatch, exploding memory, unstable training, or deployment inconsistency.</p><ul><li><b>Data-contract thinking:</b> stable feature schema across train and inference.</li><li><b>Reproducibility thinking:</b> deterministic preprocessing and pinned dependencies.</li><li><b>Performance thinking:</b> vectorization, batching, and hardware-aware execution.</li></ul></div>
+
+	<div class="page-nav"><a href="03-ml-algorithms.html">← ML Algorithms</a><a href="05-data-preprocessing.html">Data Preprocessing →</a></div>
+</main>
+</body>
+</html>

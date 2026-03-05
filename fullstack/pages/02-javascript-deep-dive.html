@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>02 · JavaScript Deep Dive</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 02</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="02-javascript-deep-dive.html" class="active">02 JavaScript Deep Dive</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>JavaScript Deep Dive</h1><p>Advanced concepts required for modern frontend and backend JS.</p></div><div class="sec sec-example"><h3>▶ Closures and lexical scope</h3><pre><code>function counter() {
+  let c = 0;
+  return () => ++c;
+}
+const inc = counter();
+console.log(inc(), inc()); // 1 2</code></pre></div><div class="sec sec-example"><h3>▶ Async model: callbacks, promises, async/await</h3><pre><code>const fetchUser = () => new Promise(r => setTimeout(() => r({id:1}), 200));
+async function main(){
+  const user = await fetchUser();
+  console.log(user.id);
+}
+main();</code></pre></div><div class="sec sec-example"><h3>▶ Event loop intuition</h3><pre><code>Call Stack + Web APIs + Task Queue + Microtask Queue
+Microtasks (Promise jobs) run before next macrotask.</code></pre></div><div class="sec sec-example"><h3>▶ Prototypal inheritance + ES6+</h3><pre><code>class Animal { speak(){ return "..."; } }
+class Dog extends Animal { speak(){ return "woof"; } }
+const d = new Dog();
+console.log(d.speak());</code></pre><p>ES6+ essentials: let/const, arrow functions, destructuring, spread/rest, modules, template literals.</p></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>JavaScript behavior is governed by lexical scope and event-loop scheduling. Correct async code depends on understanding microtasks, macrotasks, and closure lifetime.</p></div><div class="page-nav"><a href="01-web-fundamentals.html">← Web Fundamentals</a><a href="03-reactjs-frontend-development.html">React.js →</a></div></main></body></html>

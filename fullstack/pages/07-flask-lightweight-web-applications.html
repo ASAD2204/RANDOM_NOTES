@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>07 · Flask for Lightweight Web Applications</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>FS Prep</h2><p>Section 07</p></div><nav><ul><li><a href="../index.html">⬅ Full Stack Home</a></li><li><a href="07-flask-lightweight-web-applications.html" class="active">07 Flask</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Flask for Lightweight Web Applications</h1><p>Minimal Python framework ideal for simple APIs and ML integrations.</p></div><div class="sec sec-example"><h3>▶ Routing and templates</h3><pre><code>from flask import Flask, render_template, request, jsonify
+app = Flask(__name__)
+
+@app.get("/")
+def home():
+    return "Hello Flask"</code></pre></div><div class="sec sec-example"><h3>▶ REST API example</h3><pre><code>@app.post("/predict")
+def predict():
+    data = request.json
+    # pred = model.predict([data["x"]])
+    return jsonify({"prediction": 1})</code></pre><p>Common pattern: load trained ML model at startup, expose prediction endpoint.</p></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Flask offers minimal abstraction and high flexibility. Production quality requires explicit structure for validation, auth, and deployment hardening.</p></div><div class="page-nav"><a href="06-fastapi-high-performance-apis.html">← FastAPI</a><a href="08-rest-api-design.html">REST API Design →</a></div></main></body></html>

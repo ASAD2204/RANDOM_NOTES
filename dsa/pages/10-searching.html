@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>10 · Searching Algorithms</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DSA Prep</h2><p>Section 10</p></div><nav><ul><li><a href="../index.html">⬅ DSA Home</a></li><li><a href="10-searching.html" class="active">10 Searching</a></li><li><a href="11-sorting.html">11 Sorting</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Searching Algorithms</h1><p>Linear search and binary search with clear use-cases and complexity trade-offs.</p></div><div class="sec sec-explanation"><h3>📚 Concept</h3><ul><li>Linear search scans each element; works on any array/list.</li><li>Binary search halves search space; requires sorted data.</li></ul></div><div class="sec sec-analogy"><h3>💡 Analogy</h3><p>Linear: finding name by reading every page. Binary: opening dictionary at middle repeatedly.</p></div><div class="sec sec-syntax"><h3>📄 Step-by-step (binary search)</h3><pre><code>1) l=0, r=n-1
+2) m=l+(r-l)/2
+3) if a[m]==x return m
+4) if a[m] &lt; x, l=m+1 else r=m-1
+5) repeat until l&gt;r</code></pre></div><div class="sec sec-example"><h3>▶ Implementations</h3><pre><code>// C++
+int bs(vector<int>&a,int x){int l=0,r=a.size()-1;while(l<=r){int m=l+(r-l)/2; if(a[m]==x)return m; if(a[m]<x)l=m+1; else r=m-1;} return -1;}
+
+# Python
+import bisect
+idx=bisect.bisect_left(a,x)
+
+// JS
+function linear(a,x){ for(let i=0;i<a.length;i++) if(a[i]===x) return i; return -1; }</code></pre></div><div class="sec sec-example"><h3>⏱ Complexity</h3><ul><li>Linear: O(n) time, O(1) space</li><li>Binary: O(log n) time, O(1) iterative space</li></ul></div><div class="sec sec-explanation"><h3>✅ / ❌</h3><ul><li>✅ Binary is very fast on sorted data.</li><li>❌ Sorting first can dominate cost if one-time search only.</li></ul></div><div class="sec sec-mistake"><h3>⚠ Common Mistakes</h3><ul><li>Applying binary search on unsorted array.</li><li>Infinite loop due to wrong mid update.</li><li>Overflow with <code>(l+r)/2</code> in fixed-width ints.</li></ul></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Use lower_bound / upper_bound style questions frequently appear.</li><li>State “binary search on answer” for monotonic feasibility problems.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Data structure and algorithm choices should be justified by complexity, memory behavior, and workload characteristics.</p></div><div class="page-nav"><a href="09-graphs.html">← Graphs</a><a href="11-sorting.html">Sorting →</a></div></main></body></html>

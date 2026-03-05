@@ -1,0 +1,57 @@
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+
+num_cols = ["age", "salary"]
+cat_cols = ["city", "role"]
+
+num_pipe = Pipeline([("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())])
+cat_pipe = Pipeline([("imputer", SimpleImputer(strategy="most_frequent")), ("ohe", OneHotEncoder(handle_unknown="ignore"))])
+pre = ColumnTransformer([("num", num_pipe, num_cols), ("cat", cat_pipe, cat_cols)])
+
+model = Pipeline([("pre", pre), ("clf", LogisticRegression(max_iter=500))])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model.fit(X_train, y_train)</code></pre></div><div class="page-nav"><a href="04-python-for-ai-development.html">← Python for AI</a><a href="06-model-evaluation.html">Model Evaluation →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>05 · Data Preprocessing</title>
+	<link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 05</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="05-data-preprocessing.html" class="active">05 Data Preprocessing</a></li></ul></nav></aside>
+<main class="main">
+	<div class="page-header"><h1>Data Preprocessing</h1><p>Preparing raw data so models learn stable, transferable patterns.</p></div>
+
+	<div class="sec sec-example"><h3>▶ Core steps</h3><ul><li>Handle missing values</li><li>Encode categorical variables</li><li>Scale/normalize numeric features</li><li>Create domain-driven features</li><li>Perform robust train/validation/test splitting</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Preprocessing is where statistical assumptions are encoded. Missing-value treatment, encoding strategy, and scaling each change the geometry seen by the model. Poor preprocessing can create leakage, amplify bias, or produce train-serving skew. Production-grade preprocessing therefore must be deterministic, versioned, and reusable at inference time.</p><ul><li><b>Missingness mechanisms:</b> MCAR/MAR/MNAR influence imputation reliability.</li><li><b>Feature semantics:</b> categorical encoding controls how models interpret similarity.</li><li><b>Temporal validity:</b> splitting must respect time/order in forecasting and event data.</li></ul></div>
+
+	<div class="sec sec-example"><h3>▶ Python preprocessing pipeline</h3><pre><code>import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+
+num_cols = ["age", "salary"]
+cat_cols = ["city", "role"]
+
+num_pipe = Pipeline([("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())])
+cat_pipe = Pipeline([("imputer", SimpleImputer(strategy="most_frequent")), ("ohe", OneHotEncoder(handle_unknown="ignore"))])
+pre = ColumnTransformer([("num", num_pipe, num_cols), ("cat", cat_pipe, cat_cols)])
+
+model = Pipeline([("pre", pre), ("clf", LogisticRegression(max_iter=500))])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model.fit(X_train, y_train)</code></pre></div>
+
+	<div class="page-nav"><a href="04-python-for-ai-development.html">← Python for AI</a><a href="06-model-evaluation.html">Model Evaluation →</a></div>
+</main>
+</body>
+</html>

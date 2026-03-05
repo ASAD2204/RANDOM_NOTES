@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>08 · Memory Concepts — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html" class="active"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 08</div>
+    <h1>Memory Concepts</h1>
+    <p>Stack vs heap, pointers, smart pointers, garbage collection, and shallow vs deep copy.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Stack:</strong> auto-managed; fast; local variables live here; freed when scope ends.</li>
+        <li><strong>Heap:</strong> manual; dynamic allocation with <code>new</code>; must free with <code>delete</code>.</li>
+        <li><strong>Pointer</strong>: holds a memory address. <code>*ptr</code> = dereference, <code>&amp;x</code> = address-of.</li>
+        <li><strong>Smart pointers</strong> (<code>unique_ptr</code>, <code>shared_ptr</code>) automate deletion — no memory leaks.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>int x = 5;           // stack
+int* p = new int(5); // heap
+*p = 10;             // dereference
+delete p;            // free heap
+p = nullptr;         // avoid dangling pointer
+
+// Smart pointers (prefer these!)
+#include &lt;memory&gt;
+auto up = std::make_unique&lt;int&gt;(42);    // unique owner
+auto sp = std::make_shared&lt;int&gt;(42);    // shared ownership</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+struct Node {
+    int val;
+    Node* next = nullptr;
+};
+
+int main() {
+    // Proper memory management with smart pointers
+    auto head = std::make_unique&lt;Node&gt;();
+    head-&gt;val = 1;
+    // head auto-deleted when out of scope — no memory leak
+
+    // Shallow vs deep copy (raw arrays)
+    int a[] = {1, 2, 3};
+    int* b = a; // shallow — both point to same data
+    b[0] = 99;
+    std::cout &lt;&lt; a[0]; // 99 — a changed too!
+
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Stack is a <strong>whiteboard</strong>: fast, erased automatically after a meeting. Heap is a <strong>storage unit</strong>: you rent it (<code>new</code>), things stay as long as you want, but you must remember to cancel the lease (<code>delete</code>) or you pay forever (memory leak).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><strong>Memory leak:</strong> Calling <code>new</code> without matching <code>delete</code>.</li>
+        <li><strong>Dangling pointer:</strong> Accessing pointer after <code>delete</code>; always set to <code>nullptr</code>.</li>
+        <li><strong>Double free:</strong> Calling <code>delete</code> twice on the same pointer.</li>
+        <li><strong>Stack overflow:</strong> Deeply recursive function or very large local arrays.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always prefer <code>make_unique</code>/<code>make_shared</code> over raw <code>new</code> in modern C++.</li>
+        <li>Be able to explain the difference between shallow and deep copy.</li>
+        <li>Interviewers love asking about RAII — Resource Acquisition Is Initialization.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li>Python uses <strong>automatic garbage collection</strong> — reference counting + cycle collector.</li>
+        <li>Variables are <strong>references</strong> (labels) pointing to objects in memory.</li>
+        <li><strong>Shallow copy</strong>: new container, same inner objects.</li>
+        <li><strong>Deep copy</strong>: new container <em>and</em> recursive copies of all inner objects.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>import copy
+
+# Assignment vs copy
+a = [1, [2, 3]]
+b = a           # same reference
+c = a.copy()    # shallow copy
+d = copy.deepcopy(a)  # deep copy
+
+b.append(4)     # a also changes!
+c[1].append(9)  # a[1] also changes (shallow — inner list shared)
+d[1].append(9)  # a unchanged (deep copy)
+
+# Reference counting
+import sys
+x = [1, 2, 3]
+sys.getrefcount(x)  # usually 2 (x + getrefcount arg)</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>import copy
+
+original = [[1, 2], [3, 4]]
+
+shallow = original.copy()     # or list(original)
+deep    = copy.deepcopy(original)
+
+original[0].append(99)
+
+print(shallow[0])  # [1, 2, 99] — inner list is shared
+print(deep[0])     # [1, 2]     — completely independent
+
+# id() shows memory address
+x = 5
+y = 5
+print(x is y)  # True — Python interns small ints</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A variable is a <strong>sticky note with a room number</strong> written on it — the object is in the room. Assignment copies the note (same room). Shallow copy makes a new folder containing the original room numbers. Deep copy rebuilds every room from scratch.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Assuming <code>b = a</code> copies a list — it just copies the reference.</li>
+        <li>Using <code>a.copy()</code> on a nested list and expecting full independence.</li>
+        <li>Circular references can delay garbage collection (use <code>gc</code> module to diagnose).</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Know the difference between <code>is</code> (identity) and <code>==</code> (equality).</li>
+        <li>Small integer caching: <code>-5</code> to <code>256</code> are pre-allocated singletons.</li>
+        <li>Be ready to explain Python's garbage collection: ref-counting + cyclic GC.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li>JS uses an automatic <strong>garbage collector</strong> (mark-and-sweep in V8).</li>
+        <li><strong>Primitives</strong> are copied by value; <strong>objects/arrays</strong> are copied by reference.</li>
+        <li><strong>Shallow copy:</strong> <code>Object.assign</code> or spread <code>{...obj}</code>.</li>
+        <li><strong>Deep copy:</strong> <code>structuredClone(obj)</code> (modern) or <code>JSON.parse(JSON.stringify(obj))</code> (legacy).</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// Primitives — copied by value
+let a = 5;
+let b = a;
+b = 10;  // a is still 5
+
+// Objects — copied by reference
+const obj = { x: 1 };
+const ref = obj;
+ref.x = 99;  // obj.x is also 99!
+
+// Shallow copy
+const shallow = { ...obj };
+const shallow2 = Object.assign({}, obj);
+
+// Deep copy
+const deep = structuredClone(obj);   // modern, handles nested
+const deep2 = JSON.parse(JSON.stringify(obj)); // no functions/undefined</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>const original = { name: "Alice", scores: [90, 80] };
+
+const shallow = { ...original };
+const deep = structuredClone(original);
+
+original.scores.push(100);
+
+console.log(shallow.scores); // [90, 80, 100] — shared inner array
+console.log(deep.scores);    // [90, 80]       — independent
+
+// Memory leak example (closure holding reference)
+function leak() {
+  const bigData = new Array(1000000).fill("x");
+  return () =&gt; bigData.length; // bigData can't be GC'd
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Primitives are like numbers written on paper — copying writes the same digits. Objects are like <strong>map coordinates</strong>: copying the coordinates still leads you to the same physical place. <code>structuredClone</code> builds a new identical place at separate coordinates.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Spreading nested objects and assuming full independence.</li>
+        <li><code>JSON.parse(JSON.stringify())</code> drops <code>undefined</code>, functions, <code>Date</code> objects, <code>Map</code>, <code>Set</code>.</li>
+        <li>Closures keeping large objects alive — a common JS memory leak pattern.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always clarify "copy" questions — shallow vs deep is a frequent follow-up.</li>
+        <li>Prefer <code>structuredClone</code> over JSON tricks when asked for modern approach.</li>
+        <li>The V8 engine's generational GC (young/old space) is good advanced knowledge.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="07-arrays.html">&larr; Arrays &amp; Strings</a>
+    <a href="09-io.html">Input &amp; Output &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

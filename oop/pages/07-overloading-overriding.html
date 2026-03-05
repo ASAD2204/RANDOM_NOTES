@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>07 · Method Overloading and Overriding</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body><aside class="sidebar"><div class="sidebar-brand"><h2>OOP Prep</h2><p>Section 07</p></div><nav><ul><li><a href="../index.html">⬅ OOP Home</a></li><li><a href="07-overloading-overriding.html" class="active">07 Overloading vs Overriding</a></li><li><a href="08-constructors-destructors.html">08 Constructors</a></li></ul></nav></aside>
+<main class="main"><div class="page-header"><h1>Method Overloading vs Method Overriding</h1><p>Compile-time polymorphism vs runtime polymorphism.</p></div>
+<div class="sec sec-syntax"><h3>📄 Quick Difference</h3><pre><code>Overloading:
+- Same method name, different signatures
+- Usually resolved at compile time
+
+Overriding:
+- Child redefines parent virtual/overridable method
+- Resolved at runtime (dynamic dispatch)</code></pre></div>
+<div class="sec sec-example"><h3>▶ Edge-case Examples</h3><pre><code>// C++ overloading
+int area(int s); int area(int l, int b);
+
+// C++ overriding
+class Base{ public: virtual void show(); };
+class Child: public Base{ public: void show() override; };
+
+# Python: no true compile-time overloading
+# emulate with default args or *args
+class A:
+    def f(self, x, y=0): return x+y
+
+// JS: no signature-based overloading; manual checks by args.length/types
+function area(a,b){ if (b===undefined) return a*a; return a*b; }</code></pre></div>
+<div class="sec sec-mistake"><h3>⚠ Tricky Cases</h3><ul><li>In C++, missing <code>virtual</code> means method hiding, not overriding.</li><li>In Python/JS, redefining same function name replaces prior one.</li><li>In C++, mismatched const/ref qualifiers can accidentally fail override.</li></ul></div>
+<div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="06-class-relationships.html">← Relationships</a><a href="08-constructors-destructors.html">Constructors & Destructors →</a></div></main></body></html>

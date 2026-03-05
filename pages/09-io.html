@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>09 · Input &amp; Output — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html" class="active"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 09</div>
+    <h1>Input &amp; Output</h1>
+    <p>Reading input from the user and printing output — including fast I/O tricks critical for competitive programming.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>cin/cout</strong>: stream-based I/O from <code>&lt;iostream&gt;</code>.</li>
+        <li><code>&lt;&lt;</code> = insertion (output), <code>&gt;&gt;</code> = extraction (input).</li>
+        <li><strong>printf/scanf</strong>: C-style; faster but error-prone.</li>
+        <li><strong>Fast I/O trick:</strong> disable sync with stdio and untie cin from cout.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Fast I/O (add at top of main)
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+
+int n;
+cin &gt;&gt; n;                // read integer
+
+string s;
+getline(cin, s);         // read full line (with spaces)
+
+cout &lt;&lt; "Result: " &lt;&lt; n &lt;&lt; "\n";  // prefer \n over endl
+// endl flushes the buffer — much slower!</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin &gt;&gt; t;  // test cases
+    while (t--) {
+        int n;
+        cin &gt;&gt; n;
+        vector&lt;int&gt; a(n);
+        for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+
+        long long sum = 0;
+        for (int x : a) sum += x;
+        cout &lt;&lt; sum &lt;&lt; "\n";
+    }
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>cin</code>/<code>cout</code> are like a two-way intercom: <code>&gt;&gt;</code> listens to the incoming channel, <code>&lt;&lt;</code> speaks into the outgoing. The sync-with-stdio trick is like switching from a slow shared radio to a private fast direct line.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>endl</code> in tight loops — it flushes the buffer and is 10-100x slower than <code>"\n"</code>.</li>
+        <li>Mixing <code>cin &gt;&gt;</code> with <code>getline</code> without clearing the leftover newline.</li>
+        <li>Not enabling fast I/O for competitive problems — causes TLE on large inputs.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always add the two fast I/O lines in competitive coding solutions.</li>
+        <li>Know that <code>scanf/printf</code> are still valid and slightly faster than cin/cout even with sync off.</li>
+        <li>After <code>cin &gt;&gt; n</code>, add <code>cin.ignore()</code> before <code>getline</code> to consume the leftover newline.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><code>input()</code>: reads one line as a string (always string — must cast).</li>
+        <li><code>print()</code>: outputs to stdout with newline by default.</li>
+        <li><strong>Fast I/O</strong>: <code>sys.stdin.readline()</code> is faster than <code>input()</code> for large data.</li>
+        <li>Use <code>sys.stdout.write()</code> instead of <code>print()</code> in tight output loops.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>name = input("Enter name: ")        # reads string
+n = int(input())                    # cast to int
+a, b = map(int, input().split())    # read two ints on one line
+arr = list(map(int, input().split())) # read list
+
+print("Hello", name, sep=", ", end="!\n")
+print(f"Sum: {a + b}")              # f-string formatting
+
+# Fast I/O for competitive programming
+import sys
+input = sys.stdin.readline          # override input
+data = sys.stdin.read().split()     # read everything at once</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>import sys
+input = sys.stdin.readline
+
+def main():
+    t = int(input())
+    results = []
+    for _ in range(t):
+        n = int(input())
+        arr = list(map(int, input().split()))
+        results.append(str(sum(arr)))
+    print("\n".join(results))  # single print call — faster
+
+main()</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p><code>input()</code> is like a human operator taking one order at a time. <code>sys.stdin.read().split()</code> is like bulk-importing an entire order list from a file — a warehouse approach vs. retail counter.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting to cast: <code>input()</code> returns a string — <code>int(input())</code> is required for math.</li>
+        <li>Using <code>print()</code> in a tight loop with millions of outputs — one large <code>"\n".join()</code> is far faster.</li>
+        <li>Calling <code>input().split()</code> when only one value is expected — safe, but <code>int(input())</code> is cleaner.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li><code>map(int, input().split())</code> is the canonical one-liner for reading multiple integers.</li>
+        <li>For competitive coding, always override <code>input = sys.stdin.readline</code> at the top.</li>
+        <li>Know that <code>print</code> is buffered — use <code>print(..., flush=True)</code> when interactive I/O is needed.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <ul>
+        <li><strong>Browser:</strong> No stdin; prompt with <code>prompt()</code>; output with <code>console.log()</code>.</li>
+        <li><strong>Node.js:</strong> Use <code>readline</code> module or <code>process.stdin</code> for console input.</li>
+        <li>For competitive coding, Node.js with <code>readline</code> is the standard setup.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// Browser
+const name = prompt("Your name?");
+console.log("Hello", name);
+
+// Node.js — readline approach
+const readline = require("readline");
+const rl = readline.createInterface({ input: process.stdin });
+const lines = [];
+rl.on("line", line =&gt; lines.push(line.trim()));
+rl.on("close", () =&gt; {
+  const n = parseInt(lines[0]);
+  // process lines...
+});
+
+// Output
+process.stdout.write("result\n");  // faster than console.log</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>// Competitive Node.js template
+const readline = require("readline");
+const rl = readline.createInterface({ input: process.stdin });
+const lines = [];
+rl.on("line", l =&gt; lines.push(l.trim()));
+rl.on("close", () =&gt; {
+    let idx = 0;
+    const t = parseInt(lines[idx++]);
+    const out = [];
+    for (let i = 0; i &lt; t; i++) {
+        const n = parseInt(lines[idx++]);
+        const arr = lines[idx++].split(" ").map(Number);
+        out.push(arr.reduce((a, b) =&gt; a + b, 0));
+    }
+    console.log(out.join("\n"));
+});</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Node.js I/O is <strong>event-driven</strong> — like a restaurant where you place an order (<code>rl.on("line")</code>), and the chef (event loop) alerts you when food is ready (<code>"close"</code>). You can't demand food the instant you order.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Trying to use <code>prompt()</code> in Node.js — it doesn't exist there.</li>
+        <li>Reading data before the <code>"close"</code> event fires — async nature bites beginners.</li>
+        <li>Using <code>console.log</code> in a tight loop — <code>process.stdout.write</code> is faster.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>For online judge problems in JS, always collect all lines first in <code>"line"</code> events, process in <code>"close"</code>.</li>
+        <li><code>console.log</code> adds a newline; <code>process.stdout.write</code> does not.</li>
+        <li>In browser context, <code>console.log</code> accepts multiple args and objects — useful for debugging.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="08-memory.html">&larr; Memory Concepts</a>
+    <a href="10-errors.html">Error Handling &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

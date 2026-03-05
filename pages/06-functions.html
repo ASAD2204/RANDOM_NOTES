@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06 · Functions — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html" class="active"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 06</div>
+    <h1>Functions</h1>
+    <p>Defining reusable logic — parameters, return values, recursion, lambdas, and closures.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Functions in C++ have an explicit <strong>return type</strong> and can accept parameters by <strong>value</strong>, <strong>reference</strong> (<code>&amp;</code>), or <strong>pointer</strong> (<code>*</code>). Function overloading allows same name with different signatures.</p>
+      <ul>
+        <li><strong>Pass by value</strong> — copy of argument, original unchanged.</li>
+        <li><strong>Pass by reference</strong> — alias to original, can modify.</li>
+        <li><strong>Pass by const reference</strong> — read-only alias (efficient for large objects).</li>
+        <li><strong>Recursion</strong> — function calls itself; needs a base case.</li>
+        <li><strong>Lambda</strong> — anonymous function (C++11): <code>[capture](params){ ... }</code></li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>returnType name(paramType param) { return value; }
+
+void     swap(int&amp; a, int&amp; b) { ... }       // by reference
+int      sum(const std::vector&lt;int&gt;&amp; v) { } // const ref
+
+// Lambda
+auto greet = [](const std::string&amp; s) {
+    return "Hello " + s;
+};</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;iostream&gt;
+
+int factorial(int n) {          // recursion
+    if (n &lt;= 1) return 1;       // base case
+    return n * factorial(n - 1);
+}
+
+void swap(int&amp; a, int&amp; b) {    // pass by reference
+    int tmp = a; a = b; b = tmp;
+}
+
+int main() {
+    std::cout &lt;&lt; factorial(5) &lt;&lt; "\n"; // 120
+
+    int x = 3, y = 7;
+    swap(x, y);
+    std::cout &lt;&lt; x &lt;&lt; " " &lt;&lt; y &lt;&lt; "\n"; // 7 3
+    return 0;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A function is a <strong>vending machine</strong>: you put in inputs (coins), it processes internally, and returns an output (snack). Recursion is calling a smaller vending machine inside the big one (Russian dolls).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Missing recursion <strong>base case</strong> → infinite recursion → stack overflow.</li>
+        <li>Returning a <strong>reference to a local variable</strong> (dangling reference).</li>
+        <li>Passing large objects by value (copies them) — use <code>const&amp;</code> instead.</li>
+        <li>Function overloads being ambiguous (compiler can't resolve which to call).</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always name functions clearly: <code>isPrime</code>, <code>findMax</code> — self-documenting code.</li>
+        <li>When using recursion, state: base case, recursive case, and stack depth (O(N) space).</li>
+        <li>Prefer <code>const&amp;</code> for read-only parameters over plain value for non-trivial types.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python functions are defined with <code>def</code>. They're <strong>first-class objects</strong> — assigned to variables, passed as arguments, returned. Key features:</p>
+      <ul>
+        <li><strong>Default arguments</strong> — <code>def f(x, y=0)</code></li>
+        <li><strong>*args</strong> — variable positional arguments (tuple)</li>
+        <li><strong>**kwargs</strong> — variable keyword arguments (dict)</li>
+        <li><strong>Lambda</strong> — <code>lambda x: x*2</code></li>
+        <li><strong>Closures</strong> — inner function captures outer variable.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>def function_name(params, default=value):
+    return result
+
+def variadic(*args, **kwargs):
+    pass
+
+# Lambda
+square = lambda x: x ** 2
+
+# Type hints (good practice)
+def add(a: int, b: int) -&gt; int:
+    return a + b</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>def factorial(n: int) -&gt; int:
+    if n &lt;= 1:
+        return 1          # base case
+    return n * factorial(n - 1)
+
+def greet(name: str, greeting: str = "Hello") -&gt; str:
+    return f"{greeting}, {name}!"
+
+# Lambda in sorting
+people = [("Alice", 30), ("Bob", 25)]
+people.sort(key=lambda p: p[1])  # sort by age
+
+print(factorial(5))        # 120
+print(greet("Alice"))      # Hello, Alice!
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A function is a <strong>recipe card</strong>: same instructions, different ingredients (arguments). Default arguments are ingredient substitutes listed on the card. A closure is a chef who remembers the secret sauce from the parent kitchen.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li><strong>Mutable default argument</strong>: <code>def f(x=[])</code> — the list is shared across all calls! Use <code>x=None</code>.</li>
+        <li>Forgetting <code>return</code> — function returns <code>None</code> silently.</li>
+        <li>Shadowing built-ins with parameter names: <code>def f(list, ...)</code>.</li>
+        <li>Recursion hitting Python's default limit (~1000). Use iterative or <code>sys.setrecursionlimit</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Add type hints — interviewers appreciate them as documentation.</li>
+        <li>Python passes <em>object references by value</em>: mutation inside affects original; reassignment does not.</li>
+        <li>Show closure knowledge: <em>"Inner functions can read outer scope variables. To write, use <code>nonlocal</code>."</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Functions are <strong>first-class citizens</strong>: stored, passed, returned. Three main ways to define:</p>
+      <ul>
+        <li><strong>Function declaration</strong> — hoisted, can be called before definition.</li>
+        <li><strong>Function expression</strong> — assigned to a variable, not hoisted.</li>
+        <li><strong>Arrow function</strong> — concise syntax, <code>this</code> inherited from parent scope.</li>
+        <li><strong>Closures</strong> — function remembers variables from its birthplace scope.</li>
+        <li><strong>IIFE</strong> — Immediately Invoked Function Expression.</li>
+      </ul>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// Declaration (hoisted)
+function greet(name) { return `Hi ${name}`; }
+
+// Expression (not hoisted)
+const greet = function(name) { return `Hi ${name}`; };
+
+// Arrow (concise + lexical this)
+const greet = name =&gt; `Hi ${name}`;
+const add   = (a, b) =&gt; a + b;
+
+// Default params
+const multiply = (a, b = 1) =&gt; a * b;
+
+// Rest params
+const sum = (...nums) =&gt; nums.reduce((t, n) =&gt; t + n, 0);</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>function factorial(n) {
+  if (n &lt;= 1) return 1;
+  return n * factorial(n - 1);
+}
+
+// Closure example
+function makeCounter() {
+  let count = 0;
+  return () =&gt; ++count;  // arrow captures 'count'
+}
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+
+console.log(factorial(5)); // 120
+</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A closure is like a <strong>backpack you take from a camping trip</strong>: even after you leave the campsite (outer function ends), the supplies (variables) in your backpack (closure) are still there for use.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>this</code> inside an arrow function expecting it to refer to the object — arrow functions inherit <code>this</code> from the outer context.</li>
+        <li>Relying on hoisting for function expressions — only declarations are hoisted.</li>
+        <li>Creating closures in a loop with <code>var</code>: all closures share the same final <code>i</code>; use <code>let</code> instead.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Closures are one of the most common JS interview topics — be ready to explain and demonstrate with a counter example.</li>
+        <li>Arrow vs regular function for <code>this</code> differences — classic in object/class questions.</li>
+        <li>Mention <strong>higher-order functions</strong> (functions that take/return functions) — shows functional programming awareness.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="05-control.html">&larr; Control Flow</a>
+    <a href="07-arrays.html">Arrays &amp; Strings &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

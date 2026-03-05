@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>08 · Transactions and ACID</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 08</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="08-transactions-acid.html" class="active">08 Transactions & ACID</a></li><li><a href="09-indexing.html">09 Indexing</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Transactions and ACID Properties</h1><p>Atomicity, consistency, isolation, durability with practical transaction examples.</p></div><div class="sec sec-explanation"><h3>📚 ACID</h3><ul><li><strong>Atomicity:</strong> all or nothing.</li><li><strong>Consistency:</strong> constraints preserved.</li><li><strong>Isolation:</strong> concurrent transactions do not interfere incorrectly.</li><li><strong>Durability:</strong> committed data survives crashes.</li></ul></div><div class="sec sec-example"><h3>▶ Money transfer transaction</h3><pre><code>START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 1000 WHERE account_id = 1;
+UPDATE accounts SET balance = balance + 1000 WHERE account_id = 2;
+
+COMMIT;
+
+-- If second update fails:
+ROLLBACK;</code></pre></div><div class="sec sec-syntax"><h3>Isolation anomalies</h3><pre><code>Dirty read, non-repeatable read, phantom read
+Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Most interviewers ask isolation levels with anomaly mapping.</li><li>Be ready to explain why stricter isolation can reduce concurrency.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="07-normalization.html">← Normalization</a><a href="09-indexing.html">Indexing →</a></div></main></body></html>

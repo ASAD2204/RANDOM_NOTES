@@ -1,0 +1,35 @@
+          -> Prompt Constructor -> LLM -> Final Response</code></pre></div><div class="sec sec-example"><h3>▶ Core components</h3><ul><li>Text chunking: split documents into retrievable pieces.</li><li>Embeddings: vector representation of semantic meaning.</li><li>Similarity search: top-k nearest chunks.</li><li>Knowledge retrieval: filter and rank relevant context.</li><li>Prompt construction: inject retrieved context with instructions.</li></ul></div><div class="sec sec-example"><h3>▶ Tooling ecosystem</h3><p>LangChain, LlamaIndex, FAISS, Pinecone, ChromaDB are common choices for orchestration + retrieval infrastructure.</p></div><div class="sec sec-example"><h3>▶ Python pseudo-pipeline</h3><pre><code>chunks = chunk_documents(docs)
+embs = embed_model.encode(chunks)
+vector_store.add(chunks, embs)
+q_emb = embed_model.encode([query])[0]
+ctx = vector_store.similarity_search(q_emb, k=4)
+prompt = build_rag_prompt(query, ctx)
+# answer = llm.generate(prompt)</code></pre></div><div class="page-nav"><a href="09-chatbot-development.html">← Chatbot Development</a><a href="11-cag.html">CAG →</a></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>10 · Retrieval Augmented Generation</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>AI Prep</h2><p>Section 10</p></div><nav><ul><li><a href="../index.html">⬅ AI Home</a></li><li><a href="10-rag.html" class="active">10 RAG</a></li></ul></nav></aside>
+<main class="main">
+    <div class="page-header"><h1>Retrieval Augmented Generation (RAG)</h1><p>Grounding language models with external knowledge retrieval for factual reliability.</p></div>
+    <div class="sec sec-example"><h3>▶ Architecture</h3><pre><code>User Query -> Embedding Model -> Vector DB -> Retriever
+                    -> Prompt Constructor -> LLM -> Final Response</code></pre></div>
+    <div class="sec sec-example"><h3>▶ Core components</h3><ul><li>Chunking strategy controls context granularity and recall quality.</li><li>Embeddings project text into semantic vector space.</li><li>Similarity search retrieves top-k likely relevant chunks.</li><li>Reranking improves precision before prompt construction.</li><li>Prompt construction determines how evidence influences generation.</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>RAG separates knowledge storage from generation. The LLM provides language reasoning; retrieval provides current, domain-specific evidence. This modularity improves update speed and factual grounding without expensive full model retraining. The critical challenge is retrieval precision: irrelevant context can degrade output even with a powerful model.</p><ul><li><b>Recall vs precision trade-off:</b> too little context misses facts; too much context adds noise.</li><li><b>Chunking semantics:</b> boundaries should preserve meaning units.</li><li><b>Evaluation:</b> measure retrieval quality and answer faithfulness separately.</li></ul></div>
+    <div class="sec sec-example"><h3>▶ Tooling ecosystem</h3><p>LangChain, LlamaIndex, FAISS, Pinecone, and ChromaDB are common choices for orchestration and vector retrieval layers.</p></div>
+    <div class="sec sec-example"><h3>▶ Python pseudo-pipeline</h3><pre><code>chunks = chunk_documents(docs)
+embs = embed_model.encode(chunks)
+vector_store.add(chunks, embs)
+q_emb = embed_model.encode([query])[0]
+ctx = vector_store.similarity_search(q_emb, k=4)
+prompt = build_rag_prompt(query, ctx)
+# answer = llm.generate(prompt)</code></pre></div>
+    <div class="page-nav"><a href="09-chatbot-development.html">← Chatbot Development</a><a href="11-cag.html">CAG →</a></div>
+</main>
+</body>
+</html>

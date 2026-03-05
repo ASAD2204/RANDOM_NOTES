@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>02 · Relational Database Concepts</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>DBMS Prep</h2><p>Section 02</p></div><nav><ul><li><a href="../index.html">⬅ DBMS Home</a></li><li><a href="02-relational-concepts.html" class="active">02 Relational Concepts</a></li><li><a href="03-sql-overview.html">03 SQL Overview</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Relational Database Concepts</h1><p>Tables, rows, columns, keys, and constraints that define data correctness.</p></div><div class="sec sec-explanation"><h3>📚 Core entities</h3><ul><li><strong>Table:</strong> relation</li><li><strong>Row:</strong> tuple/record</li><li><strong>Column:</strong> attribute/field</li></ul></div><div class="sec sec-syntax"><h3>🔑 Keys</h3><ul><li><strong>Primary Key:</strong> unique + not null identifier.</li><li><strong>Foreign Key:</strong> references primary key of another table.</li><li><strong>Candidate Key:</strong> minimal unique identifier candidates.</li><li><strong>Composite Key:</strong> key made of multiple columns.</li><li><strong>Super Key:</strong> any set of columns that uniquely identifies rows.</li><li><strong>Alternate Key:</strong> candidate keys not chosen as primary key.</li></ul></div><div class="sec sec-syntax"><h3>🛡 Constraints</h3><pre><code>PRIMARY KEY
+FOREIGN KEY
+UNIQUE
+NOT NULL
+CHECK
+DEFAULT</code></pre></div><div class="sec sec-example"><h3>▶ Example schema</h3><pre><code>CREATE TABLE departments (
+  dept_id INT PRIMARY KEY,
+  dept_name VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE employees (
+  emp_id INT PRIMARY KEY,
+  emp_name VARCHAR(50) NOT NULL,
+  dept_id INT,
+  salary DECIMAL(10,2) CHECK (salary &gt;= 0),
+  FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Primary key can be composite.</li><li>Foreign key can be NULL unless explicitly restricted.</li><li>Always explain keys using uniqueness + minimality + referential integrity.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Database engineering decisions should connect schema design, query behavior, indexing, transactions, and scalability constraints.</p></div><div class="page-nav"><a href="01-introduction.html">← Introduction</a><a href="03-sql-overview.html">SQL Overview →</a></div></main></body></html>

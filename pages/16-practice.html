@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>16 · Practice Problems — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html" class="active"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 16</div>
+    <h1>Practice Problems</h1>
+    <p>Five essential problems every placement candidate must be able to code cleanly — with full working solutions in all three languages.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Problems Covered</h3>
+      <ol>
+        <li><strong>FizzBuzz</strong> — basic conditionals with modulo</li>
+        <li><strong>Two Sum</strong> — hash map for O(N) solution</li>
+        <li><strong>Reverse a String</strong> — two-pointer in-place</li>
+        <li><strong>Check Palindrome</strong> — two-pointer from both ends</li>
+        <li><strong>Frequency Count</strong> — character/element counting</li>
+      </ol>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Problem 1: FizzBuzz</h3>
+      <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string fizzBuzz(int n) {
+    if (n % 15 == 0) return "FizzBuzz";
+    if (n % 3 == 0)  return "Fizz";
+    if (n % 5 == 0)  return "Buzz";
+    return to_string(n);
+}
+
+int main() {
+    for (int i = 1; i &lt;= 20; i++)
+        cout &lt;&lt; fizzBuzz(i) &lt;&lt; "\n";
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Problems 2 – 5</h3>
+      <pre><code>#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+// Problem 2: Two Sum — O(N)
+vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+    unordered_map&lt;int,int&gt; seen;
+    for (int i = 0; i &lt; (int)nums.size(); i++) {
+        int comp = target - nums[i];
+        if (seen.count(comp)) return {seen[comp], i};
+        seen[nums[i]] = i;
+    }
+    return {};
+}
+
+// Problem 3: Reverse String — O(N), O(1) extra
+void reverseString(string&amp; s) {
+    int l = 0, r = (int)s.size() - 1;
+    while (l &lt; r) swap(s[l++], s[r--]);
+}
+
+// Problem 4: Check Palindrome (ignore spaces/case)
+bool isPalindrome(string s) {
+    string clean;
+    for (char c : s)
+        if (isalnum(c)) clean += tolower(c);
+    int l = 0, r = (int)clean.size() - 1;
+    while (l &lt; r) if (clean[l++] != clean[r--]) return false;
+    return true;
+}
+
+// Problem 5: Frequency Count
+unordered_map&lt;char,int&gt; charFreq(const string&amp; s) {
+    unordered_map&lt;char,int&gt; freq;
+    for (char c : s) freq[c]++;
+    return freq;
+}</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Interview Strategy</h3>
+      <p>Before coding: state the problem in your own words → clarify edge cases (empty input? negatives? case-sensitive?) → state your time/space complexity → then write clean code with meaningful variable names. Interviewers reward this process as much as the code itself.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>FizzBuzz: checking <code>n % 3</code> before <code>n % 15</code> — correct order is divisible-by-15 first.</li>
+        <li>Two Sum: using nested loops O(N²) when hash map O(N) is expected.</li>
+        <li>Palindrome: forgetting to handle spaces, punctuation, and mixed case.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>FizzBuzz is often a warmup — write it in under 60 seconds with the correct priority order.</li>
+        <li>Two Sum is a gateway for hash map discussion — be ready to explain why you use a map.</li>
+        <li>Always test with edge cases out loud: empty string, single char, all same chars.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Problems Covered</h3>
+      <ol>
+        <li><strong>FizzBuzz</strong> — basic conditionals with modulo</li>
+        <li><strong>Two Sum</strong> — hash map for O(N) solution</li>
+        <li><strong>Reverse a String</strong> — slice trick + two-pointer</li>
+        <li><strong>Check Palindrome</strong> — slice + cleaning</li>
+        <li><strong>Frequency Count</strong> — Counter + manual dict</li>
+      </ol>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Problem 1: FizzBuzz</h3>
+      <pre><code>def fizz_buzz(n):
+    if n % 15 == 0: return "FizzBuzz"
+    if n % 3 == 0:  return "Fizz"
+    if n % 5 == 0:  return "Buzz"
+    return str(n)
+
+# Print 1 to 20
+for i in range(1, 21):
+    print(fizz_buzz(i))</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Problems 2 – 5</h3>
+      <pre><code>from collections import Counter
+
+# Problem 2: Two Sum — O(N)
+def two_sum(nums, target):
+    seen = {}  # value -> index
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in seen:
+            return [seen[comp], i]
+        seen[n] = i
+
+# Problem 3: Reverse String — two approaches
+def reverse_string_slice(s):
+    return s[::-1]  # creates new string
+
+def reverse_in_place(s):
+    lst = list(s)
+    l, r = 0, len(lst) - 1
+    while l &lt; r:
+        lst[l], lst[r] = lst[r], lst[l]
+        l += 1; r -= 1
+    return "".join(lst)
+
+# Problem 4: Check Palindrome
+def is_palindrome(s):
+    cleaned = "".join(c.lower() for c in s if c.isalnum())
+    return cleaned == cleaned[::-1]
+
+# Problem 5: Frequency Count
+def char_freq(s):
+    return Counter(s)                   # one-liner
+    # or: {c: s.count(c) for c in set(s)} but O(N²)
+
+print(two_sum([2,7,11,15], 9))         # [0, 1]
+print(is_palindrome("A man a plan a canal Panama"))  # True</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Interview Strategy</h3>
+      <p>Python's concise syntax can be a double-edged sword: <code>s[::-1]</code> reverses in one line, but always explain what it does. Interviewers prefer you explain your thinking over magical one-liners without justification. Offer both the concise and the explicit version.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting that strings are immutable — <code>s[0] = 'x'</code> raises a TypeError.</li>
+        <li>Using <code>s.count(c) for c in set(s)</code> — O(N²) when Counter is O(N).</li>
+        <li>Palindrome check: not lowercasing or not filtering non-alphanumeric chars.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always mention <code>Counter</code> for frequency problems — shows you know the standard library.</li>
+        <li>For Two Sum: walk through the hash map approach step by step — draw it on a whiteboard if available.</li>
+        <li>Python's <code>enumerate</code> is preferred over manual index tracking in for loops.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Problems Covered</h3>
+      <ol>
+        <li><strong>FizzBuzz</strong> — basic conditionals with modulo</li>
+        <li><strong>Two Sum</strong> — Map for O(N) solution</li>
+        <li><strong>Reverse a String</strong> — split/reverse/join + two-pointer</li>
+        <li><strong>Check Palindrome</strong> — regex + two-pointer</li>
+        <li><strong>Frequency Count</strong> — Map + plain object approaches</li>
+      </ol>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Problem 1: FizzBuzz</h3>
+      <pre><code>function fizzBuzz(n) {
+    if (n % 15 === 0) return "FizzBuzz";
+    if (n % 3 === 0)  return "Fizz";
+    if (n % 5 === 0)  return "Buzz";
+    return String(n);
+}
+
+for (let i = 1; i &lt;= 20; i++) console.log(fizzBuzz(i));</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Problems 2 – 5</h3>
+      <pre><code>// Problem 2: Two Sum — O(N)
+function twoSum(nums, target) {
+    const seen = new Map();  // value -> index
+    for (let i = 0; i &lt; nums.length; i++) {
+        const comp = target - nums[i];
+        if (seen.has(comp)) return [seen.get(comp), i];
+        seen.set(nums[i], i);
+    }
+    return [];
+}
+
+// Problem 3: Reverse String
+const reverseString = s =&gt; s.split("").reverse().join(""); // O(N)
+
+// Two-pointer from scratch
+function reverseTwoPointer(s) {
+    const a = s.split("");
+    let l = 0, r = a.length - 1;
+    while (l &lt; r) {
+        [a[l], a[r]] = [a[r], a[l]];
+        l++; r--;
+    }
+    return a.join("");
+}
+
+// Problem 4: Palindrome (ignore non-alphanumeric)
+function isPalindrome(s) {
+    const clean = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    let l = 0, r = clean.length - 1;
+    while (l &lt; r) if (clean[l++] !== clean[r--]) return false;
+    return true;
+}
+
+// Problem 5: Frequency Count
+function charFreq(s) {
+    const freq = new Map();
+    for (const c of s) freq.set(c, (freq.get(c) || 0) + 1);
+    return freq;
+}
+
+// Tests
+console.log(twoSum([2,7,11,15], 9));          // [0, 1]
+console.log(isPalindrome("A man a plan a canal Panama")); // true</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Interview Strategy</h3>
+      <p>In JavaScript interviews, show functional style (<code>map/filter/reduce</code>) when appropriate, but also demonstrate you can think iteratively. Interviewers test <em>both</em> fluency with modern JS and understanding of fundamentals. Don't rely solely on built-in methods without explaining the complexity.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Forgetting <code>.split("").reverse().join("")</code> — strings have no <code>.reverse()</code> method directly.</li>
+        <li>Using an object <code>{}</code> as a frequency map instead of <code>new Map()</code> — prototype keys can conflict.</li>
+        <li>Palindrome: forgetting regex to strip non-alphanumeric chars before checking.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Two Sum with <code>Map</code>: always mention that <code>Map</code> is O(1) average for get/set vs object O(1) with caveats.</li>
+        <li>For frequency count, offer both <code>Map</code> and object approaches — show versatility.</li>
+        <li>Regex in palindrome: <code>/[^a-z0-9]/g</code> — know how to read and write basic regex patterns.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="15-faq.html">&larr; Interview Q&amp;A</a>
+    <a href="../index.html">&#127968; Back to Home</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

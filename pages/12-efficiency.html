@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12 · Code Efficiency — Programming Basics</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand"><h2>Programming Basics</h2><p>Placement Interview Guide</p></div>
+  <nav><ul>
+    <li><a href="../index.html">&#127968; Home</a></li>
+    <li><a href="01-overview.html"><span class="num">01</span> Language Overview</a></li>
+    <li><a href="02-syntax.html"><span class="num">02</span> Syntax Fundamentals</a></li>
+    <li><a href="03-variables.html"><span class="num">03</span> Variables &amp; Types</a></li>
+    <li><a href="04-operators.html"><span class="num">04</span> Operators</a></li>
+    <li><a href="05-control.html"><span class="num">05</span> Control Flow</a></li>
+    <li><a href="06-functions.html"><span class="num">06</span> Functions</a></li>
+    <li><a href="07-arrays.html"><span class="num">07</span> Arrays &amp; Strings</a></li>
+    <li><a href="08-memory.html"><span class="num">08</span> Memory Concepts</a></li>
+    <li><a href="09-io.html"><span class="num">09</span> Input &amp; Output</a></li>
+    <li><a href="10-errors.html"><span class="num">10</span> Error Handling</a></li>
+    <li><a href="11-libraries.html"><span class="num">11</span> Standard Libraries</a></li>
+    <li><a href="12-efficiency.html" class="active"><span class="num">12</span> Code Efficiency</a></li>
+    <li><a href="13-mistakes.html"><span class="num">13</span> Common Mistakes</a></li>
+    <li><a href="14-teasers.html"><span class="num">14</span> Brain Teasers</a></li>
+    <li><a href="15-faq.html"><span class="num">15</span> Interview Q&amp;A</a></li>
+    <li><a href="16-practice.html"><span class="num">16</span> Practice Problems</a></li>
+  </ul></nav>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / Topic 12</div>
+    <h1>Code Efficiency</h1>
+    <p>Big-O complexity, space-time trade-offs, and optimization patterns that separate good from great solutions.</p>
+  </div>
+
+  <div class="lang-tabs">
+    <button class="lang-tab" data-lang="cpp">C++</button>
+    <button class="lang-tab" data-lang="python">Python</button>
+    <button class="lang-tab" data-lang="js">JavaScript</button>
+  </div>
+
+  <!-- ═══ C++ ═══ -->
+  <div class="lang-panel" data-lang="cpp">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Big-O quick reference:</p>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <tr style="background:rgba(0,0,0,0.2)"><th style="padding:6px;text-align:left">Complexity</th><th style="padding:6px;text-align:left">Name</th><th style="padding:6px;text-align:left">Example</th></tr>
+        <tr><td style="padding:5px">O(1)</td><td style="padding:5px">Constant</td><td style="padding:5px">Array index, hash lookup</td></tr>
+        <tr><td style="padding:5px">O(log N)</td><td style="padding:5px">Logarithmic</td><td style="padding:5px">Binary search, balanced BST</td></tr>
+        <tr><td style="padding:5px">O(N)</td><td style="padding:5px">Linear</td><td style="padding:5px">Single loop, linear scan</td></tr>
+        <tr><td style="padding:5px">O(N log N)</td><td style="padding:5px">Linearithmic</td><td style="padding:5px">std::sort, merge sort</td></tr>
+        <tr><td style="padding:5px">O(N²)</td><td style="padding:5px">Quadratic</td><td style="padding:5px">Nested loop, bubble sort</td></tr>
+        <tr><td style="padding:5px">O(2^N)</td><td style="padding:5px">Exponential</td><td style="padding:5px">Brute-force subsets</td></tr>
+      </table>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// O(N²) naive — check all pairs
+for (int i = 0; i &lt; n; i++)
+    for (int j = i+1; j &lt; n; j++)
+        if (a[i]+a[j] == target) return {i, j};
+
+// O(N) optimized — hash map
+unordered_map&lt;int,int&gt; seen;
+for (int i = 0; i &lt; n; i++) {
+    int complement = target - a[i];
+    if (seen.count(complement)) return {seen[complement], i};
+    seen[a[i]] = i;
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>#include &lt;unordered_map&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+// Two Sum: O(N) time, O(N) space
+vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+    unordered_map&lt;int,int&gt; seen;  // value → index
+    for (int i = 0; i &lt; (int)nums.size(); i++) {
+        int comp = target - nums[i];
+        if (seen.count(comp)) return {seen[comp], i};
+        seen[nums[i]] = i;
+    }
+    return {};
+}
+
+// Reserve capacity to avoid reallocations
+vector&lt;int&gt; v;
+v.reserve(1000);  // pre-allocate
+for (int i = 0; i &lt; 1000; i++) v.push_back(i);</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Optimizing code is like finding a person in a city. Checking every house (O(N)) works but is slow. Using a directory/index (O(log N)) is faster. Knowing their GPS coordinates (O(1) hash lookup) is instant — the hash map is that directory.</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Nested loops when a hash map solution exists — automatic O(N²) when O(N) is possible.</li>
+        <li>Not considering space complexity — sometimes O(N) extra space is the trade-off.</li>
+        <li>Premature <code>vector</code> reallocation — use <code>reserve()</code> when size is known.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Always state your time and space complexity before coding — it shows the interviewer you think before you act.</li>
+        <li>Common trick: sort first, then binary search or two-pointer → reduces O(N²) to O(N log N).</li>
+        <li>Hash maps (unordered_map) trade O(N) space for O(1) lookup — explain this trade-off explicitly.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ PYTHON ═══ -->
+  <div class="lang-panel" data-lang="python">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>Python complexity quick reference:</p>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <tr style="background:rgba(0,0,0,0.2)"><th style="padding:6px;text-align:left">Operation</th><th style="padding:6px;text-align:left">Complexity</th></tr>
+        <tr><td style="padding:5px">list index / append</td><td style="padding:5px">O(1)</td></tr>
+        <tr><td style="padding:5px">list insert/delete at front</td><td style="padding:5px">O(N)</td></tr>
+        <tr><td style="padding:5px">dict/set get, set, in</td><td style="padding:5px">O(1) avg</td></tr>
+        <tr><td style="padding:5px">sorted() / list.sort()</td><td style="padding:5px">O(N log N)</td></tr>
+        <tr><td style="padding:5px">deque appendleft/popleft</td><td style="padding:5px">O(1)</td></tr>
+      </table>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code># O(N²) naive
+def two_sum_naive(nums, target):
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+
+# O(N) optimized
+def two_sum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in seen:
+            return [seen[comp], i]
+        seen[n] = i</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code># Sliding window — O(N) for max subarray of size k
+def max_window_sum(nums, k):
+    window = sum(nums[:k])
+    best = window
+    for i in range(k, len(nums)):
+        window += nums[i] - nums[i - k]
+        best = max(best, window)
+    return best
+
+# Memoization for O(N) fibonacci instead of O(2^N)
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):
+    if n &lt;= 1: return n
+    return fib(n-1) + fib(n-2)
+
+print(fib(100))  # instant</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>Memoization is like a student writing down answers to previously solved problems — instead of recalculating every time, they flip back to their notes. <code>@lru_cache</code> is Python's built-in "answer notebook".</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>list</code> where <code>deque</code> is needed — <code>list.pop(0)</code> is O(N) every time.</li>
+        <li>String concatenation in a loop: O(N²); use <code>"".join(parts)</code>.</li>
+        <li>Recursive fibonacci without memoization — exponential time on large N.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Sliding window, two-pointer, and hash map are the three O(N) patterns that solve 80% of medium problems.</li>
+        <li><code>@lru_cache</code> on a recursive function instantly applies top-down DP.</li>
+        <li>Know when to prefer bottom-up DP over recursion (avoids Python's recursion limit of ~1000).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ JS ═══ -->
+  <div class="lang-panel" data-lang="js">
+    <div class="sec sec-explanation">
+      <h3>&#128218; Simple Explanation</h3>
+      <p>JS array/object complexity quick reference:</p>
+      <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+        <tr style="background:rgba(0,0,0,0.2)"><th style="padding:6px;text-align:left">Operation</th><th style="padding:6px;text-align:left">Complexity</th></tr>
+        <tr><td style="padding:5px">array [] access / push / pop</td><td style="padding:5px">O(1)</td></tr>
+        <tr><td style="padding:5px">array unshift / shift / splice</td><td style="padding:5px">O(N)</td></tr>
+        <tr><td style="padding:5px">Map/Set get, set, has</td><td style="padding:5px">O(1) avg</td></tr>
+        <tr><td style="padding:5px">Array.sort()</td><td style="padding:5px">O(N log N)</td></tr>
+        <tr><td style="padding:5px">includes / indexOf on array</td><td style="padding:5px">O(N)</td></tr>
+      </table>
+    </div>
+    <div class="sec sec-syntax">
+      <h3>&#128196; Syntax Snapshot</h3>
+      <pre><code>// O(N²) naive
+function twoSumNaive(nums, target) {
+    for (let i = 0; i &lt; nums.length; i++)
+        for (let j = i+1; j &lt; nums.length; j++)
+            if (nums[i] + nums[j] === target) return [i, j];
+}
+
+// O(N) optimized
+function twoSum(nums, target) {
+    const seen = new Map();
+    for (let i = 0; i &lt; nums.length; i++) {
+        const comp = target - nums[i];
+        if (seen.has(comp)) return [seen.get(comp), i];
+        seen.set(nums[i], i);
+    }
+}</code></pre>
+    </div>
+    <div class="sec sec-example">
+      <h3>&#9654; Example Code</h3>
+      <pre><code>// Memoization with a Map (manual)
+function memoize(fn) {
+    const cache = new Map();
+    return function(...args) {
+        const key = JSON.stringify(args);
+        if (cache.has(key)) return cache.get(key);
+        const result = fn.apply(this, args);
+        cache.set(key, result);
+        return result;
+    };
+}
+
+const fib = memoize(function(n) {
+    if (n &lt;= 1) return n;
+    return fib(n-1) + fib(n-2);
+});
+
+console.log(fib(50)); // instant</code></pre>
+    </div>
+    <div class="sec sec-analogy">
+      <h3>&#128161; Real-World Analogy</h3>
+      <p>A <code>Map</code> lookup is like having a perfectly indexed library catalog — find any book in O(1). A linear array <code>includes()</code> is like reading every title on every shelf until you find the one you want — O(N).</p>
+    </div>
+    <div class="sec sec-mistake">
+      <h3>&#9888; Common Mistakes</h3>
+      <ul>
+        <li>Using <code>arr.includes(x)</code> inside a loop when a <code>Set</code> lookup would be O(1).</li>
+        <li>Not providing a sort comparator — lexicographic default causes subtle bugs.</li>
+        <li>Excessive DOM manipulation in a loop — batch changes, or use <code>DocumentFragment</code>.</li>
+      </ul>
+    </div>
+    <div class="sec sec-tip">
+      <h3>&#127775; Interview Tips</h3>
+      <ul>
+        <li>Whenever you hear "find if exists" in an O(N) context — think <code>Set</code>.</li>
+        <li>Whenever you hear "count occurrences" — think <code>Map</code>.</li>
+        <li>Sliding window is just as applicable in JS — window sum/product patterns come up in frontend data processing too.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Programming fundamentals should be understood through language semantics, runtime behavior, memory model, and algorithmic trade-offs in real-world problem solving.</p></div><div class="page-nav">
+    <a href="11-libraries.html">&larr; Standard Libraries</a>
+    <a href="13-mistakes.html">Common Mistakes &rarr;</a>
+  </div>
+</main>
+
+<script src="../js/tabs.js"></script>
+</body>
+</html>

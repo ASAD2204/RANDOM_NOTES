@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>28 · Startup-Style OOP Round</title><link rel="stylesheet" href="../../css/style.css" /></head>
+<body>
+<aside class="sidebar"><div class="sidebar-brand"><h2>OOP Mock Variants</h2><p>Startup-Style</p></div><nav><ul>
+<li><a href="../index.html">⬅ OOP Home</a></li>
+<li><a href="25-mock-interview-rounds.html">25 Mock Rounds</a></li>
+<li><a href="26-company-round-service.html">26 Service-Based</a></li>
+<li><a href="27-company-round-product.html">27 Product-Based</a></li>
+<li><a href="28-company-round-startup.html" class="active">28 Startup-Style</a></li>
+</ul></nav></aside>
+
+<main class="main">
+  <div class="page-header"><h1>Startup-Style OOP Round</h1><p>Typical pattern: build quickly, justify decisions, and show pragmatic evolution path.</p></div>
+
+  <div class="sec sec-explanation"><h3>📚 What they usually test</h3><ul>
+    <li>Can you ship a workable design fast?</li>
+    <li>Can you identify what to simplify today and what to abstract later?</li>
+    <li>Can you avoid obvious technical debt traps?</li>
+    <li>Can you discuss scaling path if usage grows 10x?</li>
+  </ul></div>
+
+  <div class="sec sec-syntax"><h3>📄 “Pragmatic first” approach</h3><pre><code>Phase 1: Minimal cohesive classes, no over-abstraction
+Phase 2: Add interfaces at external boundaries
+Phase 3: Extract strategies where variability appears
+Phase 4: Add observability, retries, and resilience layers</code></pre></div>
+
+  <div class="sec sec-example"><h3>▶ Common prompts</h3><ol>
+    <li>Design a lightweight order service with pluggable payments.</li>
+    <li>Design basic task scheduler with future extensibility.</li>
+    <li>Build API client SDK model with retry + fallback hooks.</li>
+    <li>Take rough code and propose 2-step refactor roadmap.</li>
+  </ol></div>
+
+  <div class="sec sec-tip"><h3>🌟 Scoring booster</h3><ul>
+    <li>Say: “I’ll start simple and define extension seams where change is likely.”</li>
+    <li>Highlight observability and failure handling early.</li>
+    <li>Give one migration plan from MVP design to robust architecture.</li>
+  </ul></div>
+
+  <div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Object-oriented design should be explained through abstraction boundaries, coupling/cohesion, and maintainability trade-offs.</p></div><div class="page-nav"><a href="27-company-round-product.html">← Product-Based Variant</a><a href="../index.html">🏠 OOP Home</a></div>
+</main>
+</body></html>

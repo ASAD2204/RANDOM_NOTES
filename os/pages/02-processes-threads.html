@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>02 · Processes and Threads</title><link rel="stylesheet" href="../../css/style.css"/></head><body><aside class="sidebar"><div class="sidebar-brand"><h2>OS Prep</h2><p>Section 02</p></div><nav><ul><li><a href="../index.html">⬅ OS Home</a></li><li><a href="02-processes-threads.html" class="active">02 Processes & Threads</a></li><li><a href="03-cpu-scheduling.html">03 CPU Scheduling</a></li></ul></nav></aside><main class="main"><div class="page-header"><h1>Processes and Threads</h1><p>Lifecycle, PCB, process states, and process vs thread differences.</p></div><div class="sec sec-explanation"><h3>📚 Process</h3><p>A process is a program in execution with its own address space, resources, and execution context.</p></div><div class="sec sec-explanation"><h3>📚 Thread</h3><p>A thread is the smallest execution unit within a process. Threads share process memory/resources but have separate stacks/registers.</p></div><div class="sec sec-syntax"><h3>🔄 Process states</h3><pre><code>New -> Ready -> Running -> Waiting/Blocked -> Ready -> Terminated</code></pre></div><div class="sec sec-syntax"><h3>📦 Process Control Block (PCB)</h3><ul><li>Process ID</li><li>Program counter</li><li>CPU registers</li><li>Scheduling info (priority, queue pointers)</li><li>Memory management info</li><li>I/O status/accounting info</li></ul></div><div class="sec sec-example"><h3>▶ Process vs Thread</h3><pre><code>Process:
+- Heavyweight
+- Separate memory
+- Costly context switch
+- Strong isolation
+
+Thread:
+- Lightweight
+- Shared memory in same process
+- Faster context switch
+- Synchronization needed for shared data</code></pre></div><div class="sec sec-tip"><h3>🌟 Interview Tips</h3><ul><li>Context switch between processes is costlier than thread switch.</li><li>Threads improve responsiveness but introduce race conditions.</li></ul></div><div class="sec sec-example"><h3>▶ Theory Deep Dive</h3><p>Processes isolate execution contexts; threads share process resources for concurrency. Correct system design balances isolation, communication overhead, and scheduling fairness.</p></div><div class="page-nav"><a href="01-introduction.html">← Introduction</a><a href="03-cpu-scheduling.html">CPU Scheduling →</a></div></main></body></html>
